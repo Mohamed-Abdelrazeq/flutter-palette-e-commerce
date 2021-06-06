@@ -11,17 +11,28 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.2
+##UI
+  cupertino_icons:
+##State Management
+  provider:
+##Futures Reflections
+  flutter_spinkit:
+  flushbar:
+##Firebase
+  firebase_core:
+  firebase_auth:
+  cloud_firestore:
+  firebase_storage:
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
 flutter:
   uses-material-design: true
 
   assets:
     - images/
-
 
   fonts:
     - family: Roboto

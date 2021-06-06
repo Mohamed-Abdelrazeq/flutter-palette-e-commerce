@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "736525114558",
+    "project_id": "multivendor-e-commerce",
+    "storage_bucket": "multivendor-e-commerce.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:736525114558:android:4680c99d681cdba20012ef",
+        "android_client_info": {
+          "package_name": "com.multivender_ecommerce_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "736525114558-e3csu4o3btlkencsh42ai9oe9dm6b99r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmLeOseiKD3hhO9aNLXnFiGPig7jxJwAE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "736525114558-e3csu4o3btlkencsh42ai9oe9dm6b99r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
