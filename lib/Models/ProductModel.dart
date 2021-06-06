@@ -15,6 +15,7 @@ class ProductModel{
     @required this.category,
     @required this.ratesList,
     @required this.status,
+    @required this.available,
 });
 
   String name;
@@ -27,9 +28,17 @@ class ProductModel{
   Category category;
   List<RateModel> ratesList;
   Status status;
+  bool available;
 
   void changeStatus(Status newStatus){
     status = newStatus;
   }
 
+  void changeAvailability(bool isAvailable){
+    available = isAvailable;
+  }
+
+  void addRate(RateModel newRate){
+    ratesList.add(newRate);
+  }
 }
