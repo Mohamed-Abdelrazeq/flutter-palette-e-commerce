@@ -33,6 +33,7 @@ flutter:
 
   assets:
     - images/
+    - lang/
 
   fonts:
     - family: Roboto
