@@ -2,7 +2,9 @@ enum Category {
   Planet,
   Art,
   Handicrafts,
-  Woven,
+  Knitted,
+  ClothesAndBags,
+  Accessories,
 }
 
 enum Status {
@@ -12,4 +14,12 @@ enum Status {
   Waiting,
   Received,
   Shipping,
+}
+
+enum MySize {
+  S,
+  M,
+  L,
+  XL,
+  XXL,
 }
