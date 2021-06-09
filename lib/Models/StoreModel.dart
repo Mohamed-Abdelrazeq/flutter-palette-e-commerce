@@ -19,5 +19,6 @@ class StoreModel{
   List<Category> categories = [];
   List<ProductModel> products = [];
   double shippingCost;
+  int counter = 0;
 
 }
