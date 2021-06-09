@@ -1,4 +1,4 @@
-enum Category {
+enum MyCategory {
   Planet,
   Art,
   Handicrafts,

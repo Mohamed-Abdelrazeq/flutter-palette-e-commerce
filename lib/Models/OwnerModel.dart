@@ -5,7 +5,6 @@ class OwnerModel {
 
   OwnerModel({
     @required this.name,
-    @required this.store,
     @required this.lon,
     @required this.lat,
     @required this.address,

@@ -14,7 +14,6 @@ class ProductModel{
     @required this.price,
     @required this.store,
     @required this.category,
-    @required this.ratesList,
     @required this.status,
     @required this.available,
 });
@@ -26,42 +25,53 @@ class ProductModel{
   String image3URL;
   double price;
   StoreModel store;
-  Category category;
-  List<RateModel> ratesList;
+  MyCategory category;
+  List<RateModel> ratesList = [];
   Status status;
   bool available;
   String id;
 
   CollectionReference products = FirebaseFirestore.instance.collection('products');
 
+  //Working
   Future<void> addProduct() async {
     id = "${store.name} ${store.counter}";
+    //TODO : update counter in the StoreModel
     await products.doc("${store.name} ${store.counter}").set({
       "id" : "${store.name} ${store.counter}",
-      "name," : name,
-      "description," : description,
-      "image1URL," : image1URL,
-      "image2URL," : image2URL,
-      "image3URL," : image3URL,
-      "price," : price,
-      "store," : store,
-      "category," : category,
-      "ratesList," : ratesList,
-      "status," : status,
-      "available," : available,
+      "name" : name,
+      "description" : description,
+      "image1URL" : image1URL,
+      "image2URL" : image2URL,
+      "image3URL" : image3URL,
+      "price" : price,
+      // "store" : store,
+      // "category" : category,
+      "ratesList" : ratesList,
+      // "status" : status,
+      "available" : available,
     })
         .then((value) => print("Products Added"))
         .catchError((error) => print("Failed to add product: $error"));
   }
-
-  Future<void> updateProduct({String id,var value}) async {
+  //TODO : test
+  Future<void> readStoreProducts(String storeName) async {
+    products.where('id', arrayContainsAny: ["$storeName"]).get()
+        .then((QuerySnapshot querySnapshot) {
+      querySnapshot.docs.forEach((doc) {
+        print(doc);
+      });
+    });
+  }
+  //Working
+  Future<void> updateProduct({String key,var value}) async {
     await products.doc(id)
-        .update({id : value})
+        .update({key : value})
         .then((value) => print("Product Updated"))
         .catchError((error) => print("Failed to update product: $error"));
   }
-
-  Future<void> deleteUser() async {
+  //Working
+  Future<void> deleteProduct() async {
     await products
         .doc(id)
         .delete()

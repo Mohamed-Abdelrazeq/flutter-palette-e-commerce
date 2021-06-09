@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:multivender_ecommerce_app/Enums.dart';
 import 'ProductModel.dart';
-import 'RateModel.dart';
 import 'StoreModel.dart';
 
 class TShirtModel extends ProductModel {
@@ -14,8 +13,7 @@ class TShirtModel extends ProductModel {
     String image3URL,
     double price,
     StoreModel store,
-    Category category,
-    List<RateModel> ratesList,
+    MyCategory category,
     Status status, bool available,
   }) : super(
     name :  name,
@@ -26,7 +24,6 @@ class TShirtModel extends ProductModel {
     price :  price,
     store :  store,
     category :  category,
-    ratesList :  ratesList,
     status :  status,
     available :  available,
   );
