@@ -54,12 +54,14 @@ class ProductModel{
         .then((value) => print("Products Added"))
         .catchError((error) => print("Failed to add product: $error"));
   }
-  //TODO : test
+  //Working
   Future<void> readStoreProducts(String storeName) async {
-    products.where('id', arrayContainsAny: ["$storeName"]).get()
+    products.where('id',isGreaterThanOrEqualTo: storeName).get()
         .then((QuerySnapshot querySnapshot) {
       querySnapshot.docs.forEach((doc) {
-        print(doc);
+        print("===========================================");
+        print(doc["id"]);
+        print("===========================================");
       });
     });
   }

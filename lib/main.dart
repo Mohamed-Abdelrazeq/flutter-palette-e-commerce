@@ -31,17 +31,17 @@ class MyApp extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.done) {
 
           ProductModel myProduct = ProductModel(
-              name: "Product 1",
+              name: "ProductName",
               description: "Product Description",
               image1URL: "image1URL",
               image2URL: "image2URL",
               image3URL: "image3URL",
               price: 22,
               store: StoreModel(
-                  name: "Store 1",
+                  name: "StoreName",
                   bio: "bio",
                   owner: OwnerModel(
-                      name: "name",
+                      name: "ownerName",
                       lon: 22,
                       lat: 44,
                       address: "address",
@@ -53,11 +53,10 @@ class MyApp extends StatelessWidget {
               available: true);
 
           myProduct.addProduct();
+          
+          // myProduct.updateProduct(key : "name" , value : "Newest Name");
 
-          print(myProduct.id);
-
-          myProduct.updateProduct(key : "name" , value : "Newest Name");
-
+          myProduct.readStoreProducts("0");
           // myProduct.deleteProduct();
 
           return MaterialApp(
