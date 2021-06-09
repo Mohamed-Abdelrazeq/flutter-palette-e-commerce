@@ -1,10 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'Models/OwnerModel.dart';
 import 'Models/ProductModel.dart';
 import 'Models/StoreModel.dart';
-import 'package:provider/provider.dart';
 
 import 'Views/FutureReturn/Loading.dart';
 import 'Views/FutureReturn/SomethingWentWrong.dart';
