@@ -34,9 +34,9 @@ class ProductModel{
 
   //Working
   Future<void> addProduct() async {
-    id = "${store.name} ${store.counter}";
+    id = "${store.name} $category ${store.counter}";
     //TODO : update counter in the StoreModel
-    await products.doc("${store.name} ${store.counter}").set({
+    await products.doc("${store.name} $category ${store.counter}").set({
       "id" : "${store.name} ${store.counter}",
       "name" : name,
       "description" : description,
