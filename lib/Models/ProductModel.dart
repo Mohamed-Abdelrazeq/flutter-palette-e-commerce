@@ -55,8 +55,21 @@ class ProductModel{
   //Working
   Future<void> readCategoryProducts(String key) async {
     int counter = 0;
-    // TODO : find the right query
     products.where('category',isEqualTo: key).get()
+        .then((QuerySnapshot querySnapshot) {
+      querySnapshot.docs.forEach((doc) {
+        print(counter);
+        counter = counter + 1;
+        print("===========================================");
+        print(doc["id"]);
+        print("===========================================");
+      });
+    });
+  }
+  //Debugging
+  Future<void> readStoreProducts(String key) async {
+    int counter = 0;
+    products.where('store.name',isEqualTo: key ).get()
         .then((QuerySnapshot querySnapshot) {
       querySnapshot.docs.forEach((doc) {
         print(counter);

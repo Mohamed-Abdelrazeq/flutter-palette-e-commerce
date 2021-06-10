@@ -53,11 +53,12 @@ class MyApp extends StatelessWidget {
               status: Status().stock,
               available: true);
 
-          myProduct.addProduct();
+          // myProduct.addProduct();
           
           // myProduct.updateProduct(key : "name" , value : "Newest Name");
 
-          myProduct.readCategoryProducts("Plant");
+          myProduct.readStoreProducts("momo");
+
           // myProduct.deleteProduct();
 
           return MaterialApp(
