@@ -19,12 +19,14 @@ class ProductModel{
 
   String name;
   String description;
+  //todo : change to images list
   String image1URL;
   String image2URL;
   String image3URL;
   double price;
   StoreModel store;
   String category;
+  //todo : handle rates model (toMap , toObject)
   List ratesList = [];
   String status;
   bool available;

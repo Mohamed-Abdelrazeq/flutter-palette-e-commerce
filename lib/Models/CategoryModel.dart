@@ -6,7 +6,6 @@ class Category{
   String knitted = "Knitted";
   String clothesAndBags = "ClothesAndBags";
   String accessories = "Accessories";
-
 // class Category{
 //
 //   String stringToEnumConverter(MyCategory category){
@@ -67,6 +66,4 @@ class Category{
 //
 // }
 //
-
-
 }
