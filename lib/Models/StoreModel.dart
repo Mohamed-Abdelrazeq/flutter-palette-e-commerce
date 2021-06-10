@@ -18,7 +18,6 @@ class StoreModel{
   List<OrderModel>      orders          = [];
   List<Category>        categories      = [];
   double                shippingCost;
-  int                   counter          = 0;
 
   CollectionReference stores = FirebaseFirestore.instance.collection('stores');
 
@@ -30,7 +29,6 @@ class StoreModel{
     "orders" : orders,
     "categories" : categories,
     "shippingCost" : shippingCost,
-    "counter" : counter,
   };
   }
 
@@ -38,7 +36,6 @@ class StoreModel{
     StoreModel myStore = StoreModel(name: json["name"], bio: json["bio"], owner: json["owner"], shippingCost: json["shippingCost"]);
     myStore.categories = json["categories"];
     myStore.orders = json["orders"];
-    myStore.counter = json["counter"];
 
     return myStore;
   }
@@ -53,7 +50,6 @@ class StoreModel{
     "orders" : orders,
     "categories" : categories,
     "shippingCost" : shippingCost,
-    "counter" : counter,
     })
         .then((value) => print("Store Added"))
         .catchError((error) => print("Failed to add store: $error"));

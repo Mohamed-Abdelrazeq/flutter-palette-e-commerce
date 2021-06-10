@@ -34,10 +34,9 @@ class ProductModel{
 
   //Working
   Future<void> addProduct() async {
-    id = "${store.name} $category ${store.counter}";
-    //TODO : update counter in the StoreModel
-    await products.doc("${store.name} $category ${store.counter}").set({
-      "id" : "${store.name} ${store.counter}",
+    id = "${store.name} $category $name";
+    await products.doc("${store.name} $category $name").set({
+      "id" : id,
       "name" : name,
       "description" : description,
       "image1URL" : image1URL,
@@ -54,10 +53,14 @@ class ProductModel{
         .catchError((error) => print("Failed to add product: $error"));
   }
   //Working
-  Future<void> readStoreProducts(String storeName) async {
-    products.where('id',isGreaterThanOrEqualTo: storeName).get()
+  Future<void> readCategoryProducts(String key) async {
+    int counter = 0;
+    // TODO : find the right query
+    products.where('category',isEqualTo: key).get()
         .then((QuerySnapshot querySnapshot) {
       querySnapshot.docs.forEach((doc) {
+        print(counter);
+        counter = counter + 1;
         print("===========================================");
         print(doc["id"]);
         print("===========================================");

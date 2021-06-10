@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Category{
-  String planet = "Planet";
+  String plant = "Plant";
   String art = "Art";
   String handicrafts = "Handicrafts";
   String knitted = "Knitted";

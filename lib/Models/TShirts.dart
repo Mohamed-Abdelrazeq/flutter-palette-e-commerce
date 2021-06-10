@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:multivender_ecommerce_app/Enums.dart';
 import 'ProductModel.dart';
+import 'SizeModel.dart';
 import 'StoreModel.dart';
 
 class TShirtModel extends ProductModel {

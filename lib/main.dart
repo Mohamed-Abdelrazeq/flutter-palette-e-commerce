@@ -1,7 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'Models/CategoryModel.dart';
 import 'Models/OwnerModel.dart';
 import 'Models/ProductModel.dart';
+import 'Models/StatusModel.dart';
 import 'Models/StoreModel.dart';
 
 import 'Views/FutureReturn/Loading.dart';
@@ -9,7 +11,6 @@ import 'Views/FutureReturn/SomethingWentWrong.dart';
 import 'Views/Screens/HomePage.dart';
 import 'Views/Screens/WelcomePage.dart';
 
-import 'Enums.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -48,14 +49,15 @@ class MyApp extends StatelessWidget {
                       mobile: "01555244006",
                       mail: "mail"),
                   shippingCost: 10),
-              category: Category().art,
+              category: Category().plant,
               status: Status().stock,
               available: true);
 
           myProduct.addProduct();
           
           // myProduct.updateProduct(key : "name" , value : "Newest Name");
-          // myProduct.readStoreProducts("0");
+
+          myProduct.readCategoryProducts("Plant");
           // myProduct.deleteProduct();
 
           return MaterialApp(

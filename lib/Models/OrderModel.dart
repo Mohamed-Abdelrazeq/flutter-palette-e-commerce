@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:multivender_ecommerce_app/Models/ProductModel.dart';
 import 'package:multivender_ecommerce_app/Models/UserModel.dart';
 
-import '../Enums.dart';
+import 'StatusModel.dart';
+
 
 class OrderModel{
   OrderModel({
