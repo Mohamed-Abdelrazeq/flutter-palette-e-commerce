@@ -13,8 +13,8 @@ class TShirtModel extends ProductModel {
     String image3URL,
     double price,
     StoreModel store,
-    MyCategory category,
-    Status status, bool available,
+    String category,
+    String status, bool available,
   }) : super(
     name :  name,
     description :  description,

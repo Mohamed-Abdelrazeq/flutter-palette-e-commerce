@@ -20,4 +20,19 @@ class OwnerModel {
   String mobile;
   String mail;
 
+  Map<String, dynamic> toMap() {
+    return {
+      "name" : name,
+      "lon" : lon,
+      "lat" : lat,
+      "address" : address,
+      "mobile" : mobile,
+      "mail" : mail,
+    };
+  }
+
+  OwnerModel toObject(Map json){
+    return OwnerModel(name: json["name"], lon: json["lon"], lat: json["lat"], address: json["address"], mobile: json["mobile"], mail: json["json"]);
+  }
+
 }

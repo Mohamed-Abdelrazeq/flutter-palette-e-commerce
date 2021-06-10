@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'RateModel.dart';
-import '../Enums.dart';
 import 'StoreModel.dart';
 
 class ProductModel{
@@ -25,9 +24,9 @@ class ProductModel{
   String image3URL;
   double price;
   StoreModel store;
-  MyCategory category;
+  String category;
   List<RateModel> ratesList = [];
-  Status status;
+  String status;
   bool available;
   String id;
 
@@ -45,10 +44,10 @@ class ProductModel{
       "image2URL" : image2URL,
       "image3URL" : image3URL,
       "price" : price,
-      // "store" : store,
-      // "category" : category,
+      "store" : store.toMap(),
+      "category" : category,
       "ratesList" : ratesList,
-      // "status" : status,
+      "status" : status,
       "available" : available,
     })
         .then((value) => print("Products Added"))

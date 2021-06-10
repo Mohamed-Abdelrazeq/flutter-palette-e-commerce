@@ -48,15 +48,14 @@ class MyApp extends StatelessWidget {
                       mobile: "01555244006",
                       mail: "mail"),
                   shippingCost: 10),
-              category: MyCategory.Art,
-              status: Status.Stock,
+              category: Category().art,
+              status: Status().stock,
               available: true);
 
           myProduct.addProduct();
           
           // myProduct.updateProduct(key : "name" , value : "Newest Name");
-
-          myProduct.readStoreProducts("0");
+          // myProduct.readStoreProducts("0");
           // myProduct.deleteProduct();
 
           return MaterialApp(

@@ -1,9 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:multivender_ecommerce_app/Models/OrderModel.dart';
-import 'package:multivender_ecommerce_app/Models/OwnerModel.dart';
-import 'package:multivender_ecommerce_app/Models/ProductModel.dart';
+import 'OrderModel.dart';
+import 'OwnerModel.dart';
 
 class StoreModel{
   StoreModel({
@@ -18,11 +17,31 @@ class StoreModel{
   OwnerModel            owner;
   List<OrderModel>      orders          = [];
   List<Category>        categories      = [];
-  List<ProductModel>    products        = [];
   double                shippingCost;
   int                   counter          = 0;
 
   CollectionReference stores = FirebaseFirestore.instance.collection('stores');
+
+  Map<String, dynamic> toMap() {
+    return {
+    "name" : name,
+    "bio" : bio,
+    "owner" : owner.toMap(),
+    "orders" : orders,
+    "categories" : categories,
+    "shippingCost" : shippingCost,
+    "counter" : counter,
+  };
+  }
+
+  StoreModel toObject(Map json){
+    StoreModel myStore = StoreModel(name: json["name"], bio: json["bio"], owner: json["owner"], shippingCost: json["shippingCost"]);
+    myStore.categories = json["categories"];
+    myStore.orders = json["orders"];
+    myStore.counter = json["counter"];
+
+    return myStore;
+  }
 
   Future<void> addStore() async {
     //TODO : Check that the name is not used
@@ -33,7 +52,6 @@ class StoreModel{
     "owner" : owner,
     "orders" : orders,
     "categories" : categories,
-    "products" : products,
     "shippingCost" : shippingCost,
     "counter" : counter,
     })
