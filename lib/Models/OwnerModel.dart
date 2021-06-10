@@ -1,15 +1,14 @@
-import 'package:flutter/material.dart';
 import 'package:multivender_ecommerce_app/Models/StoreModel.dart';
 
 class OwnerModel {
 
   OwnerModel({
-    @required this.name,
-    @required this.lon,
-    @required this.lat,
-    @required this.address,
-    @required this.mobile,
-    @required this.mail,
+    this.name,
+    this.lon,
+    this.lat,
+    this.address,
+    this.mobile,
+    this.mail,
 });
 
   String name;

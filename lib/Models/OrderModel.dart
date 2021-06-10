@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:multivender_ecommerce_app/Models/ProductModel.dart';
 import 'package:multivender_ecommerce_app/Models/UserModel.dart';
 
@@ -7,12 +6,12 @@ import 'StatusModel.dart';
 
 class OrderModel{
   OrderModel({
-    @required this.product,
-    @required this.user,
-    @required this.quantity,
-    @required this.status,
-    @required this.comment,
-    @required this.totalPrice
+    this.product,
+    this.user,
+    this.quantity,
+    this.status,
+    this.comment,
+    this.totalPrice
 });
 
   ProductModel product;

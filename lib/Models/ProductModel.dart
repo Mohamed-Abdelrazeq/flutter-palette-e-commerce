@@ -1,20 +1,20 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
-import 'RateModel.dart';
+
 import 'StoreModel.dart';
+
 
 class ProductModel{
   ProductModel({
-    @required this.name,
-    @required this.description,
-    @required this.image1URL,
-    @required this.image2URL,
-    @required this.image3URL,
-    @required this.price,
-    @required this.store,
-    @required this.category,
-    @required this.status,
-    @required this.available,
+    this.name,
+    this.description,
+    this.image1URL,
+    this.image2URL,
+    this.image3URL,
+    this.price,
+    this.store,
+    this.category,
+    this.status,
+    this.available,
 });
 
   String name;
@@ -25,7 +25,7 @@ class ProductModel{
   double price;
   StoreModel store;
   String category;
-  List<RateModel> ratesList = [];
+  List ratesList = [];
   String status;
   bool available;
   String id;
@@ -54,31 +54,25 @@ class ProductModel{
   }
   //Working
   Future<void> readCategoryProducts(String key) async {
-    int counter = 0;
-    products.where('category',isEqualTo: key).get()
+    List<ProductModel> myProductsList = [];
+    await products.where('category',isEqualTo: key).get()
         .then((QuerySnapshot querySnapshot) {
       querySnapshot.docs.forEach((doc) {
-        print(counter);
-        counter = counter + 1;
-        print("===========================================");
-        print(doc["id"]);
-        print("===========================================");
+        myProductsList.add(ProductModel().toObject(doc.data()));
       });
     });
+    return myProductsList;
   }
-  //Debugging
-  Future<void> readStoreProducts(String key) async {
-    int counter = 0;
-    products.where('store.name',isEqualTo: key ).get()
+  //Working
+  Future<List<ProductModel>> readStoreProducts(String key) async {
+    List<ProductModel> myProductsList = [];
+    await products.where('store.name',isEqualTo: key ).get()
         .then((QuerySnapshot querySnapshot) {
       querySnapshot.docs.forEach((doc) {
-        print(counter);
-        counter = counter + 1;
-        print("===========================================");
-        print(doc["id"]);
-        print("===========================================");
+        myProductsList.add(ProductModel().toObject(doc.data()));
       });
     });
+    return myProductsList;
   }
   //Working
   Future<void> updateProduct({String key,var value}) async {
@@ -95,5 +89,14 @@ class ProductModel{
         .then((value) => print("Product Deleted"))
         .catchError((error) => print("Failed to delete product : $error"));
   }
+  //Working
+  ProductModel toObject(Map json){
+    ProductModel myProduct = ProductModel(name: json["name"], description: json["description"], image1URL: json["image1URL"], image2URL: json["image2URL"], image3URL: json["image3URL"], price: json["price"], store: StoreModel().toObject(json["store"]) , category: json["category"], status: json["status"], available: json["available"]);
+    myProduct.ratesList = json["ratesList"];
+    myProduct.id = json["id"];
+    return myProduct;
+  }
+
 
 }
+

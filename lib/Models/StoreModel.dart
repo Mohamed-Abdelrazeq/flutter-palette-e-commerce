@@ -1,22 +1,19 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'OrderModel.dart';
 import 'OwnerModel.dart';
 
 class StoreModel{
   StoreModel({
-    @required this.name,
-    @required this.bio,
-    @required this.owner,
-    @required this.shippingCost,
+    this.name,
+    this.bio,
+    this.owner,
+    this.shippingCost,
 });
 
   String                name;
   String                bio;
   OwnerModel            owner;
-  List<OrderModel>      orders          = [];
-  List<Category>        categories      = [];
+  List                  orders          = [];
+  List                  categories      = [];
   double                shippingCost;
 
   CollectionReference stores = FirebaseFirestore.instance.collection('stores');
@@ -33,8 +30,9 @@ class StoreModel{
   }
 
   StoreModel toObject(Map json){
-    StoreModel myStore = StoreModel(name: json["name"], bio: json["bio"], owner: json["owner"], shippingCost: json["shippingCost"]);
+    StoreModel myStore = StoreModel(name: json["name"], bio: json["bio"], owner: OwnerModel().toObject(json["owner"]), shippingCost: json["shippingCost"]);
     myStore.categories = json["categories"];
+    //TODO : otObject method on orders model
     myStore.orders = json["orders"];
 
     return myStore;
