@@ -17,7 +17,7 @@ class StoreModel{
   double                shippingCost;
 
   CollectionReference stores = FirebaseFirestore.instance.collection('stores');
-
+  //Working
   Map<String, dynamic> toMap() {
     return {
     "name" : name,
@@ -28,7 +28,7 @@ class StoreModel{
     "shippingCost" : shippingCost,
   };
   }
-
+  //Working
   StoreModel toObject(Map json){
     StoreModel myStore = StoreModel(name: json["name"], bio: json["bio"], owner: OwnerModel().toObject(json["owner"]), shippingCost: json["shippingCost"]);
     myStore.categories = json["categories"];
@@ -37,20 +37,18 @@ class StoreModel{
 
     return myStore;
   }
-
-  Future<void> addStore() async {
-    //TODO : Check that the name is not used
-    //TODO : test
-    await stores.doc("$name").set({
-    "name" : name,
-    "bio" : bio,
-    "owner" : owner,
-    "orders" : orders,
-    "categories" : categories,
-    "shippingCost" : shippingCost,
-    })
-        .then((value) => print("Store Added"))
-        .catchError((error) => print("Failed to add store: $error"));
-  }
+  //Archived
+  // Future<void> addStore() async {
+  //   await stores.doc("$name").set({
+  //   "name" : name,
+  //   "bio" : bio,
+  //   "owner" : owner,
+  //   "orders" : orders,
+  //   "categories" : categories,
+  //   "shippingCost" : shippingCost,
+  //   })
+  //       .then((value) => print("Store Added"))
+  //       .catchError((error) => print("Failed to add store: $error"));
+  // }
 
 }

@@ -31,35 +31,39 @@ class MyApp extends StatelessWidget {
         }
         if (snapshot.connectionState == ConnectionState.done) {
 
-          ProductModel myProduct = ProductModel(
-              name: "ProductName",
-              description: "Product Description",
-              image1URL: "image1URL",
-              image2URL: "image2URL",
-              image3URL: "image3URL",
-              price: 22,
-              store: StoreModel(
-                  name: "StoreName",
-                  bio: "bio",
-                  owner: OwnerModel(
-                      name: "ownerName",
-                      lon: 22,
-                      lat: 44,
-                      address: "address",
-                      mobile: "01555244006",
-                      mail: "mail"),
-                  shippingCost: 10),
-              category: Category().plant,
-              status: Status().stock,
-              available: true);
+          // ProductModel myProduct = ProductModel(
+          //     name: "ProductName",
+          //     description: "Product Description",
+          //     image1URL: "image1URL",
+          //     image2URL: "image2URL",
+          //     image3URL: "image3URL",
+          //     price: 22,
+          //     store: StoreModel(
+          //         name: "StoreName",
+          //         bio: "bio",
+          //         owner: OwnerModel(
+          //             name: "ownerName",
+          //             lon: 22,
+          //             lat: 44,
+          //             address: "address",
+          //             mobile: "01555244006",
+          //             mail: "mail"),
+          //         shippingCost: 10),
+          //     category: Category().plant,
+          //     status: Status().stock,
+          //     available: true);
 
-          // myProduct.addProduct();
-          
-          // myProduct.updateProduct(key : "name" , value : "Newest Name");
+          OwnerModel someOwner = OwnerModel(name: "ownerName" , lon: 22 , lat:  44,mobile: "01555244006",mail: "mo@gmail.com",address: "OwnerAddress");
 
-          // myProduct.readCategoryProducts("Art");
+          someOwner.isSignedIn();
 
-          // myProduct.deleteProduct();
+          // someOwner.registerViaEmail("123456");
+
+          someOwner.signOut();
+
+          someOwner.loginViaEmail("123456");
+
+
 
           return MaterialApp(
             routes: {

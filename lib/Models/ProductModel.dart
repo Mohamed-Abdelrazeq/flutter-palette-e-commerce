@@ -76,7 +76,7 @@ class ProductModel{
     });
     return myProductsList;
   }
-  //Working
+  //Working TODO : test it with images , rates and lists in general
   Future<void> updateProduct({String key,var value}) async {
     await products.doc(id)
         .update({key : value})
