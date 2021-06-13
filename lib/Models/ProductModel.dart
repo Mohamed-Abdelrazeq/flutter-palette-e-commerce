@@ -98,6 +98,22 @@ class ProductModel{
     myProduct.id = json["id"];
     return myProduct;
   }
+  //Working
+  Map<String, dynamic> toMap() {
+    return {
+      "name" : name,
+      "description" : description,
+      "image1URL" : image1URL,
+      "image2URL" : image2URL,
+      "image3URL" : image3URL,
+      "price" : price,
+      "store" : store.toMap(),
+      "category" : category,
+      "status" : status,
+      "available" : available,
+      "ratesList" : ratesList,
+    };
+  }
 
 }
 

@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:multivender_ecommerce_app/Models/UserModel.dart';
 import 'Models/CategoryModel.dart';
 import 'Models/OwnerModel.dart';
 import 'Models/ProductModel.dart';
@@ -53,19 +54,9 @@ class MyApp extends StatelessWidget {
           //     status: Status().stock,
           //     available: true);
 
-          OwnerModel someOwner = OwnerModel(name: "ownerName" , lon: 22 , lat:  44,mobile: "01555244006",mail: "mo@gmail.com",address: "OwnerAddress");
+          UserModel someUser = UserModel(name: "UserName", mail: "UserMail", mobile: "UserMobile", lat: 22, lon: 22);
 
-          StoreModel someStore = StoreModel(name: "StoreName", bio: "Bio", owner: someOwner, shippingCost: 20);
-
-          someStore.addStore();
-
-          var stores = StoreModel().readStoreByName("StoreName2");
-          print(stores);
-
-
-
-
-          // someOwner.isSignedIn();
+          someUser.addUser();
 
 
           return MaterialApp(

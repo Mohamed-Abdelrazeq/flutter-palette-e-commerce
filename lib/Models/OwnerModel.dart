@@ -44,9 +44,6 @@ class OwnerModel {
         mobile: json["mobile"],
         mail: json["mail"]);
   }
-
-
-
   //Working
   Future<bool> isSignedIn() async {
     bool isSigned;
