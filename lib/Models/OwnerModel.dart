@@ -20,6 +20,9 @@ class OwnerModel {
   String mail;
 
   FirebaseAuth _auth = FirebaseAuth.instance;
+
+
+
   //Working
   Map<String, dynamic> toMap() {
     return {
@@ -43,6 +46,7 @@ class OwnerModel {
   }
 
 
+
   //Working
   Future<bool> isSignedIn() async {
     bool isSigned;
@@ -57,6 +61,10 @@ class OwnerModel {
       }
     });
     return isSigned;
+  }
+  //Working
+  Future<void> signOut()async{
+    await  _auth.signOut();
   }
   //Working
   Future<void> registerViaEmail(String password) async {
@@ -99,9 +107,4 @@ class OwnerModel {
 
   }
 
-
-  //Working
-  Future<void> signOut()async{
-    await  _auth.signOut();
-  }
 }

@@ -55,15 +55,15 @@ class MyApp extends StatelessWidget {
 
           OwnerModel someOwner = OwnerModel(name: "ownerName" , lon: 22 , lat:  44,mobile: "01555244006",mail: "mo@gmail.com",address: "OwnerAddress");
 
-          someOwner.isSignedIn();
+          // someOwner.isSignedIn();
 
           // someOwner.registerViaEmail("123456");
 
           someOwner.signOut();
 
-          someOwner.loginViaEmail("123456");
+          // someOwner.loginViaEmail("123456");
 
-
+          someOwner.registerViaPhone();
 
           return MaterialApp(
             routes: {
