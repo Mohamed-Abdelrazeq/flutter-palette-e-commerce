@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
 import 'package:multivender_ecommerce_app/Models/ProductModel.dart';
 
 import 'CategoryModel.dart';
@@ -9,6 +8,7 @@ import 'RateModel.dart';
 import 'StatusModel.dart';
 import 'StoreModel.dart';
 
+//todo : remove after finishing the testing
 ProductModel myProduct = ProductModel(
     name: "ProductName",
     description: "Product Description",
@@ -30,15 +30,25 @@ ProductModel myProduct = ProductModel(
     category: Category().plant,
     status: Status().stock,
     available: true);
+UserModel myUser = UserModel(name: "UserName", mail : "UserMail", mobile: "UserMobile", lat: 22,lon: 24);
+OrderModel myOrder = OrderModel(
+  product : myProduct,
+  user : myUser,
+  quantity : 50,
+  status : Status().waiting,
+  comment : "comment",
+  totalPrice : 24,
+  orderingDate : DateTime.now(),
+);
 
 class UserModel {
 
   UserModel({
-    @required this.name,
-    @required this.mail,
-    @required this.mobile,
-    @required this.lat,
-    @required this.lon,
+    this.name,
+    this.mail,
+    this.mobile,
+    this.lat,
+    this.lon,
   });
 
   String name;
@@ -48,12 +58,9 @@ class UserModel {
   double lon;
   List<ProductModel> favourite = [myProduct,myProduct];
   List<ProductModel> cart      = [myProduct,myProduct];
-  List<OrderModel>   orders    = [];
   List<RateModel>    rates     = [];
 
   CollectionReference _users = FirebaseFirestore.instance.collection('users');
-
-
 
   //Working
   Future<void> addUser() async {
@@ -70,10 +77,46 @@ class UserModel {
       "lon" : lon,
       "favourite" :fav,
       "cart"      : car,
-      "orders" : orders,
       "rates" : rates,
     })
         .then((value) => print("Products Added"))
         .catchError((error) => print("Failed to add product: $error"));
   }
+  //Working
+  UserModel toObject(Map json){
+    List fav = json["favourite"];
+    List<ProductModel> favPro = [];
+    for(var i = 0 ; i < fav.length;i++){
+      favPro.add(ProductModel().toObject(fav[i]));
+    }
+    List car = json["cart"];
+    List<ProductModel> carPro = [];
+    for(var i = 0 ; i < car.length;i++){
+      carPro.add(ProductModel().toObject(fav[i]));
+    }
+    UserModel theUser = UserModel(name: json["name"], mail: json["mail"], mobile: json["mobile"], lat: json["lat"], lon: json["lon"]);
+    theUser.favourite = favPro;
+    theUser.cart      = carPro;
+    theUser.rates     = json["rates"];
+    return theUser;
+  }
+  //Working
+  Map<String, dynamic> toMap() {
+    List fav = [];
+    List car = [];
+    favourite.forEach((element) {fav.add(element.toMap());});
+    cart.forEach((element) {car.add(element.toMap());});
+    return {
+      "name" : name,
+      "mail" : mail,
+      "mobile" : mobile,
+      "lat" : lat,
+      "lon" : lon,
+      "favourite" : fav,
+      "cart" : car,
+      "rates" : rates,
+    };
+  }
+
+
 }

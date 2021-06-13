@@ -54,10 +54,7 @@ class MyApp extends StatelessWidget {
           //     status: Status().stock,
           //     available: true);
 
-          UserModel someUser = UserModel(name: "UserName", mail: "UserMail", mobile: "UserMobile", lat: 22, lon: 22);
-
-          someUser.addUser();
-
+          UserModel someUser = UserModel(name: "UserName3", mail: "UserMail", mobile: "UserMobile", lat: 22, lon: 22);
 
           return MaterialApp(
             routes: {
