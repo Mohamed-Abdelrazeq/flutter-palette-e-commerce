@@ -31,15 +31,6 @@ ProductModel myProduct = ProductModel(
     status: Status().stock,
     available: true);
 UserModel myUser = UserModel(name: "UserName", mail : "UserMail", mobile: "UserMobile", lat: 22,lon: 24);
-OrderModel myOrder = OrderModel(
-  product : myProduct,
-  user : myUser,
-  quantity : 50,
-  status : Status().waiting,
-  comment : "comment",
-  totalPrice : 24,
-  orderingDate : DateTime.now(),
-);
 
 class UserModel {
 
