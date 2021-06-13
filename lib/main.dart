@@ -67,7 +67,7 @@ class MyApp extends StatelessWidget {
             orderingDate : DateTime.now(),
           );
 
-          someOrder.addOrder();
+          OrderModel().readOrdersByOwnerMail("mail");
 
           return MaterialApp(
             routes: {

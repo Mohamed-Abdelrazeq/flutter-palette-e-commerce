@@ -26,9 +26,9 @@ class OrderModel{
   double       totalPrice;
 
   CollectionReference _orders = FirebaseFirestore.instance.collection('orders');
-
+  //Working
   Future<void> addOrder() async {
-    String id = "${user.name} ${product.name} $orderingDate";
+    String id = "${user.mail} ${product.store.owner.mail} $orderingDate";
     await _orders.doc(id).set({
     "product" : product.toMap(),
     "user" : user.toMap(),
@@ -42,6 +42,30 @@ class OrderModel{
         .catchError((error) => print("Failed to add product: $error"));
   }
   //Working
+  Future<void> readOrdersByUserMail(String key) async {
+    List<OrderModel> myOrdersList = [];
+    await _orders.where('user.mail',isEqualTo: key).get()
+        .then((QuerySnapshot querySnapshot) {
+      querySnapshot.docs.forEach((doc) {
+        myOrdersList.add(OrderModel().toObject(doc.data()));
+      });
+    });
+    print(myOrdersList);
+    return myOrdersList;
+  }
+  //Working
+  Future<void> readOrdersByOwnerMail(String key) async {
+    List<OrderModel> myOrdersList = [];
+    await _orders.where('product.store.owner.mail',isEqualTo: key).get()
+        .then((QuerySnapshot querySnapshot) {
+      querySnapshot.docs.forEach((doc) {
+        myOrdersList.add(OrderModel().toObject(doc.data()));
+      });
+    });
+    print(myOrdersList);
+    return myOrdersList;
+  }
+  //Working
   OrderModel toObject(Map json){
     OrderModel myOrder = OrderModel(
         product : ProductModel().toObject(json["product"]) ,
@@ -50,7 +74,8 @@ class OrderModel{
         status : json["status"],
         comment : json["comment"],
         totalPrice : json["totalPrice"],
-        orderingDate : json["orderingDate"],
+        // TODO : fix this shit
+        orderingDate : DateTime.now(),
     );
     return myOrder;
   }

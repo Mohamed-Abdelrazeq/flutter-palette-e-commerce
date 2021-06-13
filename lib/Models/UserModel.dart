@@ -49,7 +49,7 @@ class UserModel {
   double lon;
   List<ProductModel> favourite = [myProduct,myProduct];
   List<ProductModel> cart      = [myProduct,myProduct];
-  List<RateModel>    rates     = [];
+  List    rates     = [];
 
   CollectionReference _users = FirebaseFirestore.instance.collection('users');
 
