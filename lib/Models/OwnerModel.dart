@@ -42,7 +42,7 @@ class OwnerModel {
         lat: json["lat"],
         address: json["address"],
         mobile: json["mobile"],
-        mail: json["json"]);
+        mail: json["mail"]);
   }
 
 

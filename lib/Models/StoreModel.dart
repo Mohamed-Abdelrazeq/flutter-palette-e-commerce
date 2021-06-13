@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'OwnerModel.dart';
 
+
 class StoreModel{
   StoreModel({
     this.name,
@@ -16,7 +17,7 @@ class StoreModel{
   List                  categories      = [];
   double                shippingCost;
 
-  CollectionReference stores = FirebaseFirestore.instance.collection('stores');
+  CollectionReference _stores = FirebaseFirestore.instance.collection('stores');
   //Working
   Map<String, dynamic> toMap() {
     return {
@@ -37,18 +38,52 @@ class StoreModel{
 
     return myStore;
   }
-  //Archived
-  // Future<void> addStore() async {
-  //   await stores.doc("$name").set({
-  //   "name" : name,
-  //   "bio" : bio,
-  //   "owner" : owner,
-  //   "orders" : orders,
-  //   "categories" : categories,
-  //   "shippingCost" : shippingCost,
-  //   })
-  //       .then((value) => print("Store Added"))
-  //       .catchError((error) => print("Failed to add store: $error"));
-  // }
+  // TODO
+  // TODO : should be unique name
+  Future<void> addStore() async {
+    await _stores.doc("$name").set({
+    "name" : name,
+    "bio" : bio,
+    "owner" : owner.toMap(),
+    "orders" : orders,
+    "categories" : categories,
+    "shippingCost" : shippingCost,
+    })
+        .then((value) => print("Store Added"))
+        .catchError((error) => print("Failed to add store: $error"));
+  }
+
+  Future<List<StoreModel>> readStores()async{
+    List<StoreModel> stores = [];
+
+    await _stores
+        .get()
+        .then((QuerySnapshot querySnapshot) {
+      querySnapshot.docs.forEach((doc) {
+        StoreModel store = StoreModel().toObject(doc.data());
+        stores.add(store);
+      });
+    });
+
+    print(stores);
+
+    return stores;
+  }
+
+  Future<StoreModel> readStoreByName(key)async{
+    StoreModel theStore;
+    await _stores.where('name',isEqualTo: key ).get()
+        .then((QuerySnapshot querySnapshot) {
+      querySnapshot.docs.forEach((doc) {
+        theStore = StoreModel().toObject(doc.data());
+      });
+    });
+    print(theStore.toMap());
+
+    if(theStore == null){
+      return null;
+    }
+    return theStore;
+  }
 
 }

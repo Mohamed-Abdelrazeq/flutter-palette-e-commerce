@@ -32,12 +32,12 @@ class ProductModel{
   bool available;
   String id;
 
-  CollectionReference products = FirebaseFirestore.instance.collection('products');
+  CollectionReference _products = FirebaseFirestore.instance.collection('products');
 
   //Working
   Future<void> addProduct() async {
     id = "${store.name} $category $name";
-    await products.doc("${store.name} $category $name").set({
+    await _products.doc("${store.name} $category $name").set({
       "id" : id,
       "name" : name,
       "description" : description,
@@ -57,7 +57,7 @@ class ProductModel{
   //Working
   Future<void> readCategoryProducts(String key) async {
     List<ProductModel> myProductsList = [];
-    await products.where('category',isEqualTo: key).get()
+    await _products.where('category',isEqualTo: key).get()
         .then((QuerySnapshot querySnapshot) {
       querySnapshot.docs.forEach((doc) {
         myProductsList.add(ProductModel().toObject(doc.data()));
@@ -68,7 +68,7 @@ class ProductModel{
   //Working
   Future<List<ProductModel>> readStoreProducts(String key) async {
     List<ProductModel> myProductsList = [];
-    await products.where('store.name',isEqualTo: key ).get()
+    await _products.where('store.name',isEqualTo: key ).get()
         .then((QuerySnapshot querySnapshot) {
       querySnapshot.docs.forEach((doc) {
         myProductsList.add(ProductModel().toObject(doc.data()));
@@ -78,14 +78,14 @@ class ProductModel{
   }
   //Working TODO : test it with images , rates and lists in general
   Future<void> updateProduct({String key,var value}) async {
-    await products.doc(id)
+    await _products.doc(id)
         .update({key : value})
         .then((value) => print("Product Updated"))
         .catchError((error) => print("Failed to update product: $error"));
   }
   //Working
   Future<void> deleteProduct() async {
-    await products
+    await _products
         .doc(id)
         .delete()
         .then((value) => print("Product Deleted"))
@@ -98,7 +98,6 @@ class ProductModel{
     myProduct.id = json["id"];
     return myProduct;
   }
-
 
 }
 
