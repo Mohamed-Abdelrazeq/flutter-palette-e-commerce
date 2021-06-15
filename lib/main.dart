@@ -33,6 +33,18 @@ class MyApp extends StatelessWidget {
         }
         if (snapshot.connectionState == ConnectionState.done) {
 
+          StoreModel someStore = StoreModel(
+              name: "NewStoreName",
+              bio: "bio",
+              owner: OwnerModel(
+                  name: "ownerName",
+                  lon: 22,
+                  lat: 44,
+                  address: "address",
+                  mobile: "01555244006",
+                  mail: "mail"),
+              shippingCost: 10);
+
           ProductModel someProduct = ProductModel(
               name: "ProductName",
               description: "Product Description",
@@ -40,17 +52,7 @@ class MyApp extends StatelessWidget {
               image2URL: "image2URL",
               image3URL: "image3URL",
               price: 22,
-              store: StoreModel(
-                  name: "StoreName",
-                  bio: "bio",
-                  owner: OwnerModel(
-                      name: "ownerName",
-                      lon: 22,
-                      lat: 44,
-                      address: "address",
-                      mobile: "01555244006",
-                      mail: "mail"),
-                  shippingCost: 10),
+              store: someStore,
               category: Category().plant,
               status: Status().stock,
               available: true);
@@ -67,7 +69,7 @@ class MyApp extends StatelessWidget {
             orderingDate : DateTime.now(),
           );
 
-          OrderModel().readOrdersByOwnerMail("mail");
+          someStore.addStore();
 
           return MaterialApp(
             routes: {
