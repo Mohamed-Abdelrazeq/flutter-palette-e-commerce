@@ -37,22 +37,42 @@ class ProductModel{
   //Working
   Future<void> addProduct() async {
     id = "${store.name} $category $name";
-    await _products.doc("${store.name} $category $name").set({
-      "id" : id,
-      "name" : name,
-      "description" : description,
-      "image1URL" : image1URL,
-      "image2URL" : image2URL,
-      "image3URL" : image3URL,
-      "price" : price,
-      "store" : store.toMap(),
-      "category" : category,
-      "ratesList" : ratesList,
-      "status" : status,
-      "available" : available,
-    })
-        .then((value) => print("Products Added"))
-        .catchError((error) => print("Failed to add product: $error"));
+    bool isUnique = await _checkUniqueProductInTheStore(name);
+    if(isUnique){
+      await _products.doc("${store.name} $category $name").set({
+        "id" : id,
+        "name" : name,
+        "description" : description,
+        "image1URL" : image1URL,
+        "image2URL" : image2URL,
+        "image3URL" : image3URL,
+        "price" : price,
+        "store" : store.toMap(),
+        "category" : category,
+        "ratesList" : ratesList,
+        "status" : status,
+        "available" : available,
+      })
+          .then((value) => print("Products Added"))
+          .catchError((error) => print("Failed to add product: $error"));
+    }else{
+      print("Product already exists");
+    }
+  }
+  //Developing
+  Future<bool> _checkUniqueProductInTheStore(String key) async {
+    List<ProductModel> myProductsList = [];
+    await _products.where('name',isEqualTo: key).get()
+        .then((QuerySnapshot querySnapshot) {
+      querySnapshot.docs.forEach((doc) {
+        myProductsList.add(ProductModel().toObject(doc.data()));
+      });
+    });
+    if(myProductsList.isEmpty){
+      return true;
+    }else{
+      return false;
+    }
   }
   //Working
   Future<void> readCategoryProducts(String key) async {

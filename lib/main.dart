@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
               shippingCost: 10);
 
           ProductModel someProduct = ProductModel(
-              name: "ProductName",
+              name: "NewProductName",
               description: "Product Description",
               image1URL: "image1URL",
               image2URL: "image2URL",
@@ -70,6 +70,7 @@ class MyApp extends StatelessWidget {
           );
 
           someStore.addStore();
+          someProduct.addProduct();
 
           return MaterialApp(
             routes: {
