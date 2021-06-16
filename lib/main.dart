@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:multivender_ecommerce_app/Models/RateModel.dart';
 import 'package:multivender_ecommerce_app/Models/UserModel.dart';
 import 'Models/CategoryModel.dart';
+import 'Models/OrderModel.dart';
 import 'Models/OwnerModel.dart';
 import 'Models/ProductModel.dart';
 import 'Models/StatusModel.dart';
@@ -44,7 +45,6 @@ class MyApp extends StatelessWidget {
                   mobile: "01555244006",
                   mail: "mail"),
               shippingCost: 10);
-
           ProductModel someProduct = ProductModel(
               name: "NewProductName2",
               description: "Product Description",
@@ -53,22 +53,18 @@ class MyApp extends StatelessWidget {
               category: Category().plant,
               status: Status().stock,
               available: true);
-
           UserModel someUser = UserModel(name: "UserName3", mail: "UserMail", mobile: "UserMobile", lat: 22, lon: 22);
-
-          // OrderModel someOrder = OrderModel(
-          //   product : someProduct,
-          //   user : someUser,
-          //   quantity : 50,
-          //   status : Status().waiting,
-          //   comment : "comment",
-          //   totalPrice : 24,
-          //   orderingDate : DateTime.now(),
-          // );
+          OrderModel someOrder = OrderModel(
+            product : someProduct,
+            user : someUser,
+            quantity : 50,
+            status : Status().waiting,
+            comment : "comment",
+            totalPrice : 24,
+            orderingDate : DateTime.now(),
+          );
           RateModel someRate = RateModel(from: someUser,to: someProduct,rate: 5);
-          someRate.addRate();
-          someRate.readRatesByOwnerMail("mail");
-          someRate.readRatesByUserMail("UserMail");
+
           return MaterialApp(
             routes: {
               '/MyHomePage': (context) => HomePage(),
