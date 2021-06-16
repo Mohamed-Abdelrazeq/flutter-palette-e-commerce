@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ImagePickerController with ChangeNotifier{
-
   File _image;
   ImagePicker _picker = ImagePicker();
 
@@ -21,5 +20,4 @@ class ImagePickerController with ChangeNotifier{
     }
 
   File get image => _image;
-
 }
