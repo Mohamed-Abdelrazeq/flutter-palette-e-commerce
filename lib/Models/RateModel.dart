@@ -3,7 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'ProductModel.dart';
 import 'UserModel.dart';
 
-//todo : test all needed methods
 class RateModel {
   RateModel({
     this.from,

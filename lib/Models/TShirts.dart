@@ -20,7 +20,7 @@ class TShirtModel extends ProductModel {
     store :  store,
     category :  category,
     status :  status,
-    available :  available,
+    available :  available,`
   );
 
   List<MySize> sizes = [];

@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'StoreModel.dart';
 
-//todo : test all needed methods
 class ProductModel{
   ProductModel({
     this.name,

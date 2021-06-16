@@ -95,11 +95,11 @@ class OwnerModel {
       }
     }
   }
-  //TODO
+  //TODO : Later
   Future<void> registerViaPhone() async {
 
   }
-  //TODO
+  //TODO : Later
   Future<void> loginViaPhone() async {
 
   }
