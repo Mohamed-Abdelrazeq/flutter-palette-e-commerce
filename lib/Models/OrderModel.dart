@@ -41,7 +41,7 @@ class OrderModel{
         .catchError((error) => print("Failed to add product: $error"));
   }
   //Working
-  Future<void> readOrdersByUserMail(String key) async {
+  Future<List<OrderModel>> readOrdersByUserMail(String key) async {
     List<OrderModel> myOrdersList = [];
     await _orders.where('user.mail',isEqualTo: key).get()
         .then((QuerySnapshot querySnapshot) {
@@ -53,7 +53,7 @@ class OrderModel{
     return myOrdersList;
   }
   //Working
-  Future<void> readOrdersByOwnerMail(String key) async {
+  Future<List<OrderModel>> readOrdersByOwnerMail(String key) async {
     List<OrderModel> myOrdersList = [];
     await _orders.where('product.store.owner.mail',isEqualTo: key).get()
         .then((QuerySnapshot querySnapshot) {

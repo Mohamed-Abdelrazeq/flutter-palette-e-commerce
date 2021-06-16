@@ -1,8 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:multivender_ecommerce_app/Models/RateModel.dart';
 import 'package:multivender_ecommerce_app/Models/UserModel.dart';
 import 'Models/CategoryModel.dart';
-import 'Models/OrderModel.dart';
 import 'Models/OwnerModel.dart';
 import 'Models/ProductModel.dart';
 import 'Models/StatusModel.dart';
@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
               shippingCost: 10);
 
           ProductModel someProduct = ProductModel(
-              name: "NewProductName",
+              name: "NewProductName2",
               description: "Product Description",
               price: 22,
               store: someStore,
@@ -65,9 +65,10 @@ class MyApp extends StatelessWidget {
           //   totalPrice : 24,
           //   orderingDate : DateTime.now(),
           // );
-
-          someProduct.updateProduct(key : "images",value: ["image one" , "image two"]);
-
+          RateModel someRate = RateModel(from: someUser,to: someProduct,rate: 5);
+          someRate.addRate();
+          someRate.readRatesByOwnerMail("mail");
+          someRate.readRatesByUserMail("UserMail");
           return MaterialApp(
             routes: {
               '/MyHomePage': (context) => HomePage(),

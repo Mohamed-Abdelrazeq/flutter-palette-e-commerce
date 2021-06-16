@@ -1,12 +1,14 @@
-import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'ProductModel.dart';
 import 'UserModel.dart';
 
+//todo : test all needed methods
 class RateModel {
   RateModel({
-    @required this.from,
-    @required this.to,
-    @required this.rate
+    this.from,
+    this.to,
+    this.rate
 });
 
   UserModel from;
@@ -19,6 +21,62 @@ class RateModel {
       total = total + ratesList[i].rate;
     }
     return (total / ratesList.length);
+  }
+
+  CollectionReference _rates = FirebaseFirestore.instance.collection('rates');
+  //Working
+  Future<void> addRate() async {
+    String id = "${from.mail} ${to.store.owner.mail} ";
+    await _rates.doc(id).set({
+      "from" : from.toMap(),
+      "to" : to.toMap(),
+      "rate" : rate,
+    })
+        .then((value) => print("Rate Added"))
+        .catchError((error) => print("Failed to add rate: $error"));
+  }
+  //Working
+  Future<List<RateModel>> readRatesByUserMail(String key) async {
+    List<RateModel> myRatesList = [];
+    await _rates.where('from.mail',isEqualTo: key).get()
+        .then((QuerySnapshot querySnapshot) {
+      querySnapshot.docs.forEach((doc) {
+        myRatesList.add(RateModel().toObject(doc.data()));
+      });
+    });
+    print(myRatesList);
+    return myRatesList;
+  }
+  //Working
+  Future<List<RateModel>> readRatesByOwnerMail(String key) async {
+    List<RateModel> myRatesList = [];
+    await _rates.where('to.store.owner.mail',isEqualTo: key).get()
+        .then((QuerySnapshot querySnapshot) {
+      querySnapshot.docs.forEach((doc) {
+        myRatesList.add(RateModel().toObject(doc.data()));
+      });
+    });
+    print(myRatesList);
+    return myRatesList;
+  }
+  //Working
+  RateModel toObject(Map json){
+    Map myFrom = json["from"];
+    Map myTo = json["to"];
+    RateModel myRate = RateModel(
+        from : UserModel().toObject(myFrom),
+        to : ProductModel().toObject(myTo),
+        rate : json["rate"],
+    );
+    return myRate;
+  }
+  //Working
+  Map<String, dynamic> toMap() {
+    return {
+      "from" : from.toMap(),
+      "to" : to.toMap(),
+      "rate" : rate,
+    };
   }
 
 }

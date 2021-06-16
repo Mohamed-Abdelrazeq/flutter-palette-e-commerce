@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'StoreModel.dart';
 
-
+//todo : test all needed methods
 class ProductModel{
   ProductModel({
     this.name,
@@ -20,8 +20,6 @@ class ProductModel{
   double price;
   StoreModel store;
   String category;
-  //todo : handle rates model (toMap , toObject)
-  List ratesList = [];
   String status;
   bool available;
   String id;
@@ -41,7 +39,6 @@ class ProductModel{
         "price" : price,
         "store" : store.toMap(),
         "category" : category,
-        "ratesList" : ratesList,
         "status" : status,
         "available" : available,
       })
@@ -107,7 +104,6 @@ class ProductModel{
   //Working
   ProductModel toObject(Map json){
     ProductModel myProduct = ProductModel(name: json["name"], description: json["description"]  ,price: json["price"], store: StoreModel().toObject(json["store"]) , category: json["category"], status: json["status"], available: json["available"]);
-    myProduct.ratesList = json["ratesList"];
     myProduct.id = json["id"];
     myProduct.images = json["images"];
     return myProduct;
@@ -123,7 +119,6 @@ class ProductModel{
       "category" : category,
       "status" : status,
       "available" : available,
-      "ratesList" : ratesList,
     };
   }
 

@@ -3,6 +3,7 @@ import 'ProductModel.dart';
 import 'SizeModel.dart';
 import 'StoreModel.dart';
 
+//TODO : edit methods
 class TShirtModel extends ProductModel {
 
   TShirtModel({
