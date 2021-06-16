@@ -56,20 +56,17 @@ class MyApp extends StatelessWidget {
 
           UserModel someUser = UserModel(name: "UserName3", mail: "UserMail", mobile: "UserMobile", lat: 22, lon: 22);
 
-          OrderModel someOrder = OrderModel(
-            product : someProduct,
-            user : someUser,
-            quantity : 50,
-            status : Status().waiting,
-            comment : "comment",
-            totalPrice : 24,
-            orderingDate : DateTime.now(),
-          );
+          // OrderModel someOrder = OrderModel(
+          //   product : someProduct,
+          //   user : someUser,
+          //   quantity : 50,
+          //   status : Status().waiting,
+          //   comment : "comment",
+          //   totalPrice : 24,
+          //   orderingDate : DateTime.now(),
+          // );
 
-          print(someOrder);
-
-          someProduct.images.add("image one");
-          someProduct.addProduct();
+          someProduct.updateProduct(key : "images",value: ["image one" , "image two"]);
 
           return MaterialApp(
             routes: {

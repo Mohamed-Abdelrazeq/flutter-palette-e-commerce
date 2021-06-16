@@ -88,8 +88,9 @@ class ProductModel{
     });
     return myProductsList;
   }
-  //Working TODO : test it with images , rates and lists in general
+  //Working
   Future<void> updateProduct({String key,var value}) async {
+    id = "${store.name} $category $name";
     await _products.doc(id)
         .update({key : value})
         .then((value) => print("Product Updated"))
