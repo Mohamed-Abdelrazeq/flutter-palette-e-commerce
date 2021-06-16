@@ -48,9 +48,6 @@ class MyApp extends StatelessWidget {
           ProductModel someProduct = ProductModel(
               name: "NewProductName",
               description: "Product Description",
-              image1URL: "image1URL",
-              image2URL: "image2URL",
-              image3URL: "image3URL",
               price: 22,
               store: someStore,
               category: Category().plant,
@@ -69,7 +66,10 @@ class MyApp extends StatelessWidget {
             orderingDate : DateTime.now(),
           );
 
-          OrderModel().readOrdersByOwnerMail("mail");
+          print(someOrder);
+
+          someProduct.images.add("image one");
+          someProduct.addProduct();
 
           return MaterialApp(
             routes: {

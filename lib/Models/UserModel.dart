@@ -1,36 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:multivender_ecommerce_app/Models/ProductModel.dart';
 
-import 'CategoryModel.dart';
-import 'OrderModel.dart';
-import 'OwnerModel.dart';
-import 'RateModel.dart';
-import 'StatusModel.dart';
-import 'StoreModel.dart';
-
-//todo : remove after finishing the testing
-ProductModel myProduct = ProductModel(
-    name: "ProductName",
-    description: "Product Description",
-    image1URL: "image1URL",
-    image2URL: "image2URL",
-    image3URL: "image3URL",
-    price: 22,
-    store: StoreModel(
-        name: "StoreName",
-        bio: "bio",
-        owner: OwnerModel(
-            name: "ownerName",
-            lon: 22,
-            lat: 44,
-            address: "address",
-            mobile: "01555244006",
-            mail: "mail"),
-        shippingCost: 10),
-    category: Category().plant,
-    status: Status().stock,
-    available: true);
-UserModel myUser = UserModel(name: "UserName", mail : "UserMail", mobile: "UserMobile", lat: 22,lon: 24);
 
 class UserModel {
 
@@ -47,8 +17,8 @@ class UserModel {
   String mobile;
   double lat;
   double lon;
-  List<ProductModel> favourite = [myProduct,myProduct];
-  List<ProductModel> cart      = [myProduct,myProduct];
+  List<ProductModel> favourite = [];
+  List<ProductModel> cart      = [];
   List    rates     = [];
 
   CollectionReference _users = FirebaseFirestore.instance.collection('users');

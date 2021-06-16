@@ -7,9 +7,6 @@ class ProductModel{
   ProductModel({
     this.name,
     this.description,
-    this.image1URL,
-    this.image2URL,
-    this.image3URL,
     this.price,
     this.store,
     this.category,
@@ -19,10 +16,7 @@ class ProductModel{
 
   String name;
   String description;
-  //todo : change to images list
-  String image1URL;
-  String image2URL;
-  String image3URL;
+  List images = [];
   double price;
   StoreModel store;
   String category;
@@ -43,9 +37,7 @@ class ProductModel{
         "id" : id,
         "name" : name,
         "description" : description,
-        "image1URL" : image1URL,
-        "image2URL" : image2URL,
-        "image3URL" : image3URL,
+        "images" : images,
         "price" : price,
         "store" : store.toMap(),
         "category" : category,
@@ -113,9 +105,10 @@ class ProductModel{
   }
   //Working
   ProductModel toObject(Map json){
-    ProductModel myProduct = ProductModel(name: json["name"], description: json["description"], image1URL: json["image1URL"], image2URL: json["image2URL"], image3URL: json["image3URL"], price: json["price"], store: StoreModel().toObject(json["store"]) , category: json["category"], status: json["status"], available: json["available"]);
+    ProductModel myProduct = ProductModel(name: json["name"], description: json["description"]  ,price: json["price"], store: StoreModel().toObject(json["store"]) , category: json["category"], status: json["status"], available: json["available"]);
     myProduct.ratesList = json["ratesList"];
     myProduct.id = json["id"];
+    myProduct.images = json["images"];
     return myProduct;
   }
   //Working
@@ -123,9 +116,7 @@ class ProductModel{
     return {
       "name" : name,
       "description" : description,
-      "image1URL" : image1URL,
-      "image2URL" : image2URL,
-      "image3URL" : image3URL,
+      "images" : images,
       "price" : price,
       "store" : store.toMap(),
       "category" : category,

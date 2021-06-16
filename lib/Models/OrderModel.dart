@@ -3,7 +3,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'ProductModel.dart';
 import 'UserModel.dart';
 
-import 'StatusModel.dart';
 
 
 class OrderModel{
@@ -75,7 +74,6 @@ class OrderModel{
         status : json["status"],
         comment : json["comment"],
         totalPrice : json["totalPrice"],
-        // TODO : fix this shit
         orderingDate : DateTime.fromMillisecondsSinceEpoch(time.seconds * 1000),
     );
     return myOrder;

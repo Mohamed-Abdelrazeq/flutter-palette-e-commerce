@@ -8,9 +8,6 @@ class TShirtModel extends ProductModel {
   TShirtModel({
     String name,
     String description,
-    String image1URL,
-    String image2URL,
-    String image3URL,
     double price,
     StoreModel store,
     String category,
@@ -18,9 +15,6 @@ class TShirtModel extends ProductModel {
   }) : super(
     name :  name,
     description :  description,
-    image1URL :  image1URL,
-    image2URL :  image2URL,
-    image3URL :  image3URL,
     price :  price,
     store :  store,
     category :  category,
