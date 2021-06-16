@@ -67,6 +67,7 @@ class OrderModel{
   }
   //Working
   OrderModel toObject(Map json){
+    Timestamp time = json["orderingDate"];
     OrderModel myOrder = OrderModel(
         product : ProductModel().toObject(json["product"]) ,
         user : UserModel().toObject(json["user"]),
@@ -75,7 +76,7 @@ class OrderModel{
         comment : json["comment"],
         totalPrice : json["totalPrice"],
         // TODO : fix this shit
-        orderingDate : DateTime.now(),
+        orderingDate : DateTime.fromMillisecondsSinceEpoch(time.seconds * 1000),
     );
     return myOrder;
   }
