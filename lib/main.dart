@@ -1,5 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
+import 'Controllers/ImagePickerController.dart';
+import 'Controllers/LocationController.dart';
+import 'Controllers/ThemeController.dart';
 import 'Views/FutureReturn/Loading.dart';
 import 'Views/FutureReturn/SomethingWentWrong.dart';
 import 'Views/Screens/HomePage.dart';
@@ -9,7 +14,14 @@ import 'Views/Screens/WelcomePage.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(
-    MyApp(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider<ThemeController>(create: (_) => ThemeController()),
+        ChangeNotifierProvider<LocationController>(create: (_) => LocationController()),
+        ChangeNotifierProvider<ImagePickerController>(create: (_) => ImagePickerController()),
+      ],
+      child: MyApp(),
+    ),
   );
 }
 
@@ -24,16 +36,25 @@ class MyApp extends StatelessWidget {
           return SomethingWentWrong();
         }
         if (snapshot.connectionState == ConnectionState.done) {
-          return MaterialApp(
-            routes: {
-              '/MyHomePage': (context) => HomePage(),
-            },
-            home: WelcomePage(),
+          return ScreenUtilInit(
+            designSize: Size(375, 667),
+            builder: () => MaterialApp(
+              theme: ThemeData(
+                fontFamily: "Roboto"
+              ),
+              routes: {
+                '/MyHomePage': (context) => HomePage(),
+              },
+              home: WelcomePage(),
+            ),
           );
         }
         return Loading();
       },
     );
+
+
+
   }
 }
 

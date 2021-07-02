@@ -13,7 +13,8 @@ dependencies:
     sdk: flutter
 ##UI
   cupertino_icons:
-##State Management
+  flutter_screenutil: "^5.0.0+2"
+  ##State Management
   provider:
 ##Futures Reflections
   flutter_spinkit:
