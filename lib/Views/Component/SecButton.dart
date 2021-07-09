@@ -41,7 +41,7 @@ class SecButton extends StatelessWidget {
         end: Alignment.bottomRight,
       ),
       strokeWidth: 1,
-      radius: Radius.circular(20),
+      radius: Radius.circular(20.r),
     );
   }
 }

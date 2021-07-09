@@ -34,7 +34,7 @@ class ThemeController with ChangeNotifier {
 
   TextStyle textFieldTextStyle = TextStyle(
     color: Color(0x99ffffff),
-    fontSize: 16,
+    fontSize: 16.sp,
   );
 }
 
