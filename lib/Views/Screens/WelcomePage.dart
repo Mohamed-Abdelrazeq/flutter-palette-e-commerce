@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:multivender_ecommerce_app/Controllers/ThemeController.dart';
+import 'package:multivender_ecommerce_app/Views/Component/Logo.dart';
 import 'package:multivender_ecommerce_app/Views/Component/MainButton.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:multivender_ecommerce_app/Views/Component/SecButton.dart';
+import 'package:multivender_ecommerce_app/Views/Component/Slogan.dart';
 import 'package:provider/provider.dart';
 
 class WelcomePage extends StatefulWidget {
@@ -27,15 +29,8 @@ class _WelcomePageState extends State<WelcomePage> {
           mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(
-              "Palette",
-              style: themeProvider.logoTextStyle,
-            ),
-            Text(
-              'here you can find all\nabout art',
-              style: themeProvider.sloganTextStyle,
-              textAlign: TextAlign.center,
-            ),
+            Logo(themeProvider: themeProvider),
+            Slogan(themeProvider: themeProvider),
             SizedBox(height: 136.h,),
             MainButton(text: "Get Started",btnFunction: (){
               Navigator.pushNamed(context, "/RegisterPage");
