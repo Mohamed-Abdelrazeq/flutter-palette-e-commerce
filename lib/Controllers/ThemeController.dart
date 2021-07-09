@@ -14,7 +14,20 @@ class ThemeController with ChangeNotifier {
     fontSize: 18.sp,
     fontFamily: "Roboto",
     color: Colors.white,
-
   );
+
+  TextStyle sloganTextStyle = TextStyle(
+    fontSize: 16.sp,
+    fontFamily: "Roboto",
+    letterSpacing: .06,
+    color: Colors.white.withOpacity(.6),
+  );
+
+  TextStyle logoTextStyle = TextStyle(
+    fontSize: 86.sp,
+    fontFamily: "Rochester",
+    color: Colors.white.withOpacity(.9),
+  );
+
 }
 

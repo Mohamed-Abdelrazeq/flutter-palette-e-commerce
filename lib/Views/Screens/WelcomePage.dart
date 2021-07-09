@@ -13,7 +13,7 @@ class WelcomePage extends StatefulWidget {
 class _WelcomePageState extends State<WelcomePage> {
   @override
   Widget build(BuildContext context) {
-    var colorProvider = Provider.of<ThemeController>(context);
+    var themeProvider = Provider.of<ThemeController>(context);
     return Scaffold(
       body: Container(
         width: 375.w,
@@ -27,9 +27,23 @@ class _WelcomePageState extends State<WelcomePage> {
           mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            MainButton(text: "Get Started",),
+            Text(
+              "Palette",
+              style: themeProvider.logoTextStyle,
+            ),
+            Text(
+              'here you can find all\nabout art',
+              style: themeProvider.sloganTextStyle,
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(height: 136.h,),
+            MainButton(text: "Get Started",btnFunction: (){
+              Navigator.pushNamed(context, "/RegisterPage");
+            },),
             SizedBox(height: 10.h,),
-            SecButton(text: "Login"),
+            SecButton(text: "Login",btnFunction: (){
+              Navigator.pushNamed(context, "/LoginPage");
+            },),
             SizedBox(height: 25.h,),
           ],
         ),

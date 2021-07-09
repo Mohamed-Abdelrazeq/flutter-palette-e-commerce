@@ -5,19 +5,20 @@ import 'package:provider/provider.dart';
 import 'package:outline_gradient_button/outline_gradient_button.dart';
 
 
-import '../Constants.dart';
-
 class SecButton extends StatelessWidget {
   SecButton({
     @required this.text,
+    @required this.btnFunction,
   });
 
   final String text;
+  final Function btnFunction;
 
   @override
   Widget build(BuildContext context) {
     var themeProvider = Provider.of<ThemeController>(context);
     return OutlineGradientButton(
+      onTap: btnFunction,
       child: Container(
         height: 66.h,
         width: 320.w,
