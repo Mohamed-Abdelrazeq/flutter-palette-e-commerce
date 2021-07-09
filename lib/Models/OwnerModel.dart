@@ -1,4 +1,3 @@
-import 'package:multivender_ecommerce_app/Models/StoreModel.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class OwnerModel {
@@ -12,7 +11,6 @@ class OwnerModel {
   });
 
   String name;
-  StoreModel store;
   double lon;
   double lat;
   String address;

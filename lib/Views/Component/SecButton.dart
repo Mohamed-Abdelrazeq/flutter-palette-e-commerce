@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:multivender_ecommerce_app/Controllers/ThemeController.dart';
 import 'package:provider/provider.dart';
+import 'package:outline_gradient_button/outline_gradient_button.dart';
+
 
 import '../Constants.dart';
 
@@ -14,35 +16,31 @@ class SecButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var colorProvider = Provider.of<ThemeController>(context);
-    return OutlinedButton(
-      onPressed: () {},
-      style: ButtonStyle(
-        // backgroundColor: MaterialStateProperty.all<Color>(colorProvider.mainColor),
-        foregroundColor: MaterialStateProperty.all<Color>(colorProvider.myWhite),
-        overlayColor: MaterialStateProperty.resolveWith<Color>(
-          (Set<MaterialState> states) {
-            if (states.contains(MaterialState.hovered))
-              return Colors.white.withOpacity(0.1);
-            if (states.contains(MaterialState.focused) ||
-                states.contains(MaterialState.pressed))
-              return Colors.white.withOpacity(0.25);
-            return null;
-          },
-        ),
-// padding: MaterialStateProperty.all(EdgeInsets.symmetric(horizontal: 80.w,vertical: 15.h)),
-        minimumSize: MaterialStateProperty.all(Size(300.w, 60.h)),
-        shape: MaterialStateProperty.all(
-          RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(myRadius)),
+    var themeProvider = Provider.of<ThemeController>(context);
+    return OutlineGradientButton(
+      child: Container(
+        height: 66.h,
+        width: 320.w,
+        child: Center(
+          child: Text(
+            text,
+            style: themeProvider.buttonTextStyle,
           ),
         ),
-        side: MaterialStateProperty.all(BorderSide(color: colorProvider.myWhite, width: 1)),
       ),
-      child: Text(
-        text,
-        style: TextStyle(fontSize: 16.sp),
+      padding: EdgeInsets.zero,
+      gradient: LinearGradient(
+        colors: [
+          themeProvider.gradColor1,
+          themeProvider.gradColor2,
+          themeProvider.gradColor3,
+          themeProvider.gradColor4,
+        ],
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
       ),
+      strokeWidth: 1,
+      radius: Radius.circular(20),
     );
   }
 }

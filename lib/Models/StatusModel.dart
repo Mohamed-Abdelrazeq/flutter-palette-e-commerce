@@ -1,4 +1,3 @@
-
 class Status {
   String accepted = "Accepted";
   String refused = "Refused";

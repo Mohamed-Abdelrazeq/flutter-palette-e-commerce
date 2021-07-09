@@ -14,6 +14,7 @@ dependencies:
 ##UI
   cupertino_icons:
   flutter_screenutil: "^5.0.0+2"
+  outline_gradient_button: ^2.0.0+1
   ##State Management
   provider:
 ##Futures Reflections

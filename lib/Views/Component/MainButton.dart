@@ -14,33 +14,28 @@ class MainButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var colorProvider = Provider.of<ThemeController>(context);
-    return TextButton(
-      onPressed: () {},
-      style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all<Color>(colorProvider.mainColor),
-        foregroundColor: MaterialStateProperty.all<Color>(colorProvider.myWhite),
-        overlayColor: MaterialStateProperty.resolveWith<Color>(
-          (Set<MaterialState> states) {
-            if (states.contains(MaterialState.hovered))
-              return Colors.white.withOpacity(0.1);
-            if (states.contains(MaterialState.focused) ||
-                states.contains(MaterialState.pressed))
-              return Colors.white.withOpacity(0.25);
-            return null;
-          },
-        ),
-// padding: MaterialStateProperty.all(EdgeInsets.symmetric(horizontal: 80.w,vertical: 15.h)),
-        minimumSize: MaterialStateProperty.all(Size(300.w, 60.h)),
-        shape: MaterialStateProperty.all(
-          RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(myRadius)),
-          ),
-        ),
+    var themeProvider = Provider.of<ThemeController>(context);
+    return Container(
+      height: 66.h,
+      width: 320.w,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20.r),
+          gradient: LinearGradient(
+            begin: Alignment.topRight,
+            end: Alignment.bottomLeft,
+            colors: [
+              themeProvider.gradColor1,
+              themeProvider.gradColor2,
+              themeProvider.gradColor3,
+              themeProvider.gradColor4,
+            ],
+          )
       ),
-      child: Text(
-        text,
-        style: TextStyle(fontSize: 16.sp),
+      child: Center(
+        child: Text(
+          text,
+          style: themeProvider.buttonTextStyle,
+        ),
       ),
     );
   }
