@@ -36,5 +36,10 @@ class ThemeController with ChangeNotifier {
     color: Color(0x99ffffff),
     fontSize: 16.sp,
   );
+
+  TextStyle h4TextStyle = TextStyle(
+  color: Colors.white,
+  fontSize: 12.sp,
+  );
 }
 
