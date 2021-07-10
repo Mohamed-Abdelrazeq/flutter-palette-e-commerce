@@ -84,12 +84,12 @@ class _LoginPageState extends State<LoginPage> {
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  LoginViaCard(),
+                children:[
+                  LoginViaCard(imgPath: "images/google-logo.png",),
                   SizedBox(width: 30.w),
-                  LoginViaCard(),
+                  LoginViaCard(imgPath: "images/facebook-logo.png",),
                   SizedBox(width: 30.w),
-                  LoginViaCard(),
+                  LoginViaCard(imgPath: "images/twitter-logo.png",),
                 ],
               ),
               SizedBox(

@@ -30,7 +30,11 @@ class LoginViaCard extends StatelessWidget {
         ),
         padding: EdgeInsets.all(7.sp),
         //TODO : replace with image and us imgPath
-        child: FlutterLogo(size: 35),
+        child: Image(
+          image: AssetImage(imgPath),
+          width: 35.sp,
+          height: 35.sp,
+        ),
       ),
     );
   }
