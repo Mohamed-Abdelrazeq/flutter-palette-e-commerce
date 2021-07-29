@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 import 'package:multivender_ecommerce_app/Views/Component/BNBar.dart';
 import 'package:multivender_ecommerce_app/Views/Component/Header.dart';
 import 'package:multivender_ecommerce_app/Views/Component/MainCard.dart';
@@ -14,10 +15,11 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
-  TextEditingController searchTextController;
+  TextEditingController _searchTextController;
 
   @override
   Widget build(BuildContext context) {
+    FlutterStatusbarcolor.setStatusBarColor(bgColor);
     double statusBar = MediaQuery.of(context).padding.top;
     return Scaffold(
       backgroundColor: bgColor,
@@ -31,7 +33,7 @@ class _HomePageState extends State<HomePage> {
                 child: Column(
                   children: [
                     Header(),
-                    MyTextFiled(textController: searchTextController, myIcon: Icons.search, hint: "Search"),
+                    MyTextFiled(textController: _searchTextController, myIcon: Icons.search, hint: "Search"),
                     SizedBox(height: 22.h,),
                     SectionHeader(header: "Categories",),
                   ],
@@ -78,7 +80,6 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
-              BNBar(),
             ],
           ),
         ),

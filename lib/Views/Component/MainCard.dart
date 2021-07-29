@@ -29,7 +29,7 @@ class MainCard extends StatelessWidget {
             ),
           ),
           Positioned(
-            bottom: -5.r,
+            bottom: -1.r,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

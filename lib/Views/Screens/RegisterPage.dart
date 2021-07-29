@@ -84,7 +84,7 @@ class _RegisterPageState extends State<RegisterPage> {
               SizedBox(height: 60.h,),
               MainButton(text: "Register",btnFunction: (){
                 //TODO
-                Navigator.pushNamed(context, "/MyHomePage");
+                Navigator.pushNamed(context, "/NavPage");
               },),
               SizedBox(height: 25.h,),
             ],

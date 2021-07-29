@@ -102,7 +102,7 @@ class _LoginPageState extends State<LoginPage> {
                 text: "Login",
                 btnFunction: () {
                   //TODO
-                  Navigator.pushNamed(context, "/MyHomePage");
+                  Navigator.pushNamed(context, "/NavPage");
                 },
               ),
               SizedBox(

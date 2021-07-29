@@ -10,6 +10,41 @@ class BNBar extends StatefulWidget {
 class _BNBarState extends State<BNBar> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+      width: 320.w,
+      height: 60.h,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20.r),
+        color: widgetColor
+      ),
+      child: Center(
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Icon(
+              Icons.home_outlined,
+              color: Colors.white,
+              size: 25.r,
+            ),
+            Icon(
+              Icons.favorite_border,
+              color: white60,
+              size: 25.r,
+            ),
+            Icon(
+              Icons.shopping_cart_outlined,
+              color: white60,
+              size: 25.r,
+            ),
+            Icon(
+              Icons.account_circle_outlined,
+              color: white60,
+              size: 25.r,
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

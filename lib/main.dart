@@ -11,6 +11,7 @@ import 'Controllers/ThemeController.dart';
 import 'Views/FutureReturn/Loading.dart';
 import 'Views/FutureReturn/SomethingWentWrong.dart';
 import 'Views/Screens/HomePage.dart';
+import 'Views/Screens/NavPage.dart';
 import 'Views/Screens/WelcomePage.dart';
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
   final Future<FirebaseApp> _initialization = Firebase.initializeApp();
   @override
   Widget build(BuildContext context) {
-    FlutterStatusbarcolor.setStatusBarColor(bgColor);
+    // FlutterStatusbarcolor.setStatusBarColor(bgColor);
     return FutureBuilder(
       future: _initialization,
       builder: (context, snapshot) {
@@ -49,7 +50,7 @@ class MyApp extends StatelessWidget {
                 fontFamily: "Roboto"
               ),
               routes: {
-                '/MyHomePage': (context) => HomePage(),
+                '/NavPage': (context) => NavPage(),
                 '/RegisterPage': (context) => RegisterPage(),
                 '/LoginPage': (context) => LoginPage(),
               },
