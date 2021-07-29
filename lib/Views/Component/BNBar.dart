@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:multivender_ecommerce_app/Views/MyColors.dart';
 
-class SearchBar extends StatefulWidget {
+class BNBar extends StatefulWidget {
   @override
-  _SearchBarState createState() => _SearchBarState();
+  _BNBarState createState() => _BNBarState();
 }
 
-class _SearchBarState extends State<SearchBar> {
+class _BNBarState extends State<BNBar> {
   @override
   Widget build(BuildContext context) {
     return Container();
