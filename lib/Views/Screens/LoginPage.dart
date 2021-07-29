@@ -8,6 +8,8 @@ import 'package:provider/provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:multivender_ecommerce_app/Views/Component/MainButton.dart';
 
+import '../MyColors.dart';
+
 class LoginPage extends StatefulWidget {
   final TextEditingController email = TextEditingController();
   final TextEditingController password = TextEditingController();
@@ -22,6 +24,7 @@ class _LoginPageState extends State<LoginPage> {
     var themeProvider = Provider.of<ThemeController>(context);
     return Scaffold(
       resizeToAvoidBottomInset: false,
+      backgroundColor: bgColor,
       body: SingleChildScrollView(
         child: Container(
           width: 375.w,
@@ -99,7 +102,7 @@ class _LoginPageState extends State<LoginPage> {
                 text: "Login",
                 btnFunction: () {
                   //TODO
-                  Navigator.pushNamed(context, "/");
+                  Navigator.pushNamed(context, "/MyHomePage");
                 },
               ),
               SizedBox(

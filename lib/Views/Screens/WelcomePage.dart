@@ -7,6 +7,8 @@ import 'package:multivender_ecommerce_app/Views/Component/SecButton.dart';
 import 'package:multivender_ecommerce_app/Views/Component/Slogan.dart';
 import 'package:provider/provider.dart';
 
+import '../MyColors.dart';
+
 class WelcomePage extends StatefulWidget {
   @override
   _WelcomePageState createState() => _WelcomePageState();
@@ -17,6 +19,7 @@ class _WelcomePageState extends State<WelcomePage> {
   Widget build(BuildContext context) {
     var themeProvider = Provider.of<ThemeController>(context);
     return Scaffold(
+      backgroundColor: bgColor,
       body: Container(
         width: 375.w,
         decoration: BoxDecoration(

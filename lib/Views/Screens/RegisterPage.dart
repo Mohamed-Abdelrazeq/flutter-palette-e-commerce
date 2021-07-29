@@ -8,6 +8,8 @@ import 'package:multivender_ecommerce_app/Views/Component/MyTextField.dart';
 import 'package:multivender_ecommerce_app/Views/Component/Slogan.dart';
 import 'package:provider/provider.dart';
 
+import '../MyColors.dart';
+
 class RegisterPage extends StatefulWidget {
   final TextEditingController email = TextEditingController();
   final TextEditingController password = TextEditingController();
@@ -22,6 +24,7 @@ class _RegisterPageState extends State<RegisterPage> {
     var themeProvider = Provider.of<ThemeController>(context);
     return Scaffold(
       resizeToAvoidBottomInset: false,
+      backgroundColor: bgColor,
       body: SingleChildScrollView(
         child: Container(
           width: 375.w,
@@ -81,7 +84,7 @@ class _RegisterPageState extends State<RegisterPage> {
               SizedBox(height: 60.h,),
               MainButton(text: "Register",btnFunction: (){
                 //TODO
-                Navigator.pushNamed(context, "/");
+                Navigator.pushNamed(context, "/MyHomePage");
               },),
               SizedBox(height: 25.h,),
             ],

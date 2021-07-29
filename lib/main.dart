@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:multivender_ecommerce_app/Views/MyColors.dart';
 import 'package:multivender_ecommerce_app/Views/Screens/LoginPage.dart';
 import 'package:multivender_ecommerce_app/Views/Screens/RegisterPage.dart';
 import 'package:provider/provider.dart';
@@ -11,6 +12,8 @@ import 'Views/FutureReturn/Loading.dart';
 import 'Views/FutureReturn/SomethingWentWrong.dart';
 import 'Views/Screens/HomePage.dart';
 import 'Views/Screens/WelcomePage.dart';
+import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
+
 
 
 void main() {
@@ -31,6 +34,7 @@ class MyApp extends StatelessWidget {
   final Future<FirebaseApp> _initialization = Firebase.initializeApp();
   @override
   Widget build(BuildContext context) {
+    FlutterStatusbarcolor.setStatusBarColor(bgColor);
     return FutureBuilder(
       future: _initialization,
       builder: (context, snapshot) {
