@@ -3,10 +3,17 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:multivender_ecommerce_app/Views/MyColors.dart';
 
 class MainCard extends StatelessWidget {
+
+  MainCard({
+    @required this.marginRight,
+});
+
+  final double marginRight;
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(right: 20.w),
+      margin: EdgeInsets.only(right: marginRight.w),
       child: Stack(
         alignment: Alignment.bottomCenter,
         children: [

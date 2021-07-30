@@ -13,6 +13,7 @@ class NavPage extends StatefulWidget {
 }
 
 class _NavPageState extends State<NavPage> {
+
   PageController _pageController =  PageController(
     initialPage: 0,
     keepPage: true,

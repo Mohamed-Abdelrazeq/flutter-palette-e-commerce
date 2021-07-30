@@ -4,8 +4,10 @@ import 'package:multivender_ecommerce_app/Views/MyColors.dart';
 
 class Header extends StatelessWidget {
   const Header({
-    Key key,
-  }) : super(key: key);
+    @required this.header,
+  }) ;
+
+  final String header;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +28,7 @@ class Header extends StatelessWidget {
             ),
           ),
           Text(
-            "Welcome Eleven",
+            header,
             style: TextStyle(
                 fontSize: 24.sp,
                 fontWeight: FontWeight.w400,
