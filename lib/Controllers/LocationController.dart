@@ -12,7 +12,7 @@ class LocationController with ChangeNotifier{
   double get getCurrentLocationLat => _currentLocationLat;
   double get getCurrentLocationLng => _currentLocationLng;
   //Methods
-  Future<Coordinates> getCurrentLatitudeAndLongitude() async {
+  Future<void> getCurrentCoordinates() async {
     bool serviceEnabled;
     LocationPermission permission;
     //Get Permissions
@@ -40,8 +40,5 @@ class LocationController with ChangeNotifier{
     _currentLocationLat = currentCoordinates.latitude.toDouble();
     _currentLocationLng = currentCoordinates.longitude.toDouble();
     notifyListeners();
-    double latitude  = currentCoordinates.latitude.toDouble();
-    double longitude = currentCoordinates.longitude.toDouble();
-    return Coordinates(latitude, longitude);
   }
 }

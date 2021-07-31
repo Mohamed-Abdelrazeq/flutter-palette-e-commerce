@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:geocoder/model.dart';
 import 'package:multivender_ecommerce_app/Views/Screens/LoginPage.dart';
 import 'package:multivender_ecommerce_app/Views/Screens/RegisterPage.dart';
 import 'package:provider/provider.dart';
@@ -35,9 +36,12 @@ class MyApp extends StatelessWidget {
   final Future<FirebaseApp> _initialization = Firebase.initializeApp();
   @override
   Widget build(BuildContext context) {
-    // FlutterStatusbarcolor.setStatusBarColor(bgColor);
+    Future _startHandler() async {
+      await _initialization;
+      await Provider.of<LocationController>(context,listen: false).getCurrentCoordinates();
+    }
     return FutureBuilder(
-      future: _initialization,
+      future: _startHandler(),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
           return SomethingWentWrong();
