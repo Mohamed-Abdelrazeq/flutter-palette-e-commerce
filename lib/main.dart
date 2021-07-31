@@ -1,7 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:multivender_ecommerce_app/Views/MyColors.dart';
 import 'package:multivender_ecommerce_app/Views/Screens/LoginPage.dart';
 import 'package:multivender_ecommerce_app/Views/Screens/RegisterPage.dart';
 import 'package:provider/provider.dart';
@@ -12,11 +11,9 @@ import 'Views/FutureReturn/Loading.dart';
 import 'Views/FutureReturn/SomethingWentWrong.dart';
 import 'Views/Screens/Categories.dart';
 import 'Views/Screens/Details.dart';
-import 'Views/Screens/HomePage.dart';
 import 'Views/Screens/NavPage.dart';
 import 'Views/Screens/Products.dart';
 import 'Views/Screens/WelcomePage.dart';
-import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 
 
 

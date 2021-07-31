@@ -6,41 +6,13 @@ class LocationController with ChangeNotifier{
 
   ////CurrentLocation////
   //Vars
-  double _currentLocationXAxis;
-  double _currentLocationYAxis;
+  double _currentLocationLat;
+  double _currentLocationLng;
   //Getters
-  double get getCurrentLocationXAxis => _currentLocationXAxis;
-  double get getCurrentLocationYAxis => _currentLocationYAxis;
-  ////LocationSelector////
-  //Vars
-  // double _selectedPartyLocationXAxis;
-  // double _selectedPartyLocationYAxis;
-  // String _partyLocationName;
-  // bool   _selectionBool = false;
-  // //Getters
-  // bool   get getSelectionBool => _selectionBool;
-  // double get getSelectedPartyLocationXAxis => _selectedPartyLocationXAxis;
-  // double get getSelectedPartyLocationYAxis => _selectedPartyLocationYAxis;
-  // String get getPartyLocationName => _partyLocationName;
-  // //Setters
-  // set setSelectedPartyLocationXAxis(selectedPartyLocationXAxis){
-  //   _selectedPartyLocationXAxis = selectedPartyLocationXAxis;
-  //   notifyListeners();
-  // }
-  // set setSelectedPartyLocationYAxis(selectedPartyLocationYAxis){
-  //   _selectedPartyLocationYAxis = selectedPartyLocationYAxis;
-  //   notifyListeners();
-  // }
-  // set setPartyLocationName(name){
-  //   _partyLocationName = name;
-  //   notifyListeners();
-  // }
-  // set setSelectionBool (bool state) {
-  //   this._selectionBool = state;
-  //   notifyListeners();
-  // }
+  double get getCurrentLocationLat => _currentLocationLat;
+  double get getCurrentLocationLng => _currentLocationLng;
   //Methods
-  Future<Coordinates> _getCurrentLatitudeAndLongitude() async {
+  Future<Coordinates> getCurrentLatitudeAndLongitude() async {
     bool serviceEnabled;
     LocationPermission permission;
     //Get Permissions
@@ -65,27 +37,11 @@ class LocationController with ChangeNotifier{
     }
     //Get Location
     Position currentCoordinates = await Geolocator.getCurrentPosition();
-    _currentLocationXAxis = currentCoordinates.latitude.toDouble();
-    _currentLocationYAxis = currentCoordinates.longitude.toDouble();
+    _currentLocationLat = currentCoordinates.latitude.toDouble();
+    _currentLocationLng = currentCoordinates.longitude.toDouble();
     notifyListeners();
     double latitude  = currentCoordinates.latitude.toDouble();
     double longitude = currentCoordinates.longitude.toDouble();
     return Coordinates(latitude, longitude);
-  }
-  Future<String> getLocationName(Coordinates positionCoordinates) async {
-    var addresses = await Geocoder.local.findAddressesFromCoordinates(positionCoordinates);
-    String first;
-    if(addresses.first.adminArea.split(' ')[addresses.first.adminArea.split(' ').length-1] == "Governorate"){
-      first = addresses.first.adminArea.substring(0,addresses.first.adminArea.length-12);
-    }else{
-      first = addresses.first.adminArea;
-    }
-    // first =  addresses.first.adminArea;
-    print(first);
-    print(addresses.first.adminArea);
-    return first;
-  }
-  Future<String> getCurrentLocation() async {
-    return await getLocationName(await _getCurrentLatitudeAndLongitude());
   }
 }
