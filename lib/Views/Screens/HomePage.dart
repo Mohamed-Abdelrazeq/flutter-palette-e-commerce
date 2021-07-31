@@ -34,7 +34,7 @@ class _HomePageState extends State<HomePage> {
                     Header(header: "Welcome Eleven",),
                     MyTextFiled(textController: _searchTextController, myIcon: Icons.search, hint: "Search"),
                     SizedBox(height: 22.h,),
-                    SectionHeader(header: "Categories",),
+                    SectionHeader(header: "Categories",seeAllDes: "/Categories",),
                   ],
                 ),
               ),
@@ -59,7 +59,7 @@ class _HomePageState extends State<HomePage> {
               SizedBox(height: 22.h,),
               Padding(
                 padding: EdgeInsets.only(left: 28.w,right: 28.w),
-                child: SectionHeader(header: "Products",),
+                child: SectionHeader(header: "Products",seeAllDes: "/Products",),
               ),
               Container(
                 height: 150.h,

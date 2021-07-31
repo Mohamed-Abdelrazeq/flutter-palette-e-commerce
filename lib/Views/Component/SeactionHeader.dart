@@ -5,9 +5,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class SectionHeader extends StatelessWidget {
   const SectionHeader({
     @required this.header,
+    @required this.seeAllDes,
   });
 
   final String header;
+  final String seeAllDes;
 
   @override
   Widget build(BuildContext context) {
@@ -24,12 +26,17 @@ class SectionHeader extends StatelessWidget {
                 color: Colors.white
             ),
           ),
-          Text(
-            "See All",
-            style: TextStyle(
-                fontSize: 14.sp,
-                fontWeight: FontWeight.w300,
-                color: Colors.white
+          InkWell(
+            onTap: (){
+              Navigator.pushNamed(context, seeAllDes);
+            },
+            child: Text(
+              "See All",
+              style: TextStyle(
+                  fontSize: 14.sp,
+                  fontWeight: FontWeight.w300,
+                  color: Colors.white
+              ),
             ),
           ),
         ],
