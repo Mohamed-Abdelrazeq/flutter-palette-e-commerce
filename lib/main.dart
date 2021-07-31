@@ -10,6 +10,7 @@ import 'Controllers/LocationController.dart';
 import 'Controllers/ThemeController.dart';
 import 'Views/FutureReturn/Loading.dart';
 import 'Views/FutureReturn/SomethingWentWrong.dart';
+import 'Views/Screens/Details.dart';
 import 'Views/Screens/HomePage.dart';
 import 'Views/Screens/NavPage.dart';
 import 'Views/Screens/WelcomePage.dart';
@@ -53,6 +54,7 @@ class MyApp extends StatelessWidget {
                 '/NavPage': (context) => NavPage(),
                 '/RegisterPage': (context) => RegisterPage(),
                 '/LoginPage': (context) => LoginPage(),
+                '/details' : (context) => Details(),
               },
               home: WelcomePage(),
             ),
