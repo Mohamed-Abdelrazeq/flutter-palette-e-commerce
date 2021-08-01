@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:multivender_ecommerce_app/Controllers/ThemeController.dart';
+import 'package:multivender_ecommerce_app/Services/Auth.dart';
 import 'package:multivender_ecommerce_app/Views/Component/Logo.dart';
 import 'package:multivender_ecommerce_app/Views/Component/MainButton.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -17,6 +18,7 @@ class WelcomePage extends StatefulWidget {
 class _WelcomePageState extends State<WelcomePage> {
   @override
   Widget build(BuildContext context) {
+    Auth().logout();
     var themeProvider = Provider.of<ThemeController>(context);
     return Scaffold(
       backgroundColor: bgColor,

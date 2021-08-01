@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:multivender_ecommerce_app/Controllers/ThemeController.dart';
+import 'package:multivender_ecommerce_app/Services/Auth.dart';
 import 'package:multivender_ecommerce_app/Views/Component/LoginViaCard.dart';
 import 'package:multivender_ecommerce_app/Views/Component/Logo.dart';
 import 'package:multivender_ecommerce_app/Views/Component/MainButton.dart';
@@ -21,6 +22,7 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
+    Auth().isLoggedIn();
     var themeProvider = Provider.of<ThemeController>(context);
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -74,16 +76,19 @@ class _RegisterPageState extends State<RegisterPage> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children:[
-                  LoginViaCard(imgPath: "images/google-logo.png",),
+                  LoginViaCard(imgPath: "images/google-logo.png",func: ()async{
+                    await Auth().signInWithGoogle();
+                  },),
                   SizedBox(width: 30.w),
-                  LoginViaCard(imgPath: "images/facebook-logo.png",),
+                  LoginViaCard(imgPath: "images/facebook-logo.png",func: ()async{
+                    await Auth().signInWithFacebook();
+                  },),
                   SizedBox(width: 30.w),
                   LoginViaCard(imgPath: "images/twitter-logo.png",),
                 ],
               ),
               SizedBox(height: 60.h,),
               MainButton(text: "Register",btnFunction: (){
-                //TODO
                 Navigator.pushNamed(context, "/NavPage");
               },),
               SizedBox(height: 25.h,),
