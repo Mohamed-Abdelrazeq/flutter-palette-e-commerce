@@ -67,7 +67,7 @@ class ProductModel{
     return myProductsList;
   }
   //Working
-  Future<List<ProductModel>> readAllProducts(String key) async {
+  Future<List<ProductModel>> readAllProducts() async {
     List<ProductModel> myProductsList = [];
     await _products.get()
         .then((QuerySnapshot querySnapshot) {

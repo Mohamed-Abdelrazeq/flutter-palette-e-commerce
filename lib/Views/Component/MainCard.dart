@@ -37,7 +37,7 @@ class MainCard extends StatelessWidget {
                 width: 150.r,
                 padding: EdgeInsets.all(10.r),
                 decoration: BoxDecoration(
-                  image: DecorationImage(image: AssetImage("images/Cactus.png")),
+                  image: DecorationImage(image: NetworkImage(productModel.image),fit: BoxFit.cover),
                   borderRadius: BorderRadius.circular(20.r),
                 ),
               ),
@@ -54,7 +54,7 @@ class MainCard extends StatelessWidget {
                       color: widgetColor,
                     ),
                     child: Text(
-                      "Plants",
+                      productModel.name,
                       style: TextStyle(
                           fontWeight: FontWeight.w300,
                           color: Colors.white,
