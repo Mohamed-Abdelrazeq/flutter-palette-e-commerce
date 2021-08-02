@@ -23,13 +23,6 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
-
-
-
-    if (Provider.of<UserCredController>(context).userCredential != null){
-      Navigator.pushNamed(context, "/NavPage");
-    }
-
     var themeProvider = Provider.of<ThemeController>(context);
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -84,19 +77,33 @@ class _RegisterPageState extends State<RegisterPage> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children:[
                   LoginViaCard(imgPath: "images/google-logo.png",func: ()async{
-                    await Auth().signInWithGoogle();
+                    await Provider.of<UserCredController>(context,listen: false)
+                        .setUserCredential(await Auth().signInWithGoogle());
+                    if(Provider.of<UserCredController>(context,listen: false).userCredential != null){
+                      Navigator.pushNamed(context, "/NavPage");
+                    }
                   },),
                   SizedBox(width: 30.w),
                   LoginViaCard(imgPath: "images/facebook-logo.png",func: ()async{
-                    await Auth().signInWithFacebook();
+                    await Provider.of<UserCredController>(context,listen: false)
+                        .setUserCredential(await Auth().signInWithFacebook());
+                    if(Provider.of<UserCredController>(context,listen: false).userCredential != null){
+                      Navigator.pushNamed(context, "/NavPage");
+                    }
                   },),
-                  SizedBox(width: 30.w),
-                  LoginViaCard(imgPath: "images/twitter-logo.png",),
                 ],
               ),
               SizedBox(height: 60.h,),
-              MainButton(text: "Register",btnFunction: (){
-                Navigator.pushNamed(context, "/NavPage");
+              MainButton(text: "Register",btnFunction: ()async{
+                await Provider.of<UserCredController>(context,listen: false)
+                    .setUserCredential(await Auth().register(
+                    mail: widget.email.text,
+                    phone: widget.phone.text,
+                    password: widget.password.text,
+                ));
+                if(Provider.of<UserCredController>(context,listen: false).userCredential != null){
+                  Navigator.pushNamed(context, "/NavPage");
+                }
               },),
               SizedBox(height: 25.h,),
             ],

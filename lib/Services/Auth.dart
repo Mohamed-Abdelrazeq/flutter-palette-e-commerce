@@ -27,6 +27,7 @@ class Auth {
     try {
       userCredential = await _auth.signInWithEmailAndPassword(email: mail, password: password);
     } on FirebaseAuthException catch (e) {
+      print(e.code);
       if (e.code == 'user-not-found') {
         print('No user found for that email.');
       } else if (e.code == 'wrong-password') {

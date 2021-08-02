@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:multivender_ecommerce_app/Controllers/ThemeController.dart';
+import 'package:multivender_ecommerce_app/Controllers/UserCredController.dart';
+import 'package:multivender_ecommerce_app/Services/Auth.dart';
 import 'package:multivender_ecommerce_app/Views/Component/LoginViaCard.dart';
 import 'package:multivender_ecommerce_app/Views/Component/Logo.dart';
 import 'package:multivender_ecommerce_app/Views/Component/MyTextField.dart';
@@ -88,11 +90,21 @@ class _LoginPageState extends State<LoginPage> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children:[
-                  LoginViaCard(imgPath: "images/google-logo.png",),
+                  LoginViaCard(imgPath: "images/google-logo.png",func: ()async{
+                    await Provider.of<UserCredController>(context,listen: false)
+                        .setUserCredential(await Auth().signInWithGoogle());
+                    if(Provider.of<UserCredController>(context,listen: false).userCredential != null){
+                      Navigator.pushNamed(context, "/NavPage");
+                    }
+                  },),
                   SizedBox(width: 30.w),
-                  LoginViaCard(imgPath: "images/facebook-logo.png",),
-                  SizedBox(width: 30.w),
-                  LoginViaCard(imgPath: "images/twitter-logo.png",),
+                  LoginViaCard(imgPath: "images/facebook-logo.png",func: ()async{
+                    await Provider.of<UserCredController>(context,listen: false)
+                        .setUserCredential(await Auth().signInWithFacebook());
+                    if(Provider.of<UserCredController>(context,listen: false).userCredential != null){
+                      Navigator.pushNamed(context, "/NavPage");
+                    }
+                  },),
                 ],
               ),
               SizedBox(
@@ -100,9 +112,15 @@ class _LoginPageState extends State<LoginPage> {
               ),
               MainButton(
                 text: "Login",
-                btnFunction: () {
-                  //TODO
+                btnFunction: () async {
+                  await Provider.of<UserCredController>(context,listen: false)
+                      .setUserCredential(await Auth().login(
+                    mail: widget.email.text,
+                    password: widget.password.text,
+                  ));
+                  if(Provider.of<UserCredController>(context,listen: false).userCredential != null){
                   Navigator.pushNamed(context, "/NavPage");
+                  }
                 },
               ),
               SizedBox(

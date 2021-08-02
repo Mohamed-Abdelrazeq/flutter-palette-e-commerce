@@ -24,8 +24,9 @@ class _WelcomePageState extends State<WelcomePage> {
     // if (Provider.of<UserCredController>(context).userCredential != null){
     //   Navigator.pushNamed(context, "/NavPage");
     // }
-
+    //TODO For Testing
     Auth().logout();
+
     var themeProvider = Provider.of<ThemeController>(context);
     return Scaffold(
       backgroundColor: bgColor,

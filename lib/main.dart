@@ -39,7 +39,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     Future _startHandler() async {
       await _initialization;
-      await Provider.of<LocationController>(context,listen: false).getCurrentCoordinates();
+      if (Provider.of<LocationController>(context,listen: false).getCurrentLocationLat == null){
+        await Provider.of<LocationController>(context,listen: false).getCurrentCoordinates();
+      }
     }
     return FutureBuilder(
       future: _startHandler(),
