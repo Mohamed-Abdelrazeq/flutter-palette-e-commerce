@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:multivender_ecommerce_app/Controllers/UserCredController.dart';
 import 'package:multivender_ecommerce_app/Views/Screens/LoginPage.dart';
 import 'package:multivender_ecommerce_app/Views/Screens/RegisterPage.dart';
 import 'package:provider/provider.dart';
@@ -25,6 +26,7 @@ void main() {
         ChangeNotifierProvider<ThemeController>(create: (_) => ThemeController()),
         ChangeNotifierProvider<LocationController>(create: (_) => LocationController()),
         ChangeNotifierProvider<ImagePickerController>(create: (_) => ImagePickerController()),
+        ChangeNotifierProvider<UserCredController>(create: (_) => UserCredController()),
       ],
       child: MyApp(),
     ),

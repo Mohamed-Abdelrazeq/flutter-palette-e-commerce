@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:multivender_ecommerce_app/Controllers/ThemeController.dart';
+import 'package:multivender_ecommerce_app/Controllers/UserCredController.dart';
 import 'package:multivender_ecommerce_app/Services/Auth.dart';
 import 'package:multivender_ecommerce_app/Views/Component/LoginViaCard.dart';
 import 'package:multivender_ecommerce_app/Views/Component/Logo.dart';
@@ -22,7 +23,13 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
-    Auth().isLoggedIn();
+
+
+
+    if (Provider.of<UserCredController>(context).userCredential != null){
+      Navigator.pushNamed(context, "/NavPage");
+    }
+
     var themeProvider = Provider.of<ThemeController>(context);
     return Scaffold(
       resizeToAvoidBottomInset: false,
