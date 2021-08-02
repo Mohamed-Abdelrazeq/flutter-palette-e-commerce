@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
+import 'package:multivender_ecommerce_app/Models/ProductModel.dart';
 import 'package:multivender_ecommerce_app/Views/Component/Header.dart';
 import 'package:multivender_ecommerce_app/Views/Component/MainCard.dart';
 import 'package:multivender_ecommerce_app/Views/Component/MainCategoryCard.dart';
@@ -16,9 +17,21 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
 
   TextEditingController _searchTextController;
-
   @override
   Widget build(BuildContext context) {
+
+
+    //Todo Test
+    // ProductModel someProduct = ProductModel(
+    //   name: "Cactus",
+    //   description: "Product Description",
+    //   price: 34,
+    //   category: "Plant",
+    //   available: true,
+    //   image: "https://images.unsplash.com/photo-1447012256906-c2ed7aa5632e?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NTd8fHBsYW50c3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+    // );
+    // someProduct.addProduct();
+
     FlutterStatusbarcolor.setStatusBarColor(bgColor);
     double statusBar = MediaQuery.of(context).padding.top;
     return Scaffold(

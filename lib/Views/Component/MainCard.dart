@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:multivender_ecommerce_app/Models/ProductModel.dart';
 import 'package:multivender_ecommerce_app/Views/MyColors.dart';
 
 class MainCard extends StatelessWidget {
 
   MainCard({
     @required this.marginRight,
+    @required this.productModel,
 });
 
   final double marginRight;
+  final ProductModel productModel;
 
   @override
   Widget build(BuildContext context) {

@@ -4,18 +4,17 @@ class ProductModel{
   ProductModel({
     this.name,
     this.description,
+    this.image,
     this.price,
     this.category,
-    this.status,
     this.available,
 });
 
   String name;
   String description;
-  List images = [];
+  String image ;
   double price;
   String category;
-  String status;
   bool available;
   String id;
 
@@ -30,10 +29,9 @@ class ProductModel{
         "id" : id,
         "name" : name,
         "description" : description,
-        "images" : images,
+        "images" : image,
         "price" : price,
         "category" : category,
-        "status" : status,
         "available" : available,
       })
           .then((value) => print("Products Added"))
@@ -69,9 +67,9 @@ class ProductModel{
     return myProductsList;
   }
   //Working
-  Future<List<ProductModel>> readStoreProducts(String key) async {
+  Future<List<ProductModel>> readAllProducts(String key) async {
     List<ProductModel> myProductsList = [];
-    await _products.where('store.name',isEqualTo: key ).get()
+    await _products.get()
         .then((QuerySnapshot querySnapshot) {
       querySnapshot.docs.forEach((doc) {
         myProductsList.add(ProductModel().toObject(doc.data()));
@@ -97,9 +95,9 @@ class ProductModel{
   }
   //Working
   ProductModel toObject(Map json){
-    ProductModel myProduct = ProductModel(name: json["name"], description: json["description"]  ,price: json["price"], category: json["category"], status: json["status"], available: json["available"]);
+    ProductModel myProduct = ProductModel(name: json["name"], description: json["description"]  ,price: json["price"], category: json["category"], available: json["available"]);
     myProduct.id = json["id"];
-    myProduct.images = json["images"];
+    myProduct.image = json["images"];
     return myProduct;
   }
   //Working
@@ -107,10 +105,9 @@ class ProductModel{
     return {
       "name" : name,
       "description" : description,
-      "images" : images,
+      "images" : image,
       "price" : price,
       "category" : category,
-      "status" : status,
       "available" : available,
     };
   }
