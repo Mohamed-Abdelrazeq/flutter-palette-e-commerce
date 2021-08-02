@@ -6,8 +6,10 @@ class Auth {
   FirebaseAuth _auth = FirebaseAuth.instance;
 
   Future<void> register({String mail, String password, String phone}) async {
+
+    UserCredential userCredential;
     try {
-      await _auth.createUserWithEmailAndPassword(email: mail, password: phone);
+      userCredential = await _auth.createUserWithEmailAndPassword(email: mail, password: phone);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         print('The password provided is too weak.');
@@ -17,11 +19,13 @@ class Auth {
     } catch (e) {
       print(e);
     }
+    return userCredential;
   }
 
-  Future<void> login({String mail, String password}) async {
+  Future<UserCredential> login({String mail, String password}) async {
+    UserCredential userCredential;
     try {
-      await _auth.signInWithEmailAndPassword(email: mail, password: password);
+      userCredential = await _auth.signInWithEmailAndPassword(email: mail, password: password);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         print('No user found for that email.');
@@ -29,6 +33,7 @@ class Auth {
         print('Wrong password provided for that user.');
       }
     }
+    return userCredential;
   }
 
   Future<void> logout() async {
