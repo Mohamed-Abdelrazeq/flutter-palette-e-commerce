@@ -24,7 +24,7 @@ class RateModel {
   CollectionReference _rates = FirebaseFirestore.instance.collection('rates');
   //Working
   Future<void> addRate() async {
-    String id = "${from.mail} ${to.store.owner.mail} ";
+    String id = "${from.mail} ${to.name} ";
     await _rates.doc(id).set({
       "from" : from.toMap(),
       "to" : to.toMap(),

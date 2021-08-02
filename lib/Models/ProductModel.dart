@@ -1,13 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import 'StoreModel.dart';
-
 class ProductModel{
   ProductModel({
     this.name,
     this.description,
     this.price,
-    this.store,
     this.category,
     this.status,
     this.available,
@@ -17,7 +14,6 @@ class ProductModel{
   String description;
   List images = [];
   double price;
-  StoreModel store;
   String category;
   String status;
   bool available;
@@ -27,16 +23,15 @@ class ProductModel{
 
   //Working
   Future<void> addProduct() async {
-    id = "${store.name} $category $name";
+    id = "$category $name";
     bool isUnique = await _checkUniqueProductInTheStore(name);
     if(isUnique){
-      await _products.doc("${store.name} $category $name").set({
+      await _products.doc(" $category $name").set({
         "id" : id,
         "name" : name,
         "description" : description,
         "images" : images,
         "price" : price,
-        "store" : store.toMap(),
         "category" : category,
         "status" : status,
         "available" : available,
@@ -86,7 +81,7 @@ class ProductModel{
   }
   //Working
   Future<void> updateProduct({String key,var value}) async {
-    id = "${store.name} $category $name";
+    id = "$category $name";
     await _products.doc(id)
         .update({key : value})
         .then((value) => print("Product Updated"))
@@ -102,7 +97,7 @@ class ProductModel{
   }
   //Working
   ProductModel toObject(Map json){
-    ProductModel myProduct = ProductModel(name: json["name"], description: json["description"]  ,price: json["price"], store: StoreModel().toObject(json["store"]) , category: json["category"], status: json["status"], available: json["available"]);
+    ProductModel myProduct = ProductModel(name: json["name"], description: json["description"]  ,price: json["price"], category: json["category"], status: json["status"], available: json["available"]);
     myProduct.id = json["id"];
     myProduct.images = json["images"];
     return myProduct;
@@ -114,7 +109,6 @@ class ProductModel{
       "description" : description,
       "images" : images,
       "price" : price,
-      "store" : store.toMap(),
       "category" : category,
       "status" : status,
       "available" : available,

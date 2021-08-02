@@ -27,7 +27,7 @@ class OrderModel{
   CollectionReference _orders = FirebaseFirestore.instance.collection('orders');
   //Working
   Future<void> addOrder() async {
-    String id = "${user.mail} ${product.store.owner.mail} $orderingDate";
+    String id = "${user.mail} $orderingDate";
     await _orders.doc(id).set({
     "product" : product.toMap(),
     "user" : user.toMap(),
