@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 import 'package:multivender_ecommerce_app/Views/Component/Header.dart';
 import 'package:multivender_ecommerce_app/Views/Component/MainCard.dart';
+import 'package:multivender_ecommerce_app/Views/Component/MainCategoryCard.dart';
 import 'package:multivender_ecommerce_app/Views/Component/MyTextField.dart';
 import 'package:multivender_ecommerce_app/Views/Component/SeactionHeader.dart';
 import 'package:multivender_ecommerce_app/Views/MyColors.dart';
@@ -45,14 +46,12 @@ class _HomePageState extends State<HomePage> {
                 child: ListView(
                   scrollDirection: Axis.horizontal,
                   children: [
-                    MainCard(marginRight: 20,),
-                    MainCard(marginRight: 20,),
-                    MainCard(marginRight: 20,),
-                    MainCard(marginRight: 20,),
-                    MainCard(marginRight: 20,),
-                    MainCard(marginRight: 20,),
-                    MainCard(marginRight: 20,),
-                    MainCard(marginRight: 20,),
+                    MainCategoryCard(marginRight: 20,cate : "Crafts" ,imgPath : "images/cate/crafts.jpg"),
+                    MainCategoryCard(marginRight: 20,cate : "Knit" ,imgPath : "images/cate/knit.jpg"),
+                    MainCategoryCard(marginRight: 20,cate : "Art" ,imgPath : "images/cate/art.jpg"),
+                    MainCategoryCard(marginRight: 20,cate : "Plants" ,imgPath : "images/cate/Cactus.png"),
+                    MainCategoryCard(marginRight: 20,cate : "Clothes" ,imgPath : "images/cate/clothes.jpg"),
+                    MainCategoryCard(marginRight: 20,cate : "Accessories" ,imgPath : "images/cate/accec.jpg"),
                   ],
                 ),
               ),
