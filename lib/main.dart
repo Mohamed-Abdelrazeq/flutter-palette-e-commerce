@@ -5,6 +5,7 @@ import 'package:multivender_ecommerce_app/Controllers/UserCredController.dart';
 import 'package:multivender_ecommerce_app/Views/Screens/LoginPage.dart';
 import 'package:multivender_ecommerce_app/Views/Screens/RegisterPage.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'Controllers/ImagePickerController.dart';
 import 'Controllers/LocationController.dart';
 import 'Controllers/ThemeController.dart';
@@ -42,6 +43,17 @@ class MyApp extends StatelessWidget {
       if (Provider.of<LocationController>(context,listen: false).getCurrentLocationLat == null){
         await Provider.of<LocationController>(context,listen: false).getCurrentCoordinates();
       }
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      try{
+        bool currentState = prefs.getBool("logged");
+        if (currentState != null){
+          if(currentState){
+            Provider.of<UserCredController>(context,listen: false).setState(true);
+          }
+        }
+      } catch (e){
+        print(e);
+      }
     }
     return FutureBuilder(
       future: _startHandler(),
@@ -63,8 +75,9 @@ class MyApp extends StatelessWidget {
                 '/details' : (context) => Details(),
                 '/Categories' : (context) => Categories(),
                 '/Products' : (context) => Products(),
+                '/WelcomePage' : (context) => WelcomePage(),
               },
-              home: WelcomePage(),
+              home: Provider.of<UserCredController>(context).state == true ? NavPage() : WelcomePage(),
             ),
           );
         }
