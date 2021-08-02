@@ -5,7 +5,7 @@ import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 class Auth {
   FirebaseAuth _auth = FirebaseAuth.instance;
 
-  Future<void> register({String mail, String password, String phone}) async {
+  Future<UserCredential> register({String mail, String password, String phone}) async {
 
     UserCredential userCredential;
     try {
