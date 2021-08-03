@@ -106,6 +106,7 @@ class UserModel {
     favourite.forEach((element) {
       newFavourite.add(element.toMap());
     });
+
     favourite.add(productModel);
     newFavourite.add(productModel.toMap());
     await _users
