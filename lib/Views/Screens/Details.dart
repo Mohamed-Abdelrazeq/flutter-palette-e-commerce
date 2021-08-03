@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:multivender_ecommerce_app/Controllers/UserCredController.dart';
 import 'package:multivender_ecommerce_app/Models/ProductModel.dart';
-import 'package:multivender_ecommerce_app/Models/UserModel.dart';
 import 'package:multivender_ecommerce_app/Views/Component/MainButton.dart';
 import 'package:multivender_ecommerce_app/Views/Component/SecButton.dart';
 import 'package:multivender_ecommerce_app/Views/MyColors.dart';
@@ -97,8 +96,8 @@ class Details extends StatelessWidget {
                     ),
                   )),
                   SizedBox(height: 20.h,),
-                  MainButton(text: "Order Now", btnFunction: (){
-                    //todo
+                  MainButton(text: "Add to Favourite", btnFunction: (){
+                    Provider.of<UserCredController>(context,listen: false).userModel.addToFavourite(productModel);
                   }),
                   SizedBox(height: 10.h,),
                   SecButton(text: "Add to Cart", btnFunction: (){

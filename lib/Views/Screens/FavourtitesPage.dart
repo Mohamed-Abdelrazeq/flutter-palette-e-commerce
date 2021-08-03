@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:multivender_ecommerce_app/Controllers/UserCredController.dart';
+import 'package:multivender_ecommerce_app/Models/ProductModel.dart';
 import 'package:multivender_ecommerce_app/Views/Component/Header.dart';
 import 'package:multivender_ecommerce_app/Views/Component/MainCard.dart';
 import 'package:multivender_ecommerce_app/Views/Component/MyTextField.dart';
+import 'package:provider/provider.dart';
 
 import '../MyColors.dart';
 
@@ -19,6 +22,7 @@ class _FavouritesPageState extends State<FavouritesPage> {
   @override
   Widget build(BuildContext context) {
     double statusBar = MediaQuery.of(context).padding.top;
+    List<ProductModel> favData = Provider.of<UserCredController>(context,listen: false).userModel.favourite;
     return Scaffold(
       backgroundColor: bgColor,
       body: Padding(
@@ -46,8 +50,8 @@ class _FavouritesPageState extends State<FavouritesPage> {
                   shrinkWrap: true,
                   crossAxisCount: 2,
                   padding: EdgeInsets.only(left: 28.w,right: 28.w,bottom: 20.h),
-                  children: List.generate(100, (index) {
-                    return MainCard(marginRight: 0,);
+                  children: List.generate(favData.length, (index) {
+                    return MainCard(marginRight: 0,productModel: favData[index],);
                   }),
                 ),
               ),

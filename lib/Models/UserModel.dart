@@ -101,6 +101,20 @@ class UserModel {
         .catchError((error) => print("Failed to update user: $error"));
   }
   //Working
+  Future<void> addToFavourite(ProductModel productModel) async {
+    List<Map> newFavourite = [];
+    favourite.forEach((element) {
+      newFavourite.add(element.toMap());
+    });
+    favourite.add(productModel);
+    newFavourite.add(productModel.toMap());
+    await _users
+        .doc(uid)
+        .update({'favourite': newFavourite})
+        .then((value) => print("User Updated"))
+        .catchError((error) => print("Failed to update user: $error"));
+  }
+  //Working
   Future<UserModel> getUserDataByUID(String uid)async{
     var userModelJson= await _users.doc(uid).get();
     UserModel userModel = UserModel().toObject(userModelJson.data());
