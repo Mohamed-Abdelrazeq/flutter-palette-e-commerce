@@ -10,7 +10,6 @@ import 'package:provider/provider.dart';
 import '../MyColors.dart';
 
 class FavouritesPage extends StatefulWidget {
-
   @override
   _FavouritesPageState createState() => _FavouritesPageState();
 }
@@ -40,7 +39,6 @@ class _FavouritesPageState extends State<FavouritesPage> {
                   ],
                 ),
               ),
-
               Container(
                 height: 410.h,
                 width: 375.w,
