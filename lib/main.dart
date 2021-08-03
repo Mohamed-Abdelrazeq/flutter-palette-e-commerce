@@ -47,11 +47,7 @@ class MyApp extends StatelessWidget {
       try{
         bool currentState = prefs.getBool("logged");
         String uid = prefs.getString("uid");
-        print(uid);
-        print("Start");
         UserModel userModel = await UserModel().getUserDataByUID(uid);
-        print("End");
-        print(userModel);
         Provider.of<UserCredController>(context,listen: false).setUserCredential(userModel);
         if (currentState != null){
           if(currentState){

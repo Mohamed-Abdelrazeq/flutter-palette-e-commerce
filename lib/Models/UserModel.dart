@@ -56,7 +56,6 @@ class UserModel {
     for (var i = 0; i < car.length; i++) {
       carPro.add(ProductModel().toObject(car[i]));
     }
-
     UserModel theUser = UserModel(
         uid: json["uid"],
         mobile: json["mobile"],
@@ -108,7 +107,6 @@ class UserModel {
     // userModel = UserModel().toObject(userModelJson.data());
     //
     var userModelJson= await _users.doc(uid).get();
-    print(userModelJson.data());
     UserModel userModel = UserModel().toObject(userModelJson.data());
     return userModel;
   }
