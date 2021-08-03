@@ -47,7 +47,7 @@ class MyApp extends StatelessWidget {
       try{
         bool currentState = prefs.getBool("logged");
         String uid = prefs.getString("uid");
-        uid = "ZiLknNdZwFg81UktkAvSOX4cwyr1";
+        print(uid);
         print("Start");
         UserModel userModel = await UserModel().getUserDataByUID(uid);
         print("End");

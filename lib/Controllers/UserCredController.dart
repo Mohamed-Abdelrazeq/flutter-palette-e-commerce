@@ -10,7 +10,7 @@ class UserCredController extends ChangeNotifier{
     userModel = currentUserModel;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setBool("logged", true);
-    await prefs.setString('"uid', userModel.uid);
+    await prefs.setString('uid', userModel.uid);
     notifyListeners();
   }
 
