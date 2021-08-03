@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:multivender_ecommerce_app/Models/ProductModel.dart';
 import 'package:multivender_ecommerce_app/Views/Component/MainButton.dart';
 import 'package:multivender_ecommerce_app/Views/Component/SecButton.dart';
 import 'package:multivender_ecommerce_app/Views/MyColors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Details extends StatelessWidget {
+
+  Details({
+    @required this.productModel,
+});
+
+  final ProductModel productModel;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,14 +31,14 @@ class Details extends StatelessWidget {
                           bottomRight: Radius.circular(50.r),
                           bottomLeft: Radius.circular(50.r)),
                       image: DecorationImage(
-                        image: AssetImage("images/Cactus.png"),
+                        image: NetworkImage(productModel.image),
                         fit: BoxFit.cover,
                       )),
                 ),
                 Positioned(
                   bottom: 10.h,
                   child: TextContainer(content: Text(
-                    "Golden Barrel Cactus",
+                    productModel.name,
                     style: TextStyle(
                       fontSize: 20.sp,
                       color: Colors.white,
@@ -62,7 +70,7 @@ class Details extends StatelessWidget {
                           Icon(Icons.monetization_on,color: white60,size: 20.r,),
                           SizedBox(width: 10.w,),
                           Text(
-                            "200.P",
+                            "${productModel.price.toInt()} .P",
                             style: TextStyle(
                               fontSize: 18.sp,
                               color: Colors.white,
@@ -77,7 +85,7 @@ class Details extends StatelessWidget {
                   TextContainer(content: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+                      productModel.description,
                       style: TextStyle(
                         fontSize: 14.sp,
                         color: Colors.white.withOpacity(.8),
@@ -86,9 +94,13 @@ class Details extends StatelessWidget {
                     ),
                   )),
                   SizedBox(height: 20.h,),
-                  MainButton(text: "Order Now", btnFunction: (){}),
+                  MainButton(text: "Order Now", btnFunction: (){
+                    //todo
+                  }),
                   SizedBox(height: 10.h,),
-                  SecButton(text: "Add to Cart", btnFunction: (){}),
+                  SecButton(text: "Add to Cart", btnFunction: (){
+                    //todo
+                  }),
                   SizedBox(height: 20.h,),
                 ],
               ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:multivender_ecommerce_app/Models/ProductModel.dart';
 import 'package:multivender_ecommerce_app/Views/MyColors.dart';
+import 'package:multivender_ecommerce_app/Views/Screens/Details.dart';
 
 class MainCard extends StatelessWidget {
 
@@ -17,7 +18,10 @@ class MainCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
-        Navigator.pushNamed(context, '/details');
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => Details(productModel: productModel)),
+        );
       },
       child: Container(
         margin: EdgeInsets.only(right: marginRight.w),

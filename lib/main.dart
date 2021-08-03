@@ -72,7 +72,6 @@ class MyApp extends StatelessWidget {
                 '/NavPage': (context) => NavPage(),
                 '/RegisterPage': (context) => RegisterPage(),
                 '/LoginPage': (context) => LoginPage(),
-                '/details' : (context) => Details(),
                 '/Categories' : (context) => Categories(),
                 '/Products' : (context) => Products(),
                 '/WelcomePage' : (context) => WelcomePage(),
