@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:multivender_ecommerce_app/Controllers/UserCredController.dart';
 import 'package:multivender_ecommerce_app/Models/ProductModel.dart';
+import 'package:multivender_ecommerce_app/Models/UserModel.dart';
 import 'package:multivender_ecommerce_app/Views/Component/MainButton.dart';
 import 'package:multivender_ecommerce_app/Views/Component/SecButton.dart';
 import 'package:multivender_ecommerce_app/Views/MyColors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 class Details extends StatelessWidget {
 
@@ -99,7 +102,7 @@ class Details extends StatelessWidget {
                   }),
                   SizedBox(height: 10.h,),
                   SecButton(text: "Add to Cart", btnFunction: (){
-                    //todo
+                    Provider.of<UserCredController>(context,listen: false).userModel.addToCart(productModel);
                   }),
                   SizedBox(height: 20.h,),
                 ],

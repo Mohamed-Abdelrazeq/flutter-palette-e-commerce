@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
@@ -5,40 +6,7 @@ import 'package:multivender_ecommerce_app/Models/UserModel.dart';
 
 class Auth {
   FirebaseAuth _auth = FirebaseAuth.instance;
-
-  Future<UserCredential> register({String mail, String password, String phone,double lng ,double lat}) async {
-
-    UserCredential userCredential;
-    try {
-      userCredential = await _auth.createUserWithEmailAndPassword(email: mail, password: phone);
-      UserModel userModel = UserModel(uid: userCredential.user.uid,mobile: phone, lng:lng, lat: lat);
-      userModel.addUser();
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'weak-password') {
-        print('The password provided is too weak.');
-      } else if (e.code == 'email-already-in-use') {
-        print('The account already exists for that email.');
-      }
-    } catch (e) {
-      print(e);
-    }
-    return userCredential;
-  }
-
-  Future<UserCredential> login({String mail, String password}) async {
-    UserCredential userCredential;
-    try {
-      userCredential = await _auth.signInWithEmailAndPassword(email: mail, password: password);
-    } on FirebaseAuthException catch (e) {
-      print(e.code);
-      if (e.code == 'user-not-found') {
-        print('No user found for that email.');
-      } else if (e.code == 'wrong-password') {
-        print('Wrong password provided for that user.');
-      }
-    }
-    return userCredential;
-  }
+  CollectionReference _users = FirebaseFirestore.instance.collection('users');
 
   Future<void> logout() async {
     await _auth.signOut();
@@ -57,7 +25,7 @@ class Auth {
     return false;
   }
 
-  Future<UserCredential> signInWithGoogle({double lng ,double lat}) async {
+  Future<UserModel> signInWithGoogle({double lng ,double lat}) async {
     // Trigger the authentication flow
     final GoogleSignInAccount googleUser = await GoogleSignIn().signIn();
     // Obtain the auth details from the request
@@ -71,10 +39,10 @@ class Auth {
     UserModel userModel = UserModel(uid: userCredential.user.uid,mobile: "",lng:lng,lat: lat);
     userModel.addUser();
     // Once signed in, return the UserCredential
-    return userCredential;
+    // return userCredential;
   }
 
-  Future<UserCredential> signInWithFacebook({double lng ,double lat}) async {
+  Future<UserModel> signInWithFacebook({double lng ,double lat}) async {
       FacebookAuth.instance.logOut();
       final  result = await FacebookAuth.instance.login();
       final facebookAuthCredential = FacebookAuthProvider.credential(result.token);
@@ -82,7 +50,43 @@ class Auth {
       UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
       UserModel userModel = UserModel(uid: userCredential.user.uid,mobile: "",lng:lng,lat: lat);
       userModel.addUser();
-      return userCredential;
+      // return userCredential;
+  }
+
+  Future<UserModel> register({String mail, String password, String phone,double lng ,double lat}) async {
+
+    UserCredential userCredential;
+    try {
+      userCredential = await _auth.createUserWithEmailAndPassword(email: mail, password: password);
+      UserModel userModel = UserModel(uid: userCredential.user.uid,mobile: phone, lng:lng, lat: lat);
+      userModel.addUser();
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        print('The password provided is too weak.');
+      } else if (e.code == 'email-already-in-use') {
+        print('The account already exists for that email.');
+      }
+    } catch (e) {
+      print(e);
+    }
+    // return userCredential;
+  }
+
+  Future<UserModel> login({String mail, String password}) async {
+    UserModel userModel;
+    try {
+      UserCredential userCredential = await _auth.signInWithEmailAndPassword(email: mail, password: password);
+      var userModelJson = await _users.doc(userCredential.user.uid).get();
+      userModel = UserModel().toObject(userModelJson.data());
+    } on FirebaseAuthException catch (e) {
+      print(e.code);
+      if (e.code == 'user-not-found') {
+        print('No user found for that email.');
+      } else if (e.code == 'wrong-password') {
+        print('Wrong password provided for that user.');
+      }
+    }
+    return userModel;
   }
 
 }

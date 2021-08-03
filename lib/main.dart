@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:multivender_ecommerce_app/Controllers/UserCredController.dart';
+import 'package:multivender_ecommerce_app/Models/UserModel.dart';
 import 'package:multivender_ecommerce_app/Views/Screens/LoginPage.dart';
 import 'package:multivender_ecommerce_app/Views/Screens/RegisterPage.dart';
 import 'package:provider/provider.dart';
@@ -45,6 +46,13 @@ class MyApp extends StatelessWidget {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       try{
         bool currentState = prefs.getBool("logged");
+        String uid = prefs.getString("uid");
+        uid = "ZiLknNdZwFg81UktkAvSOX4cwyr1";
+        print("Start");
+        UserModel userModel = await UserModel().getUserDataByUID(uid);
+        print("End");
+        print(userModel);
+        Provider.of<UserCredController>(context,listen: false).setUserCredential(userModel);
         if (currentState != null){
           if(currentState){
             Provider.of<UserCredController>(context,listen: false).setState(true);

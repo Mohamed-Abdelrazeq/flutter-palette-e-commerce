@@ -92,23 +92,21 @@ class _LoginPageState extends State<LoginPage> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children:[
                   LoginViaCard(imgPath: "images/google-logo.png",func: ()async{
-                    await Provider.of<UserCredController>(context,listen: false)
-                        .setUserCredential(await Auth().signInWithGoogle(
+                    await Auth().signInWithGoogle(
                       lng : Provider.of<LocationController>(context,listen: false).getCurrentLocationLng,
                       lat : Provider.of<LocationController>(context,listen: false).getCurrentLocationLat,
-                    ));
-                    if(Provider.of<UserCredController>(context,listen: false).userCredential != null){
+                    );
+                    if(Provider.of<UserCredController>(context,listen: false).userModel != null){
                       Navigator.pushNamed(context, "/NavPage");
                     }
                   },),
                   SizedBox(width: 30.w),
                   LoginViaCard(imgPath: "images/facebook-logo.png",func: ()async{
-                    await Provider.of<UserCredController>(context,listen: false)
-                        .setUserCredential(await Auth().signInWithFacebook(
+                    await Auth().signInWithFacebook(
                       lng : Provider.of<LocationController>(context,listen: false).getCurrentLocationLng,
                       lat : Provider.of<LocationController>(context,listen: false).getCurrentLocationLat,
-                    ));
-                    if(Provider.of<UserCredController>(context,listen: false).userCredential != null){
+                    );
+                    if(Provider.of<UserCredController>(context,listen: false).userModel != null){
                       Navigator.pushNamed(context, "/NavPage");
                     }
                   },),
@@ -120,12 +118,13 @@ class _LoginPageState extends State<LoginPage> {
               MainButton(
                 text: "Login",
                 btnFunction: () async {
-                  await Provider.of<UserCredController>(context,listen: false)
-                      .setUserCredential(await Auth().login(
-                    mail: widget.email.text,
-                    password: widget.password.text,
-                  ));
-                  if(Provider.of<UserCredController>(context,listen: false).userCredential != null){
+                  Provider.of<UserCredController>(context,listen: false).setUserCredential(
+                      await Auth().login(
+                        mail: widget.email.text,
+                        password: widget.password.text,
+                      )
+                  );
+                  if(Provider.of<UserCredController>(context,listen: false).userModel != null){
                   Navigator.pushNamed(context, "/NavPage");
                   }
                 },

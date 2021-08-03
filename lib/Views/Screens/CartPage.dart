@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:multivender_ecommerce_app/Controllers/UserCredController.dart';
+import 'package:multivender_ecommerce_app/Models/ProductModel.dart';
 import 'package:multivender_ecommerce_app/Views/Component/Header.dart';
 import 'package:multivender_ecommerce_app/Views/Component/MainButton.dart';
 import 'package:multivender_ecommerce_app/Views/Component/MainCard.dart';
 import 'package:multivender_ecommerce_app/Views/Component/MyTextField.dart';
+import 'package:provider/provider.dart';
 
 import '../MyColors.dart';
 class CartPage extends StatefulWidget {
@@ -18,6 +21,7 @@ class _CartPageState extends State<CartPage> {
   @override
   Widget build(BuildContext context) {
     double statusBar = MediaQuery.of(context).padding.top;
+    List<ProductModel> cartData = Provider.of<UserCredController>(context).userModel.cart;
     return Scaffold(
       backgroundColor: bgColor,
       body: Padding(
@@ -48,8 +52,8 @@ class _CartPageState extends State<CartPage> {
                     shrinkWrap: true,
                     crossAxisCount: 2,
                     padding: EdgeInsets.only(left: 28.w,right: 28.w,bottom: 100.h),
-                    children: List.generate(5, (index) {
-                      return MainCard(marginRight: 0,);
+                    children: List.generate(cartData.length, (index) {
+                      return MainCard(marginRight: 0,productModel: cartData[index],);
                     }),
                   ),
                 ),
