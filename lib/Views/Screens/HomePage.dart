@@ -23,7 +23,6 @@ class _HomePageState extends State<HomePage> {
       _myCards.add(MainCard(marginRight: 20.w, productModel: modelList[i]));
     }
   }
-
   TextEditingController _searchTextController;
   @override
   Widget build(BuildContext context) {
