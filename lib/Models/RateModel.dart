@@ -24,7 +24,7 @@ class RateModel {
   CollectionReference _rates = FirebaseFirestore.instance.collection('rates');
   //Working
   Future<void> addRate() async {
-    String id = "${from.mail} ${to.name} ";
+    String id = "${from.uid} ${to.name} ";
     await _rates.doc(id).set({
       "from" : from.toMap(),
       "to" : to.toMap(),
@@ -34,9 +34,9 @@ class RateModel {
         .catchError((error) => print("Failed to add rate: $error"));
   }
   //Working
-  Future<List<RateModel>> readRatesByUserMail(String key) async {
+  Future<List<RateModel>> readRatesByUserUID(String key) async {
     List<RateModel> myRatesList = [];
-    await _rates.where('from.mail',isEqualTo: key).get()
+    await _rates.where('from.uid',isEqualTo: key).get()
         .then((QuerySnapshot querySnapshot) {
       querySnapshot.docs.forEach((doc) {
         myRatesList.add(RateModel().toObject(doc.data()));
@@ -46,9 +46,9 @@ class RateModel {
     return myRatesList;
   }
   //Working
-  Future<List<RateModel>> readRatesByOwnerMail(String key) async {
+  Future<List<RateModel>> readRatesByProductName(String key) async {
     List<RateModel> myRatesList = [];
-    await _rates.where('to.store.owner.mail',isEqualTo: key).get()
+    await _rates.where('to.name',isEqualTo: key).get()
         .then((QuerySnapshot querySnapshot) {
       querySnapshot.docs.forEach((doc) {
         myRatesList.add(RateModel().toObject(doc.data()));

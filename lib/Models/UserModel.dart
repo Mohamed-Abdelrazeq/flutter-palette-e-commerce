@@ -5,18 +5,16 @@ import 'package:multivender_ecommerce_app/Models/ProductModel.dart';
 class UserModel {
 
   UserModel({
-    this.name,
-    this.mail,
+    this.uid,
     this.mobile,
     this.lat,
-    this.lon,
+    this.lng,
   });
 
-  String name;
-  String mail;
+  String uid;
   String mobile;
   double lat;
-  double lon;
+  double lng;
   List<ProductModel> favourite = [];
   List<ProductModel> cart      = [];
   List    rates     = [];
@@ -29,13 +27,12 @@ class UserModel {
     List car = [];
     favourite.forEach((element) {fav.add(element.toMap());});
     cart.forEach((element) {car.add(element.toMap());});
-    String id = "$mail $name $mobile";
+    String id = "$uid";
     await _users.doc(id).set({
-      "name" : name,
-      "mail" : mail,
+      "uid" : uid,
       "mobile" : mobile,
       "lat" : lat,
-      "lon" : lon,
+      "lon" : lng,
       "favourite" :fav,
       "cart"      : car,
       "rates" : rates,
@@ -55,7 +52,7 @@ class UserModel {
     for(var i = 0 ; i < car.length;i++){
       carPro.add(ProductModel().toObject(fav[i]));
     }
-    UserModel theUser = UserModel(name: json["name"], mail: json["mail"], mobile: json["mobile"], lat: json["lat"], lon: json["lon"]);
+    UserModel theUser = UserModel(uid: json["uid"], mobile: json["mobile"], lat: json["lat"], lng: json["lon"]);
     theUser.favourite = favPro;
     theUser.cart      = carPro;
     theUser.rates     = json["rates"];
@@ -68,11 +65,10 @@ class UserModel {
     favourite.forEach((element) {fav.add(element.toMap());});
     cart.forEach((element) {car.add(element.toMap());});
     return {
-      "name" : name,
-      "mail" : mail,
+      "uid" : uid,
       "mobile" : mobile,
       "lat" : lat,
-      "lon" : lon,
+      "lon" : lng,
       "favourite" : fav,
       "cart" : car,
       "rates" : rates,

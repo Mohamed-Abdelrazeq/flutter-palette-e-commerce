@@ -18,30 +18,26 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List<Widget> _myCards = [SizedBox(width: 28.w,)];
-  List<Widget> _dataHandler(List<ProductModel> modelList){
-
+  void _dataHandler(List<ProductModel> modelList){
     for(var i = 0 ;i < modelList.length ; i++){
       _myCards.add(MainCard(marginRight: 20.w, productModel: modelList[i]));
     }
-
-    print(_myCards);
-    return _myCards;
   }
 
   TextEditingController _searchTextController;
   @override
   Widget build(BuildContext context) {
     //Todo Test
-    ProductModel someProduct = ProductModel(
-      name: "The Fight",
-      description: "Product Description",
-      price: 7500,
-      category: "Art",
-      available: true,
-      image:
-      "https://images.unsplash.com/photo-1561839561-b13bcfe95249?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjN8fGFydHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
-    );
-    someProduct.addProduct();
+    // ProductModel someProduct = ProductModel(
+    //   name: "The Fight",
+    //   description: "Product Description",
+    //   price: 7500,
+    //   category: "Art",
+    //   available: true,
+    //   image:
+    //   "https://images.unsplash.com/photo-1561839561-b13bcfe95249?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjN8fGFydHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
+    // );
+    // someProduct.addProduct();
     FlutterStatusbarcolor.setStatusBarColor(bgColor);
     double statusBar = MediaQuery.of(context).padding.top;
     return FutureBuilder(

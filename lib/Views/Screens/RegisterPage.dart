@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:multivender_ecommerce_app/Controllers/LocationController.dart';
 import 'package:multivender_ecommerce_app/Controllers/ThemeController.dart';
 import 'package:multivender_ecommerce_app/Controllers/UserCredController.dart';
 import 'package:multivender_ecommerce_app/Services/Auth.dart';
@@ -78,7 +79,10 @@ class _RegisterPageState extends State<RegisterPage> {
                 children:[
                   LoginViaCard(imgPath: "images/google-logo.png",func: ()async{
                     await Provider.of<UserCredController>(context,listen: false)
-                        .setUserCredential(await Auth().signInWithGoogle());
+                        .setUserCredential(await Auth().signInWithGoogle(
+                      lng : Provider.of<LocationController>(context,listen: false).getCurrentLocationLng,
+                      lat : Provider.of<LocationController>(context,listen: false).getCurrentLocationLat,
+                    ));
                     if(Provider.of<UserCredController>(context,listen: false).userCredential != null){
                       Navigator.pushNamed(context, "/NavPage");
                     }
@@ -86,7 +90,10 @@ class _RegisterPageState extends State<RegisterPage> {
                   SizedBox(width: 30.w),
                   LoginViaCard(imgPath: "images/facebook-logo.png",func: ()async{
                     await Provider.of<UserCredController>(context,listen: false)
-                        .setUserCredential(await Auth().signInWithFacebook());
+                        .setUserCredential(await Auth().signInWithFacebook(
+                      lng : Provider.of<LocationController>(context,listen: false).getCurrentLocationLng,
+                      lat : Provider.of<LocationController>(context,listen: false).getCurrentLocationLat,
+                    ));
                     if(Provider.of<UserCredController>(context,listen: false).userCredential != null){
                       Navigator.pushNamed(context, "/NavPage");
                     }
