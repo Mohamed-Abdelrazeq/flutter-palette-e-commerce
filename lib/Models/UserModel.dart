@@ -102,10 +102,6 @@ class UserModel {
   }
   //Working
   Future<UserModel> getUserDataByUID(String uid)async{
-    //
-    // var userModelJson = await _users.doc(userCredential.user.uid).get();
-    // userModel = UserModel().toObject(userModelJson.data());
-    //
     var userModelJson= await _users.doc(uid).get();
     UserModel userModel = UserModel().toObject(userModelJson.data());
     return userModel;
