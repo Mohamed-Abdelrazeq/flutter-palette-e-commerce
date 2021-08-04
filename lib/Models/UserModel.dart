@@ -89,28 +89,56 @@ class UserModel {
   //Working
   Future<void> addToCart(ProductModel productModel) async {
     List<Map> newCart = [];
-    cart.add(productModel);
-    cart.forEach((element) {
-      newCart.add(element.toMap());
-    });
-    await _users
-        .doc(uid)
-        .update({'cart': newCart})
-        .then((value) => print("User Updated"))
-        .catchError((error) => print("Failed to update user: $error"));
+    bool duplicationFlag;
+    for(var i = 0;i <cart.length;i++){
+      if (cart[i].toMap().toString() == productModel.toMap().toString()){
+        duplicationFlag = true;
+        break;
+      }else{
+        duplicationFlag = false;
+      }
+    }
+    if(!duplicationFlag){
+      cart.add(productModel);
+      cart.forEach((element) {
+        newCart.add(element.toMap());
+      });
+      await _users
+          .doc(uid)
+          .update({'cart': newCart})
+          .then((value) => print("User Updated"))
+          .catchError((error) => print("Failed to update user: $error"));
+    }else{
+      print("Duplicated");
+    }
+
   }
   //Working
   Future<void> addToFavourite(ProductModel productModel) async {
+    bool duplicationFlag;
     List<Map> newFavourite = [];
-    favourite.add(productModel);
-    favourite.forEach((element) {
-      newFavourite.add(element.toMap());
-    });
-    await _users
-        .doc(uid)
-        .update({'favourite': newFavourite})
-        .then((value) => print("User Updated"))
-        .catchError((error) => print("Failed to update user: $error"));
+    for(var i = 0;i <favourite.length;i++){
+      if (favourite[i].toMap().toString() == productModel.toMap().toString()){
+        duplicationFlag = true;
+        break;
+      }else{
+        duplicationFlag = false;
+      }
+    }
+    if(!duplicationFlag){
+      favourite.add(productModel);
+      favourite.forEach((element) {
+        newFavourite.add(element.toMap());
+      });
+      await _users
+          .doc(uid)
+          .update({'favourite': newFavourite})
+          .then((value) => print("User Updated"))
+          .catchError((error) => print("Failed to update user: $error"));
+    }else{
+      print("Duplicated");
+    }
+
   }
   //Working
   Future<UserModel> getUserDataByUID(String uid)async{
