@@ -17,18 +17,11 @@ class NavPage extends StatefulWidget {
 }
 
 class _NavPageState extends State<NavPage> {
-
-
-
-
   PageController _pageController =  PageController(
     initialPage: 0,
     keepPage: true,
   );
   int _currentPageIndex = 0;
-
-
-
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
