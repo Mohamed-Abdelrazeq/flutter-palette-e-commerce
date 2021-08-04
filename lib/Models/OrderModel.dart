@@ -5,14 +5,14 @@ import 'UserModel.dart';
 
 class OrderModel{
   OrderModel({
-    this.product,
+    this.products,
     this.user,
     this.status,
     this.price,
     this.orderingDate,
 });
 
-  ProductModel product;
+  List<ProductModel> products;
   UserModel    user;
   String       status;
   DateTime     orderingDate;
@@ -22,8 +22,12 @@ class OrderModel{
   //Working
   Future<void> addOrder() async {
     String id = "${user.uid} $orderingDate";
+    List<Map> productsJson = [];
+    products.forEach((element) {
+      productsJson.add(element.toMap());
+    });
     await _orders.doc(id).set({
-    "product" : product.toMap(),
+    "products" : productsJson,
     "user" : user.toMap(),
     "status" : status,
     "orderingDate" : orderingDate,
@@ -32,7 +36,7 @@ class OrderModel{
         .then((value) => print("Products Added"))
         .catchError((error) => print("Failed to add product: $error"));
   }
-  //Working
+  //Working todo
   Future<List<OrderModel>> readOrdersByUserMail(String key) async {
     List<OrderModel> myOrdersList = [];
     await _orders.where('user.mail',isEqualTo: key).get()
@@ -44,7 +48,7 @@ class OrderModel{
     print(myOrdersList);
     return myOrdersList;
   }
-  //Working
+  //Working todo
   Future<List<OrderModel>> readOrdersByOwnerMail(String key) async {
     List<OrderModel> myOrdersList = [];
     await _orders.where('product.store.owner.mail',isEqualTo: key).get()
@@ -59,8 +63,15 @@ class OrderModel{
   //Working
   OrderModel toObject(Map json){
     Timestamp time = json["orderingDate"];
+    List<Map> productsJson = json["products"];
+    List<ProductModel> productsModel = [];
+    productsJson.forEach((element) {
+      productsModel.add(
+      ProductModel().toObject(element)
+      );
+    });
     OrderModel myOrder = OrderModel(
-        product : ProductModel().toObject(json["product"]) ,
+        products :  productsModel,
         user : UserModel().toObject(json["user"]),
         status : json["status"],
         price : json["totalPrice"],
@@ -70,8 +81,12 @@ class OrderModel{
   }
   //Working
   Map<String, dynamic> toMap() {
+    List<Map> productsJson = [];
+    products.forEach((element) {
+      productsJson.add(element.toMap());
+    });
     return {
-      "product" : product.toMap(),
+      "products" : productsJson,
       "user" : user.toMap(),
       "status" : status,
       "totalPrice" : price,

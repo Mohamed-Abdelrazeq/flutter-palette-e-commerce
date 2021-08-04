@@ -73,6 +73,8 @@ class _CartPageState extends State<CartPage> {
                         bool phoneCheckResults = _phoneNumberCheck(context);
                         if(!phoneCheckResults){
                           Navigator.pushNamed(context, "/AddPhoneNumber");
+                        }{
+
                         }
                       }),
                     ),
