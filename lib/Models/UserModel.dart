@@ -89,7 +89,7 @@ class UserModel {
   //Working
   Future<void> addToCart(ProductModel productModel) async {
     List<Map> newCart = [];
-    bool duplicationFlag;
+    bool duplicationFlag = false;
     for(var i = 0;i <cart.length;i++){
       if (cart[i].toMap().toString() == productModel.toMap().toString()){
         duplicationFlag = true;
@@ -115,7 +115,7 @@ class UserModel {
   }
   //Working
   Future<void> addToFavourite(ProductModel productModel) async {
-    bool duplicationFlag;
+    bool duplicationFlag = false;
     List<Map> newFavourite = [];
     for(var i = 0;i <favourite.length;i++){
       if (favourite[i].toMap().toString() == productModel.toMap().toString()){

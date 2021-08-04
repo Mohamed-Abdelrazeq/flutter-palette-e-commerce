@@ -5,6 +5,7 @@ import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:multivender_ecommerce_app/Models/UserModel.dart';
 
 class Auth {
+
   FirebaseAuth _auth = FirebaseAuth.instance;
   CollectionReference _users = FirebaseFirestore.instance.collection('users');
 
@@ -25,6 +26,9 @@ class Auth {
     return false;
   }
 
+
+
+
   Future<UserModel> signInWithGoogle({double lng ,double lat}) async {
     // Trigger the authentication flow
     final GoogleSignInAccount googleUser = await GoogleSignIn().signIn();
@@ -39,7 +43,7 @@ class Auth {
     UserModel userModel = UserModel(uid: userCredential.user.uid,mobile: "",lng:lng,lat: lat);
     userModel.addUser();
     // Once signed in, return the UserCredential
-    // return userCredential;
+    return userModel;
   }
 
   Future<UserModel> signInWithFacebook({double lng ,double lat}) async {
@@ -50,16 +54,17 @@ class Auth {
       UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
       UserModel userModel = UserModel(uid: userCredential.user.uid,mobile: "",lng:lng,lat: lat);
       userModel.addUser();
-      // return userCredential;
+      return userModel;
   }
 
   Future<UserModel> register({String mail, String password, String phone,double lng ,double lat}) async {
-
+    UserModel userModel;
     UserCredential userCredential;
     try {
       userCredential = await _auth.createUserWithEmailAndPassword(email: mail, password: password);
-      UserModel userModel = UserModel(uid: userCredential.user.uid,mobile: phone, lng:lng, lat: lat);
+      userModel = UserModel(uid: userCredential.user.uid,mobile: phone, lng:lng, lat: lat);
       userModel.addUser();
+      return userModel;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         print('The password provided is too weak.');
@@ -69,7 +74,7 @@ class Auth {
     } catch (e) {
       print(e);
     }
-    // return userCredential;
+    return null;
   }
 
   Future<UserModel> login({String mail, String password}) async {
