@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:multivender_ecommerce_app/Controllers/UserCredController.dart';
 import 'package:multivender_ecommerce_app/Models/OrderModel.dart';
 import 'package:multivender_ecommerce_app/Models/ProductModel.dart';
+import 'package:multivender_ecommerce_app/Models/StatusModel.dart';
 import 'package:multivender_ecommerce_app/Views/Component/Header.dart';
 import 'package:multivender_ecommerce_app/Views/Component/MainButton.dart';
 import 'package:multivender_ecommerce_app/Views/Component/MainCard.dart';
@@ -70,15 +71,22 @@ class _CartPageState extends State<CartPage> {
                     bottom: 30.h,
                     child: Padding(
                       padding: EdgeInsets.symmetric(horizontal: 28.w),
-                      child: MainButton(text: "Checkout", btnFunction: (){
+                      child: MainButton(text: "Checkout", btnFunction: ()async{
                         bool phoneCheckResults = _phoneNumberCheck(context);
                         if(!phoneCheckResults){
                           Navigator.pushNamed(context, "/AddPhoneNumber");
-                        }{
-                          OrderModel(
+                        }else {
+                          double totalPrice = 0.0;
+                          cartData.forEach((element) {
+                            totalPrice = element.price + totalPrice;
+                          });
+                          await OrderModel(
                             user: Provider.of<UserCredController>(context,listen: false).userModel,
-                            status: ""
-                          );
+                            status: StatusModel().waiting,
+                            price: totalPrice,
+                            orderingDate: DateTime.now(),
+                            products: cartData
+                          ).addOrder();
                         }
                       }),
                     ),
