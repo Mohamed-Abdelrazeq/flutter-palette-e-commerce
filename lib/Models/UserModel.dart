@@ -44,6 +44,7 @@ class UserModel {
         .then((value) => print("Products Added"))
         .catchError((error) => print("Failed to add product: $error"));
   }
+
   //Working
   UserModel toObject(Map json) {
     List fav = json["favourite"];
@@ -66,6 +67,7 @@ class UserModel {
     theUser.rates = json["rates"];
     return theUser;
   }
+
   //Working
   Map<String, dynamic> toMap() {
     List fav = [];
@@ -86,19 +88,20 @@ class UserModel {
       "rates": rates,
     };
   }
+
   //Working
   Future<void> addToCart(ProductModel productModel) async {
     List<Map> newCart = [];
     bool duplicationFlag = false;
-    for(var i = 0;i <cart.length;i++){
-      if (cart[i].toMap().toString() == productModel.toMap().toString()){
+    for (var i = 0; i < cart.length; i++) {
+      if (cart[i].toMap().toString() == productModel.toMap().toString()) {
         duplicationFlag = true;
         break;
-      }else{
+      } else {
         duplicationFlag = false;
       }
     }
-    if(!duplicationFlag){
+    if (!duplicationFlag) {
       cart.add(productModel);
       cart.forEach((element) {
         newCart.add(element.toMap());
@@ -108,24 +111,24 @@ class UserModel {
           .update({'cart': newCart})
           .then((value) => print("User Updated"))
           .catchError((error) => print("Failed to update user: $error"));
-    }else{
+    } else {
       print("Duplicated");
     }
-
   }
+
   //Working
   Future<void> addToFavourite(ProductModel productModel) async {
     bool duplicationFlag = false;
     List<Map> newFavourite = [];
-    for(var i = 0;i <favourite.length;i++){
-      if (favourite[i].toMap().toString() == productModel.toMap().toString()){
+    for (var i = 0; i < favourite.length; i++) {
+      if (favourite[i].toMap().toString() == productModel.toMap().toString()) {
         duplicationFlag = true;
         break;
-      }else{
+      } else {
         duplicationFlag = false;
       }
     }
-    if(!duplicationFlag){
+    if (!duplicationFlag) {
       favourite.add(productModel);
       favourite.forEach((element) {
         newFavourite.add(element.toMap());
@@ -135,15 +138,24 @@ class UserModel {
           .update({'favourite': newFavourite})
           .then((value) => print("User Updated"))
           .catchError((error) => print("Failed to update user: $error"));
-    }else{
+    } else {
       print("Duplicated");
     }
-
   }
+
   //Working
-  Future<UserModel> getUserDataByUID(String uid)async{
-    var userModelJson= await _users.doc(uid).get();
+  Future<UserModel> getUserDataByUID(String uid) async {
+    var userModelJson = await _users.doc(uid).get();
     UserModel userModel = UserModel().toObject(userModelJson.data());
     return userModel;
+  }
+
+  //Working
+  Future<void> addPhoneNumber() async {
+    await _users
+        .doc(uid)
+        .update({"mobile": mobile})
+        .then((value) => print("User Updated"))
+        .catchError((error) => print("Failed to update user: $error"));
   }
 }

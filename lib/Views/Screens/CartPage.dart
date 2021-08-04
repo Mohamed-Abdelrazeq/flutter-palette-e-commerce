@@ -16,6 +16,15 @@ class CartPage extends StatefulWidget {
 
 class _CartPageState extends State<CartPage> {
 
+  bool _phoneNumberCheck(BuildContext context){
+    var mobile = Provider.of<UserCredController>(context,listen: false).userModel.mobile;
+    if(mobile == "" || mobile ==null){
+      return false;
+    }else{
+      return true;
+    }
+  }
+
   TextEditingController _searchTextController;
 
   @override
@@ -34,12 +43,11 @@ class _CartPageState extends State<CartPage> {
                 child: Column(
                   children: [
                     Header(header: "Cart",),
-                    MyTextFiled(textController: _searchTextController, myIcon: Icons.search, hint: "Search"),
+                    MyTextFiled(textController: _searchTextController, myIcon: Icons.search, hint: "Search",focus: false,),
                     SizedBox(height: 22.h,),
                   ],
                 ),
               ),
-
               Stack(
                 alignment: Alignment.bottomCenter,
                 children:[
@@ -58,18 +66,19 @@ class _CartPageState extends State<CartPage> {
                   ),
                 ),
                   Positioned(
-                    bottom: 25.h,
+                    bottom: 30.h,
                     child: Padding(
                       padding: EdgeInsets.symmetric(horizontal: 28.w),
                       child: MainButton(text: "Checkout", btnFunction: (){
-                        //Todo
+                        bool phoneCheckResults = _phoneNumberCheck(context);
+                        if(!phoneCheckResults){
+                          Navigator.pushNamed(context, "/AddPhoneNumber");
+                        }
                       }),
                     ),
                   ),
                 ],
               ),
-
-
             ],
           ),
         ),

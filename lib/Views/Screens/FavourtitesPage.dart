@@ -34,7 +34,7 @@ class _FavouritesPageState extends State<FavouritesPage> {
                 child: Column(
                   children: [
                     Header(header: "Favourites",),
-                    MyTextFiled(textController: _searchTextController, myIcon: Icons.search, hint: "Search"),
+                    MyTextFiled(textController: _searchTextController, myIcon: Icons.search, hint: "Search",focus: false,),
                     SizedBox(height: 22.h,),
                   ],
                 ),

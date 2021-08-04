@@ -49,7 +49,7 @@ class _HomePageState extends State<HomePage> {
                       child: Column(
                         children: [
                           Header(header: "Welcome Eleven",),
-                          MyTextFiled(textController: _searchTextController, myIcon: Icons.search, hint: "Search"),
+                          MyTextFiled(textController: _searchTextController, myIcon: Icons.search, hint: "Search",focus: false,),
                           SizedBox(height: 22.h,),
                           SectionHeader(header: "Categories",seeAllDes: "/Categories",),
                         ],

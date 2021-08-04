@@ -12,6 +12,7 @@ import 'Controllers/LocationController.dart';
 import 'Controllers/ThemeController.dart';
 import 'Views/FutureReturn/Loading.dart';
 import 'Views/FutureReturn/SomethingWentWrong.dart';
+import 'Views/Screens/AddPhoneNumber.dart';
 import 'Views/Screens/Categories.dart';
 import 'Views/Screens/NavPage.dart';
 import 'Views/Screens/Products.dart';
@@ -78,6 +79,7 @@ class MyApp extends StatelessWidget {
                 '/Categories' : (context) => Categories(),
                 '/Products' : (context) => Products(),
                 '/WelcomePage' : (context) => WelcomePage(),
+                '/AddPhoneNumber' : (context) => AddPhoneNumber(),
               },
               home: Provider.of<UserCredController>(context).state == true ? NavPage() : WelcomePage(),
             ),

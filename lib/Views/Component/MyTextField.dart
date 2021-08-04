@@ -9,11 +9,14 @@ class MyTextFiled extends StatefulWidget {
     @required this.textController,
     @required this.myIcon,
     @required this.hint,
+    @required this.focus,
   });
 
   final TextEditingController textController;
   final String hint;
   final IconData myIcon;
+  final bool focus;
+
 
   @override
   _MyTextFiledState createState() => _MyTextFiledState();
@@ -49,6 +52,7 @@ class _MyTextFiledState extends State<MyTextFiled> {
           SizedBox(width: 22.w),
           Expanded(
             child: TextField(
+              autofocus: widget.focus,
               controller: widget.textController,
               style: themeProvider.textFieldTextStyle.apply(color: themeProvider.myWhite),
               cursorHeight: 20.h,

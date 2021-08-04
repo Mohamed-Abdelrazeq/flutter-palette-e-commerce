@@ -19,4 +19,10 @@ class UserCredController extends ChangeNotifier{
     notifyListeners();
   }
 
+  setPhone(String phoneNumber)async{
+    userModel.mobile = phoneNumber;
+    await userModel.addPhoneNumber();
+    notifyListeners();
+  }
+
 }
