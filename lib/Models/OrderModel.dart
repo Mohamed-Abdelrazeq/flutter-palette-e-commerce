@@ -3,26 +3,20 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'ProductModel.dart';
 import 'UserModel.dart';
 
-
-
 class OrderModel{
   OrderModel({
     this.product,
     this.user,
-    this.quantity,
     this.status,
-    this.comment,
-    this.totalPrice,
+    this.price,
     this.orderingDate,
 });
 
   ProductModel product;
   UserModel    user;
-  int          quantity;
   String       status;
   DateTime     orderingDate;
-  String       comment;
-  double       totalPrice;
+  double       price;
 
   CollectionReference _orders = FirebaseFirestore.instance.collection('orders');
   //Working
@@ -31,11 +25,9 @@ class OrderModel{
     await _orders.doc(id).set({
     "product" : product.toMap(),
     "user" : user.toMap(),
-    "quantity" : quantity,
     "status" : status,
     "orderingDate" : orderingDate,
-    "comment" : comment,
-    "totalPrice" : totalPrice,
+    "totalPrice" : price,
     })
         .then((value) => print("Products Added"))
         .catchError((error) => print("Failed to add product: $error"));
@@ -70,10 +62,8 @@ class OrderModel{
     OrderModel myOrder = OrderModel(
         product : ProductModel().toObject(json["product"]) ,
         user : UserModel().toObject(json["user"]),
-        quantity : json["quantity"],
         status : json["status"],
-        comment : json["comment"],
-        totalPrice : json["totalPrice"],
+        price : json["totalPrice"],
         orderingDate : DateTime.fromMillisecondsSinceEpoch(time.seconds * 1000),
     );
     return myOrder;
@@ -83,10 +73,8 @@ class OrderModel{
     return {
       "product" : product.toMap(),
       "user" : user.toMap(),
-      "quantity" : quantity,
       "status" : status,
-      "comment" : comment,
-      "totalPrice" : totalPrice,
+      "totalPrice" : price,
       "orderingDate" : orderingDate,
     };
   }
