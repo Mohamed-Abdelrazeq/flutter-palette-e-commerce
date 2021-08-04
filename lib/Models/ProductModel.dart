@@ -95,7 +95,7 @@ class ProductModel{
   }
   //Working
   ProductModel toObject(Map json){
-    ProductModel myProduct = ProductModel(name: json["name"], description: json["description"]  ,price: json["price"], category: json["category"], available: json["available"]);
+    ProductModel myProduct = ProductModel(name: json["name"], description: json["description"]  ,price:  json["price"].toDouble(), category: json["category"], available: json["available"]);
     myProduct.id = json["id"];
     myProduct.image = json["images"];
     return myProduct;
