@@ -26,17 +26,7 @@ class _HomePageState extends State<HomePage> {
   TextEditingController _searchTextController;
   @override
   Widget build(BuildContext context) {
-    //Todo Test
-    // ProductModel someProduct = ProductModel(
-    //   name: "The Fight",
-    //   description: "Product Description",
-    //   price: 7500,
-    //   category: "Art",
-    //   available: true,
-    //   image:
-    //   "https://images.unsplash.com/photo-1561839561-b13bcfe95249?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjN8fGFydHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
-    // );
-    // someProduct.addProduct();
+
     FlutterStatusbarcolor.setStatusBarColor(bgColor);
     double statusBar = MediaQuery.of(context).padding.top;
     return FutureBuilder(

@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:multivender_ecommerce_app/Views/Component/HeaderWithBack.dart';
 import 'package:multivender_ecommerce_app/Views/Component/MainButton.dart';
-import 'package:multivender_ecommerce_app/Views/Component/MainCard.dart';
+import 'package:multivender_ecommerce_app/Views/Component/MainCategoryCard.dart';
 import 'package:multivender_ecommerce_app/Views/MyColors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Categories extends StatelessWidget {
+  final List<Map> cats = [
+    {"cate" : "Crafts"       ,"imgPath" : "images/cate/crafts.jpg"},
+    {"cate" : "Knit"         ,"imgPath" : "images/cate/knit.jpg"},
+    {"cate" : "Art"          ,"imgPath" : "images/cate/art.jpg"},
+    {"cate" : "Plants"       ,"imgPath" : "images/cate/Cactus.png"},
+    {"cate" : "Clothes"      ,"imgPath" : "images/cate/clothes.jpg"},
+    {"cate" : "Accessories"  ,"imgPath"  : "images/cate/accec.jpg"},
+  ];
   @override
   Widget build(BuildContext context) {
     double statusBar = MediaQuery.of(context).padding.top;
@@ -26,10 +34,9 @@ class Categories extends StatelessWidget {
                     shrinkWrap: true,
                     crossAxisCount: 2,
                     padding: EdgeInsets.only(bottom: 100.h),
-                    children: List.generate(100, (index) {
-                      return MainCard(
-                        marginRight: 0,
-                      );
+                    children: List.generate(cats.length, (index) {
+                      return MainCategoryCard(marginRight: 0, cate: cats[index]["cate"], imgPath:cats[index]["imgPath"]);
+
                     }),
                   ),
                 ],
