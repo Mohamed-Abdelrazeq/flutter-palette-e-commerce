@@ -89,11 +89,10 @@ class UserModel {
   //Working
   Future<void> addToCart(ProductModel productModel) async {
     List<Map> newCart = [];
+    cart.add(productModel);
     cart.forEach((element) {
       newCart.add(element.toMap());
     });
-    cart.add(productModel);
-    newCart.add(productModel.toMap());
     await _users
         .doc(uid)
         .update({'cart': newCart})
@@ -103,12 +102,10 @@ class UserModel {
   //Working
   Future<void> addToFavourite(ProductModel productModel) async {
     List<Map> newFavourite = [];
+    favourite.add(productModel);
     favourite.forEach((element) {
       newFavourite.add(element.toMap());
     });
-
-    favourite.add(productModel);
-    newFavourite.add(productModel.toMap());
     await _users
         .doc(uid)
         .update({'favourite': newFavourite})
