@@ -22,16 +22,19 @@ class _NavPageState extends State<NavPage> {
     keepPage: true,
   );
   int _currentPageIndex = 0;
+  Future delay = Future.delayed(Duration(seconds: 2));
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
+        Navigator.pushReplacementNamed(context, "/WelcomePage");
+        await delay;
         Auth().logout();
         Provider.of<UserCredController>(context,listen: false).setState(false);
         Provider.of<UserCredController>(context,listen: false).setUserCredential(null);
         SharedPreferences prefs = await SharedPreferences.getInstance();
         await prefs.setBool("logged", false);
-        Navigator.pushReplacementNamed(context, "/WelcomePage");
+        print('all done');
         return null;
       },
       child: Scaffold(

@@ -40,10 +40,15 @@ class Auth {
       idToken: googleAuth.idToken,
     );
     UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
-    UserModel userModel = UserModel(uid: userCredential.user.uid,mobile: "",lng:lng,lat: lat);
-    userModel.addUser();
-    // Once signed in, return the UserCredential
-    return userModel;
+    var userCheckJson = await _users.doc(userCredential.user.uid).get();
+    if(userCheckJson != null){
+      return UserModel().toObject(userCheckJson.data());
+    }
+    else{
+      UserModel userModel = UserModel(uid: userCredential.user.uid,mobile: "",lng:lng,lat: lat);
+      userModel.addUser();
+      return userModel;
+    }
   }
 
   Future<UserModel> signInWithFacebook({double lng ,double lat}) async {
@@ -52,9 +57,15 @@ class Auth {
       final facebookAuthCredential = FacebookAuthProvider.credential(result.token);
       // Once signed in, return the UserCredential
       UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
-      UserModel userModel = UserModel(uid: userCredential.user.uid,mobile: "",lng:lng,lat: lat);
-      userModel.addUser();
-      return userModel;
+      var userCheckJson = await _users.doc(userCredential.user.uid).get();
+      if(userCheckJson != null){
+        return UserModel().toObject(userCheckJson.data());
+      } else{
+        UserModel userModel = UserModel(uid: userCredential.user.uid,mobile: "",lng:lng,lat: lat);
+        userModel.addUser();
+        return userModel;
+      }
+
   }
 
   Future<UserModel> register({String mail, String password, String phone,double lng ,double lat}) async {
