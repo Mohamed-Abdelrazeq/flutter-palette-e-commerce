@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:multivender_ecommerce_app/Controllers/UserCredController.dart';
+import 'package:multivender_ecommerce_app/Models/OrderModel.dart';
 import 'package:multivender_ecommerce_app/Models/ProductModel.dart';
 import 'package:multivender_ecommerce_app/Views/Component/Header.dart';
 import 'package:multivender_ecommerce_app/Views/Component/MainButton.dart';
@@ -74,7 +75,10 @@ class _CartPageState extends State<CartPage> {
                         if(!phoneCheckResults){
                           Navigator.pushNamed(context, "/AddPhoneNumber");
                         }{
-
+                          OrderModel(
+                            user: Provider.of<UserCredController>(context,listen: false).userModel,
+                            status: ""
+                          );
                         }
                       }),
                     ),
