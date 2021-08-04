@@ -35,6 +35,7 @@ class _NavPageState extends State<NavPage> {
       onWillPop: () async {
         Auth().logout();
         Provider.of<UserCredController>(context,listen: false).setState(false);
+        Provider.of<UserCredController>(context,listen: false).setUserCredential(null);
         SharedPreferences prefs = await SharedPreferences.getInstance();
         await prefs.setBool("logged", false);
         Navigator.pushReplacementNamed(context, "/WelcomePage");
