@@ -17,7 +17,7 @@ class NavPage extends StatefulWidget {
 }
 
 class _NavPageState extends State<NavPage> {
-  PageController _pageController =  PageController(
+  PageController pageController =  PageController(
     initialPage: 0,
     keepPage: true,
   );
@@ -48,11 +48,11 @@ class _NavPageState extends State<NavPage> {
                   _currentPageIndex = value;
                 });
               },
-              controller: _pageController,
+              controller: pageController,
               children: [
                 HomePage(),
                 FavouritesPage(),
-                CartPage(),
+                CartPage(pageController: pageController,),
                 AccountPage(),
               ],
             ),
@@ -75,7 +75,7 @@ class _NavPageState extends State<NavPage> {
                         size: 25.r,
                       ) : GestureDetector(
                         onTap: (){
-                          _pageController.animateToPage(0, duration: Duration(milliseconds: 300), curve: Curves.easeIn);
+                          pageController.animateToPage(0, duration: Duration(milliseconds: 300), curve: Curves.easeIn);
                         },
                         child: Icon(
                           Icons.home_outlined,
@@ -89,7 +89,7 @@ class _NavPageState extends State<NavPage> {
                         size: 25.r,
                       ) : GestureDetector(
                         onTap: (){
-                          _pageController.animateToPage(1, duration: Duration(milliseconds: 300), curve: Curves.easeIn);
+                          pageController.animateToPage(1, duration: Duration(milliseconds: 300), curve: Curves.easeIn);
                         },
                         child: Icon(
                           Icons.favorite_border,
@@ -103,7 +103,7 @@ class _NavPageState extends State<NavPage> {
                         size: 25.r,
                       ) : GestureDetector(
                         onTap: (){
-                          _pageController.animateToPage(2, duration: Duration(milliseconds: 300), curve: Curves.easeIn);
+                          pageController.animateToPage(2, duration: Duration(milliseconds: 300), curve: Curves.easeIn);
                         },
                         child: Icon(
                           Icons.shopping_cart_outlined,
@@ -117,7 +117,7 @@ class _NavPageState extends State<NavPage> {
                         size: 25.r,
                       ) : GestureDetector(
                         onTap: (){
-                          _pageController.animateToPage(3, duration: Duration(milliseconds: 300), curve: Curves.easeIn);
+                          pageController.animateToPage(3, duration: Duration(milliseconds: 300), curve: Curves.easeIn);
                         },
                         child: Icon(
                           Icons.account_circle_outlined,

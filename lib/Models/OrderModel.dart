@@ -26,15 +26,18 @@ class OrderModel{
     products.forEach((element) {
       productsJson.add(element.toMap());
     });
-    await _orders.doc(id).set({
-    "products" : productsJson,
-    "user" : user.toMap(),
-    "status" : status,
-    "orderingDate" : orderingDate,
-    "totalPrice" : price,
-    })
-        .then((value) => print("Products Added"))
-        .catchError((error) => print("Failed to add product: $error"));
+    if(user.cart != []){
+      await _orders.doc(id).set({
+        "products" : productsJson,
+        "user" : user.toMap(),
+        "status" : status,
+        "orderingDate" : orderingDate,
+        "totalPrice" : price,
+      })
+          .then((value) => print("Products Added"))
+          .catchError((error) => print("Failed to add product: $error"));
+    }
+
   }
   //Working todo
   Future<List<OrderModel>> readOrdersByUserMail(String key) async {

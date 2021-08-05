@@ -13,6 +13,11 @@ import 'package:provider/provider.dart';
 
 import '../MyColors.dart';
 class CartPage extends StatefulWidget {
+  CartPage({
+    @required this.pageController,
+});
+
+  final PageController pageController;
   @override
   _CartPageState createState() => _CartPageState();
 }
@@ -90,6 +95,7 @@ class _CartPageState extends State<CartPage> {
                             products: cartData
                           ).addOrder();
                           await userModel.cleanCart();
+                          widget.pageController.animateToPage(0, duration: Duration(milliseconds: 300), curve: Curves.easeIn);
                         }
                       }),
                     ),
