@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:multivender_ecommerce_app/Models/ProductModel.dart';
 
+import 'UserRateModel.dart';
+
 class UserModel {
   UserModel({
     this.uid,
@@ -15,7 +17,7 @@ class UserModel {
   double lng;
   List<ProductModel> favourite = [];
   List<ProductModel> cart = [];
-  List rates = [];
+  List<UserRateModel> rates = [];
 
   CollectionReference _users = FirebaseFirestore.instance.collection('users');
 
