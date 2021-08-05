@@ -44,7 +44,6 @@ class UserModel {
         .then((value) => print("Products Added"))
         .catchError((error) => print("Failed to add product: $error"));
   }
-
   //Working
   UserModel toObject(Map json) {
     List fav = json["favourite"];
@@ -67,7 +66,6 @@ class UserModel {
     theUser.rates = json["rates"];
     return theUser;
   }
-
   //Working
   Map<String, dynamic> toMap() {
     List fav = [];
@@ -88,7 +86,6 @@ class UserModel {
       "rates": rates,
     };
   }
-
   //Working
   Future<void> addToCart(ProductModel productModel) async {
     List<Map> newCart = [];
@@ -115,7 +112,15 @@ class UserModel {
       print("Duplicated");
     }
   }
-
+  //Working
+  Future<void> cleanCart()async{
+    cart = [];
+    await _users
+        .doc(uid)
+        .update({'cart': cart})
+        .then((value) => print("User Updated"))
+        .catchError((error) => print("Failed to update user: $error"));
+  }
   //Working
   Future<void> addToFavourite(ProductModel productModel) async {
     bool duplicationFlag = false;
@@ -142,14 +147,12 @@ class UserModel {
       print("Duplicated");
     }
   }
-
   //Working
   Future<UserModel> getUserDataByUID(String uid) async {
     var userModelJson = await _users.doc(uid).get();
     UserModel userModel = UserModel().toObject(userModelJson.data());
     return userModel;
   }
-
   //Working
   Future<void> addPhoneNumber() async {
     await _users

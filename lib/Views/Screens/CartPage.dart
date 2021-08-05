@@ -4,6 +4,7 @@ import 'package:multivender_ecommerce_app/Controllers/UserCredController.dart';
 import 'package:multivender_ecommerce_app/Models/OrderModel.dart';
 import 'package:multivender_ecommerce_app/Models/ProductModel.dart';
 import 'package:multivender_ecommerce_app/Models/StatusModel.dart';
+import 'package:multivender_ecommerce_app/Models/UserModel.dart';
 import 'package:multivender_ecommerce_app/Views/Component/Header.dart';
 import 'package:multivender_ecommerce_app/Views/Component/MainButton.dart';
 import 'package:multivender_ecommerce_app/Views/Component/MainCard.dart';
@@ -80,6 +81,7 @@ class _CartPageState extends State<CartPage> {
                           cartData.forEach((element) {
                             totalPrice = element.price + totalPrice;
                           });
+                          UserModel userModel = Provider.of<UserCredController>(context,listen: false).userModel;
                           await OrderModel(
                             user: Provider.of<UserCredController>(context,listen: false).userModel,
                             status: StatusModel().waiting,
@@ -87,6 +89,7 @@ class _CartPageState extends State<CartPage> {
                             orderingDate: DateTime.now(),
                             products: cartData
                           ).addOrder();
+                          await userModel.cleanCart();
                         }
                       }),
                     ),
