@@ -7,7 +7,7 @@ class UserRateModel {
   });
 
   ProductModel to;
-  int rate;
+  double rate;
 
   double avgRate(List<UserRateModel> ratesList){
     double total = 0;
@@ -21,7 +21,7 @@ class UserRateModel {
     Map myTo = json["to"];
     UserRateModel myRate = UserRateModel(
       to : ProductModel().toObject(myTo),
-      rate : json["rate"],
+      rate : json["rate"].toDouble(),
     );
     return myRate;
   }

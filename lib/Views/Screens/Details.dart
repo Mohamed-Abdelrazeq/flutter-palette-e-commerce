@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:multivender_ecommerce_app/Controllers/UserCredController.dart';
 import 'package:multivender_ecommerce_app/Models/ProductModel.dart';
+import 'package:multivender_ecommerce_app/Models/UserRateModel.dart';
 import 'package:multivender_ecommerce_app/Views/Component/MainButton.dart';
 import 'package:multivender_ecommerce_app/Views/Component/SecButton.dart';
 import 'package:multivender_ecommerce_app/Views/MyColors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-class Details extends StatelessWidget {
+class Details extends StatefulWidget {
 
   Details({
     @required this.productModel,
@@ -16,7 +17,31 @@ class Details extends StatelessWidget {
   final ProductModel productModel;
 
   @override
+  _DetailsState createState() => _DetailsState();
+}
+
+class _DetailsState extends State<Details> {
+  final TextStyle numTextStyle = TextStyle(
+    color: Colors.white,
+    fontWeight: FontWeight.w500,
+    fontSize: 16.sp
+  );
+
+  double currentUserRate = 6.0;
+
+  @override
   Widget build(BuildContext context) {
+    // List<UserRateModel> rates =
+    print(
+        Provider.of<UserCredController>(context).userModel.rates
+    );
+    // for(var i = 0;i<rates.length;i++){
+    //   if(rates[i].to.name == widget.productModel.name){
+    //     setState(() {
+    //       currentUserRate = rates[i].rate;
+    //     });
+    //   }
+    // }
     return Scaffold(
       backgroundColor: bgColor,
       body: SingleChildScrollView(
@@ -33,14 +58,14 @@ class Details extends StatelessWidget {
                           bottomRight: Radius.circular(50.r),
                           bottomLeft: Radius.circular(50.r)),
                       image: DecorationImage(
-                        image: NetworkImage(productModel.image),
+                        image: NetworkImage(widget.productModel.image),
                         fit: BoxFit.cover,
                       )),
                 ),
                 Positioned(
                   bottom: 10.h,
                   child: TextContainer(content: Text(
-                    productModel.name,
+                    widget.productModel.name,
                     style: TextStyle(
                       fontSize: 20.sp,
                       color: Colors.white,
@@ -72,7 +97,7 @@ class Details extends StatelessWidget {
                           Icon(Icons.monetization_on,color: white60,size: 20.r,),
                           SizedBox(width: 10.w,),
                           Text(
-                            "${productModel.price.toInt()} .P",
+                            "${widget.productModel.price.toInt()} .P",
                             style: TextStyle(
                               fontSize: 18.sp,
                               color: Colors.white,
@@ -87,7 +112,7 @@ class Details extends StatelessWidget {
                   TextContainer(content: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      productModel.description,
+                      widget.productModel.description,
                       style: TextStyle(
                         fontSize: 14.sp,
                         color: Colors.white.withOpacity(.8),
@@ -96,12 +121,63 @@ class Details extends StatelessWidget {
                     ),
                   )),
                   SizedBox(height: 20.h,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      currentUserRate == 1 ? Container(
+                        child: Center(child: Text("1",style: numTextStyle,)),
+                        width: 30.r,
+                        height: 30.r,
+                        decoration: BoxDecoration(
+                          color: widgetColor,
+                          borderRadius: BorderRadius.circular(250.r),
+                        ),
+                      ) : Text("1",style: numTextStyle,),
+                      currentUserRate == 2 ? Container(
+                        child: Center(child: Text("2",style: numTextStyle,)),
+                        width: 30.r,
+                        height: 30.r,
+                        decoration: BoxDecoration(
+                          color: widgetColor,
+                          borderRadius: BorderRadius.circular(250.r),
+                        ),
+                      ) : Text("2",style: numTextStyle,),
+                      currentUserRate == 3 ? Container(
+                        child: Center(child: Text("3",style: numTextStyle,)),
+                        width: 30.r,
+                        height: 30.r,
+                        decoration: BoxDecoration(
+                          color: widgetColor,
+                          borderRadius: BorderRadius.circular(250.r),
+                        ),
+                      ) : Text("3",style: numTextStyle,),
+                      currentUserRate == 4 ? Container(
+                        child: Center(child: Text("4",style: numTextStyle,)),
+                        width: 30.r,
+                        height: 30.r,
+                        decoration: BoxDecoration(
+                          color: widgetColor,
+                          borderRadius: BorderRadius.circular(250.r),
+                        ),
+                      ) : Text("4",style: numTextStyle,),
+                      currentUserRate == 5 ? Container(
+                        child: Center(child: Text("5",style: numTextStyle,)),
+                        width: 30.r,
+                        height: 30.r,
+                        decoration: BoxDecoration(
+                          color: widgetColor,
+                          borderRadius: BorderRadius.circular(250.r),
+                        ),
+                      ) : Text("5",style: numTextStyle,),
+                    ],
+                  ),
+                  SizedBox(height: 20.h,),
                   MainButton(text: "Add to Favourite", btnFunction: (){
-                    Provider.of<UserCredController>(context,listen: false).userModel.addToFavourite(productModel);
+                    Provider.of<UserCredController>(context,listen: false).userModel.addToFavourite(widget.productModel);
                   }),
                   SizedBox(height: 10.h,),
                   SecButton(text: "Add to Cart", btnFunction: (){
-                    Provider.of<UserCredController>(context,listen: false).userModel.addToCart(productModel);
+                    Provider.of<UserCredController>(context,listen: false).userModel.addToCart(widget.productModel);
                   }),
                   SizedBox(height: 20.h,),
                 ],

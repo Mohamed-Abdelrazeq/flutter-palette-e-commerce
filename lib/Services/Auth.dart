@@ -41,10 +41,12 @@ class Auth {
     );
     UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
     var userCheckJson = await _users.doc(userCredential.user.uid).get();
-    if(userCheckJson != null){
+    print(userCheckJson.data());
+    if(userCheckJson.data() != null){
       return UserModel().toObject(userCheckJson.data());
     }
     else{
+      print('its null');
       UserModel userModel = UserModel(uid: userCredential.user.uid,mobile: "",lng:lng,lat: lat);
       userModel.addUser();
       return userModel;
@@ -58,7 +60,7 @@ class Auth {
       // Once signed in, return the UserCredential
       UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
       var userCheckJson = await _users.doc(userCredential.user.uid).get();
-      if(userCheckJson != null){
+      if(userCheckJson.data() != null){
         return UserModel().toObject(userCheckJson.data());
       } else{
         UserModel userModel = UserModel(uid: userCredential.user.uid,mobile: "",lng:lng,lat: lat);
