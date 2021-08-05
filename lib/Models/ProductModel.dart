@@ -17,6 +17,7 @@ class ProductModel{
   String category;
   bool available;
   String id;
+  List<double> rates = [];
 
   CollectionReference _products = FirebaseFirestore.instance.collection('products');
 
@@ -33,6 +34,7 @@ class ProductModel{
         "price" : price,
         "category" : category,
         "available" : available,
+        "rates" : rates,
       })
           .then((value) => print("Products Added"))
           .catchError((error) => print("Failed to add product: $error"));
@@ -40,7 +42,7 @@ class ProductModel{
       print("Product already exists");
     }
   }
-  //Developing
+  //Working
   Future<bool> _checkUniqueProductInTheStore(String key) async {
     List<ProductModel> myProductsList = [];
     await _products.where('name',isEqualTo: key).get()
@@ -98,6 +100,7 @@ class ProductModel{
     ProductModel myProduct = ProductModel(name: json["name"], description: json["description"]  ,price:  json["price"].toDouble(), category: json["category"], available: json["available"]);
     myProduct.id = json["id"];
     myProduct.image = json["images"];
+    myProduct.rates = json["rates"];
     return myProduct;
   }
   //Working
@@ -109,8 +112,8 @@ class ProductModel{
       "price" : price,
       "category" : category,
       "available" : available,
+      "rates" : rates,
     };
   }
-
 }
 
