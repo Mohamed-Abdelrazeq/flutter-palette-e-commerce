@@ -78,20 +78,22 @@ class _RegisterPageState extends State<RegisterPage> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children:[
                   LoginViaCard(imgPath: "images/google-logo.png",func: ()async{
+                    Provider.of<UserCredController>(context,listen: false).setUserCredential(
                     await Auth().signInWithGoogle(
                       lng : Provider.of<LocationController>(context,listen: false).getCurrentLocationLng,
                       lat : Provider.of<LocationController>(context,listen: false).getCurrentLocationLat,
-                    );
+                    ));
                     if(Provider.of<UserCredController>(context,listen: false).userModel != null){
                       Navigator.pushNamed(context, "/NavPage");
                     }
                   },),
                   SizedBox(width: 30.w),
                   LoginViaCard(imgPath: "images/facebook-logo.png",func: ()async{
+                    Provider.of<UserCredController>(context,listen: false).setUserCredential(
                     await Auth().signInWithFacebook(
                       lng : Provider.of<LocationController>(context,listen: false).getCurrentLocationLng,
                       lat : Provider.of<LocationController>(context,listen: false).getCurrentLocationLat,
-                    );
+                    ));
                     if(Provider.of<UserCredController>(context,listen: false).userModel != null){
                       Navigator.pushNamed(context, "/NavPage");
                     }
@@ -100,11 +102,14 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
               SizedBox(height: 60.h,),
               MainButton(text: "Register",btnFunction: ()async{
+                Provider.of<UserCredController>(context,listen: false).setUserCredential(
                 await Auth().register(
                     mail: widget.email.text,
                     phone: widget.phone.text,
                     password: widget.password.text,
-                );
+                    lng : Provider.of<LocationController>(context,listen: false).getCurrentLocationLng,
+                    lat : Provider.of<LocationController>(context,listen: false).getCurrentLocationLat,
+                ));
                 if(Provider.of<UserCredController>(context,listen: false).userModel != null){
                   Navigator.pushNamed(context, "/NavPage");
                 }

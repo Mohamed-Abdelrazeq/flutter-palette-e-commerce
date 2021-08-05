@@ -58,6 +58,11 @@ class UserModel {
     for (var i = 0; i < car.length; i++) {
       carPro.add(ProductModel().toObject(car[i]));
     }
+    List rat = json["rates"];
+    List<UserRateModel> userRates = [];
+    for (var i = 0; i < rat.length; i++) {
+      userRates.add(UserRateModel().toObject(rat[i]));
+    }
     UserModel theUser = UserModel(
         uid: json["uid"],
         mobile: json["mobile"],
@@ -65,7 +70,7 @@ class UserModel {
         lng: json["lon"]);
     theUser.favourite = favPro;
     theUser.cart = carPro;
-    theUser.rates = json["rates"];
+    theUser.rates = userRates;
     return theUser;
   }
   //Working
