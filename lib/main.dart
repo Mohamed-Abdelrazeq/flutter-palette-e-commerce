@@ -96,34 +96,3 @@ class MyApp extends StatelessWidget {
   }
 }
 
-//TODO : just some object (do nothing)
-// StoreModel someStore = StoreModel(
-//     name: "NewStoreName",
-//     bio: "bio",
-//     owner: OwnerModel(
-//         name: "ownerName",
-//         lon: 22,
-//         lat: 44,
-//         address: "address",
-//         mobile: "01555244006",
-//         mail: "mail"),
-//     shippingCost: 10);
-// ProductModel someProduct = ProductModel(
-//     name: "NewProductName2",
-//     description: "Product Description",
-//     price: 22,
-//     store: someStore,
-//     category: Category().plant,
-//     status: Status().stock,
-//     available: true);
-// UserModel someUser = UserModel(name: "UserName3", mail: "UserMail", mobile: "UserMobile", lat: 22, lon: 22);
-// OrderModel someOrder = OrderModel(
-//   product : someProduct,
-//   user : someUser,
-//   quantity : 50,
-//   status : Status().waiting,
-//   comment : "comment",
-//   totalPrice : 24,
-//   orderingDate : DateTime.now(),
-// );
-// RateModel someRate = RateModel(from: someUser,to: someProduct,rate: 5);
