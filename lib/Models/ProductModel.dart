@@ -81,7 +81,7 @@ class ProductModel{
   }
   //Working
   Future<void> updateProduct({String key,var value}) async {
-    id = "$category $name";
+    id = " $category $name";
     await _products.doc(id)
         .update({key : value})
         .then((value) => print("Product Updated"))
@@ -100,7 +100,14 @@ class ProductModel{
     ProductModel myProduct = ProductModel(name: json["name"], description: json["description"]  ,price:  json["price"].toDouble(), category: json["category"], available: json["available"]);
     myProduct.id = json["id"];
     myProduct.image = json["images"];
-    myProduct.rates = json["rates"];
+    List myRates = json["rates"];
+    List<double> listD = [];
+    if(myRates != null){
+      myRates.forEach((element) {
+        listD.add(element.toDouble());
+      });
+    }
+    myProduct.rates = listD;
     return myProduct;
   }
   //Working
@@ -114,6 +121,26 @@ class ProductModel{
       "available" : available,
       "rates" : rates,
     };
+  }
+  //UnderEvaluation
+  Future<void> addRate({double newRate, double oldRate}) async {
+    if(rates == []){
+      print("[] is a freaking null");
+    }
+    if(oldRate == 0){
+      rates.add(newRate);
+    }else {
+      if(rates != null){
+        rates.remove(oldRate);
+      }
+      rates.add(newRate);
+    }
+    id = " $category $name";
+    print(id);
+    print(rates);
+    await _products.doc(id)
+        .update({"rates" : rates})
+        .catchError((error) => print("Failed to update product: $error"));
   }
 }
 

@@ -197,9 +197,12 @@ class RateCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
+      onTap: () async {
         UserModel userModel = Provider.of<UserCredController>(context,listen: false).userModel;
-        userModel.addRate(rate: rate,productModel: productModel);
+        await userModel.addRate(rate: rate,productModel: productModel);
+
+        await productModel.addRate(oldRate : Provider.of<CurrentProductRateController>(context,listen: false).currentRate,newRate: rate);
+
         Provider.of<CurrentProductRateController>(context,listen: false).setCurrentRate(rate: rate);
       },
       child: Container(

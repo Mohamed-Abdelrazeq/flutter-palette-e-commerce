@@ -33,6 +33,7 @@ class _HomePageState extends State<HomePage> {
       future: ProductModel().readAllProducts(),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
+          print(snapshot.error);
           return SomethingWentWrong();
         }
         if (snapshot.connectionState == ConnectionState.done) {
