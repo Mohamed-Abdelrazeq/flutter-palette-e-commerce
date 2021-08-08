@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:multivender_ecommerce_app/Controllers/ThemeController.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:multivender_ecommerce_app/Views/Component/MainCard.dart';
 import 'package:provider/provider.dart';
 
 class MyTextFiled extends StatefulWidget {
@@ -10,13 +11,14 @@ class MyTextFiled extends StatefulWidget {
     @required this.myIcon,
     @required this.hint,
     @required this.focus,
+    @required this.searchList,
   });
 
   final TextEditingController textController;
   final String hint;
   final IconData myIcon;
   final bool focus;
-
+  final List<Widget> searchList;
 
   @override
   _MyTextFiledState createState() => _MyTextFiledState();
@@ -25,6 +27,18 @@ class MyTextFiled extends StatefulWidget {
 class _MyTextFiledState extends State<MyTextFiled> {
 
   Color iconColor = ThemeController().myWhite60;
+  List<MainCard> searchEngine({List searchList,String keyWord}){
+    List<MainCard> output = [];
+
+
+    searchList.forEach((e) => {
+      if(e.productModel.name.toUpperCase().contains(keyWord.toUpperCase())){
+        output.add(e)
+      }
+    });
+    print(output);
+    return output;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +83,10 @@ class _MyTextFiledState extends State<MyTextFiled> {
                 });
               },
               onChanged: (v){
-                //  TODO
+                searchEngine(
+                  keyWord: widget.textController.text,
+                  searchList: widget.searchList.sublist(1),
+                );
               },
             ),
           )

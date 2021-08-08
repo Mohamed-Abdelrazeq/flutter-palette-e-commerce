@@ -17,16 +17,20 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<Widget> _myCards = [SizedBox(width: 28.w,)];
-  void _dataHandler(List<ProductModel> modelList){
-    for(var i = 0 ;i < modelList.length ; i++){
+  List<Widget> _myCards = [
+    SizedBox(
+      width: 28.w,
+    )
+  ];
+  void _dataHandler(List<ProductModel> modelList) {
+    for (var i = 0; i < modelList.length; i++) {
       _myCards.add(MainCard(marginRight: 20.w, productModel: modelList[i]));
     }
   }
-  TextEditingController _searchTextController;
+
+  TextEditingController _searchTextController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-
     FlutterStatusbarcolor.setStatusBarColor(bgColor);
     double statusBar = MediaQuery.of(context).padding.top;
     return FutureBuilder(
@@ -46,13 +50,26 @@ class _HomePageState extends State<HomePage> {
                 child: Column(
                   children: [
                     Padding(
-                      padding: EdgeInsets.only(left: 28.w,right: 28.w),
+                      padding: EdgeInsets.only(left: 28.w, right: 28.w),
                       child: Column(
                         children: [
-                          Header(header: "Welcome Eleven",),
-                          MyTextFiled(textController: _searchTextController, myIcon: Icons.search, hint: "Search",focus: false,),
-                          SizedBox(height: 22.h,),
-                          SectionHeader(header: "Categories",seeAllDes: "/Categories",),
+                          Header(
+                            header: "Welcome Eleven",
+                          ),
+                          MyTextFiled(
+                            textController: _searchTextController,
+                            myIcon: Icons.search,
+                            hint: "Search",
+                            focus: false,
+                            searchList: _myCards,
+                          ),
+                          SizedBox(
+                            height: 22.h,
+                          ),
+                          SectionHeader(
+                            header: "Categories",
+                            seeAllDes: "/Categories",
+                          ),
                         ],
                       ),
                     ),
@@ -64,20 +81,45 @@ class _HomePageState extends State<HomePage> {
                         physics: BouncingScrollPhysics(),
                         scrollDirection: Axis.horizontal,
                         children: [
-                          SizedBox(width: 28.w,),
-                          MainCategoryCard(marginRight: 20,cate : "Crafts" ,imgPath : "images/cate/crafts.jpg"),
-                          MainCategoryCard(marginRight: 20,cate : "Knit" ,imgPath : "images/cate/knit.jpg"),
-                          MainCategoryCard(marginRight: 20,cate : "Art" ,imgPath : "images/cate/art.jpg"),
-                          MainCategoryCard(marginRight: 20,cate : "Plants" ,imgPath : "images/cate/Cactus.png"),
-                          MainCategoryCard(marginRight: 20,cate : "Clothes" ,imgPath : "images/cate/clothes.jpg"),
-                          MainCategoryCard(marginRight: 20,cate : "Accessories" ,imgPath : "images/cate/accec.jpg"),
+                          SizedBox(
+                            width: 28.w,
+                          ),
+                          MainCategoryCard(
+                              marginRight: 20,
+                              cate: "Crafts",
+                              imgPath: "images/cate/crafts.jpg"),
+                          MainCategoryCard(
+                              marginRight: 20,
+                              cate: "Knit",
+                              imgPath: "images/cate/knit.jpg"),
+                          MainCategoryCard(
+                              marginRight: 20,
+                              cate: "Art",
+                              imgPath: "images/cate/art.jpg"),
+                          MainCategoryCard(
+                              marginRight: 20,
+                              cate: "Plants",
+                              imgPath: "images/cate/Cactus.png"),
+                          MainCategoryCard(
+                              marginRight: 20,
+                              cate: "Clothes",
+                              imgPath: "images/cate/clothes.jpg"),
+                          MainCategoryCard(
+                              marginRight: 20,
+                              cate: "Accessories",
+                              imgPath: "images/cate/accec.jpg"),
                         ],
                       ),
                     ),
-                    SizedBox(height: 22.h,),
+                    SizedBox(
+                      height: 22.h,
+                    ),
                     Padding(
-                      padding: EdgeInsets.only(left: 28.w,right: 28.w),
-                      child: SectionHeader(header: "Products",seeAllDes: "/Products",),
+                      padding: EdgeInsets.only(left: 28.w, right: 28.w),
+                      child: SectionHeader(
+                        header: "Products",
+                        seeAllDes: "/Products",
+                      ),
                     ),
                     Container(
                       height: 150.h,
@@ -86,8 +128,7 @@ class _HomePageState extends State<HomePage> {
                       child: ListView(
                           physics: BouncingScrollPhysics(),
                           scrollDirection: Axis.horizontal,
-                          children: _myCards
-                      ),
+                          children: _myCards),
                     ),
                   ],
                 ),
@@ -98,7 +139,5 @@ class _HomePageState extends State<HomePage> {
         return Loading();
       },
     );
-
-
   }
 }
