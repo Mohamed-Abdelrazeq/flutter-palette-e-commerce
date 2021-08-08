@@ -7,6 +7,7 @@ import 'package:multivender_ecommerce_app/Views/Screens/LoginPage.dart';
 import 'package:multivender_ecommerce_app/Views/Screens/RegisterPage.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'Controllers/CurrentProductRateController.dart';
 import 'Controllers/ImagePickerController.dart';
 import 'Controllers/LocationController.dart';
 import 'Controllers/ThemeController.dart';
@@ -29,6 +30,7 @@ void main() {
         ChangeNotifierProvider<LocationController>(create: (_) => LocationController()),
         ChangeNotifierProvider<ImagePickerController>(create: (_) => ImagePickerController()),
         ChangeNotifierProvider<UserCredController>(create: (_) => UserCredController()),
+        ChangeNotifierProvider<CurrentProductRateController>(create: (_) => CurrentProductRateController()),
       ],
       child: MyApp(),
     ),

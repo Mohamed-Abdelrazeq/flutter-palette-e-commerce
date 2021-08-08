@@ -168,4 +168,37 @@ class UserModel {
         .then((value) => print("User Updated"))
         .catchError((error) => print("Failed to update user: $error"));
   }
+  //Debugging
+  Future<void> addRate({ProductModel productModel,double rate}) async {
+    bool duplicationFlag = false;
+    List<Map> newRates = [];
+    for (var i = 0; i < rates.length; i++) {
+      if (rates[i].to.name == productModel.name) {
+        duplicationFlag = true;
+        rates.removeAt(i);
+        rates.add(UserRateModel(to: productModel,rate: rate));
+        break;
+      } else {
+        duplicationFlag = false;
+      }
+    }
+    if (!duplicationFlag) {
+      rates.add(UserRateModel(to: productModel,rate: rate));
+      rates.forEach((element) {
+        newRates.add(element.toMap());
+      });
+      await _users
+          .doc(uid)
+          .update({'rates': newRates})
+          .catchError((error) => print("Failed to update user: $error"));
+    } else {
+      rates.forEach((element) {
+        newRates.add(element.toMap());
+      });
+      await _users
+          .doc(uid)
+          .update({'rates': newRates})
+          .catchError((error) => print("Failed to update user: $error"));
+    }
+  }
 }
