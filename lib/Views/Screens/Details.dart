@@ -23,6 +23,8 @@ class Details extends StatefulWidget {
 class _DetailsState extends State<Details> {
   @override
   Widget build(BuildContext context) {
+    double avgRates = 0;
+    widget.productModel.rates.forEach((e) => avgRates = avgRates + e);
     return WillPopScope(
       onWillPop: (){
         Provider.of<CurrentProductRateController>(context,listen: false).setCurrentRate(rate: 0);
@@ -51,15 +53,32 @@ class _DetailsState extends State<Details> {
                   ),
                   Positioned(
                     bottom: 10.h,
-                    child: TextContainer(
-                        content: Text(
-                      widget.productModel.name,
-                      style: TextStyle(
-                        fontSize: 20.sp,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    )),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        TextContainer(
+                            content: Text(
+                          widget.productModel.name,
+                          style: TextStyle(
+                            fontSize: 20.sp,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w400,
+
+                          ),
+
+                            ),
+                        ),
+                        SizedBox(width: 20.w,),
+                        TextContainer(content: Text(
+                          "${(avgRates/widget.productModel.rates.length).ceilToDouble().toString()} Stars",
+                          style: TextStyle(
+                            fontSize: 14.sp,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),)
+                      ],
+                    ),
                   )
                 ],
               ),
