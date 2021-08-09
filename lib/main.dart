@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -67,7 +68,28 @@ class MyApp extends StatelessWidget {
       future: _startHandler(),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
-          return SomethingWentWrong();
+          print("///////////////////");
+          print(snapshot.error.toString());
+          CollectionReference errors = FirebaseFirestore.instance.collection('errors');
+          Future<void> addUser() {
+            return errors
+                .add({
+              'errors': snapshot.error
+            })
+                .then((value) => print("User Added"))
+                .catchError((error) => print("Failed to add user: $error"));
+          }
+          addUser();
+          return MaterialApp(
+            home: Padding(
+              padding: EdgeInsets.only(top: 50),
+              child: SingleChildScrollView(
+                child: Text(
+                  snapshot.error.toString()
+                ),
+              ),
+            ),
+          );
         }
         if (snapshot.connectionState == ConnectionState.done) {
           return ScreenUtilInit(
