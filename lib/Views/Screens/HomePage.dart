@@ -35,7 +35,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    print("Home Called");
     Provider.of<SearchResultDisplayController>(context,listen: false).reset();
     super.initState();
   }
@@ -48,7 +47,6 @@ class _HomePageState extends State<HomePage> {
       future: ProductModel().readAllProducts(),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
-          print(snapshot.error);
           return SomethingWentWrong();
         }
         if (snapshot.connectionState == ConnectionState.done) {

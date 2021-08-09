@@ -39,14 +39,11 @@ class _MyTextFiledState extends State<MyTextFiled> {
         output.add(e)
       }
     });
-    print(searchList);
-    // print(output);
     if(output.length != 0 && widget.textController.text.length != 0){
       Provider.of<SearchResultDisplayController>(context,listen: false).setScreenName(widget.screenName);
       Provider.of<SearchResultDisplayController>(context,listen: false).setIsFound(true);
       Provider.of<SearchResultDisplayController>(context,listen: false).setResults(output);
     }else{
-      print("else called");
       Provider.of<SearchResultDisplayController>(context,listen: false).setScreenName(widget.screenName);
       Provider.of<SearchResultDisplayController>(context,listen: false).setIsFound(false);
       Provider.of<SearchResultDisplayController>(context,listen: false).setResults([]);

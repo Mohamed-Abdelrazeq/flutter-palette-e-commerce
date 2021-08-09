@@ -22,7 +22,6 @@ class _FavouritesPageState extends State<FavouritesPage> {
   List<MainCard> favCards;
 
   void initState() {
-    print("Cart Called");
     favData = Provider.of<UserCredController>(context, listen: false).userModel.favourite;
     Provider.of<SearchResultDisplayController>(context, listen: false).reset();
     favCards =  List.generate(favData.length, (index) {

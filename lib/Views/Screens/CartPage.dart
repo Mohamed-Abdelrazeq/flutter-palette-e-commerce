@@ -43,7 +43,6 @@ class _CartPageState extends State<CartPage> {
 
   @override
   void initState() {
-    print("Cart Called");
     cartData = Provider.of<UserCredController>(context,listen: false).userModel.cart;
     Provider.of<SearchResultDisplayController>(context, listen: false).reset();
     cartCards =  List.generate(cartData.length, (index) {
@@ -58,7 +57,6 @@ class _CartPageState extends State<CartPage> {
   @override
   Widget build(BuildContext context) {
     double statusBar = MediaQuery.of(context).padding.top;
-    print(cartCards);
     return Scaffold(
       backgroundColor: bgColor,
       body: Padding(
