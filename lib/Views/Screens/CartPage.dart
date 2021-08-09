@@ -25,6 +25,11 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartPageState extends State<CartPage> {
+
+  TextEditingController _searchTextController = TextEditingController();
+  List<ProductModel> cartData;
+  List<MainCard> cartCards;
+
   bool _phoneNumberCheck(BuildContext context) {
     var mobile = Provider.of<UserCredController>(context, listen: false)
         .userModel
@@ -35,9 +40,7 @@ class _CartPageState extends State<CartPage> {
       return true;
     }
   }
-  TextEditingController _searchTextController = TextEditingController();
-  List<ProductModel> cartData;
-  List<MainCard> cartCards;
+
   @override
   void initState() {
     print("Cart Called");
@@ -51,6 +54,7 @@ class _CartPageState extends State<CartPage> {
     });
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     double statusBar = MediaQuery.of(context).padding.top;
