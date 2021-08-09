@@ -3,6 +3,7 @@ import 'package:multivender_ecommerce_app/Controllers/ThemeController.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:multivender_ecommerce_app/Views/Component/MainCard.dart';
 import 'package:provider/provider.dart';
+import 'package:multivender_ecommerce_app/Controllers/SearchResultsDisplayController.dart';
 
 class MyTextFiled extends StatefulWidget {
 
@@ -11,35 +12,46 @@ class MyTextFiled extends StatefulWidget {
     @required this.myIcon,
     @required this.hint,
     @required this.focus,
-    @required this.searchList,
+    this.searchList,
+    this.screenName,
+    @required this.search,
   });
 
   final TextEditingController textController;
   final String hint;
+  final String screenName;
   final IconData myIcon;
   final bool focus;
   final List<Widget> searchList;
+  final bool search;
 
   @override
   _MyTextFiledState createState() => _MyTextFiledState();
 }
 
 class _MyTextFiledState extends State<MyTextFiled> {
-
+  bool focus = false;
   Color iconColor = ThemeController().myWhite60;
-  List<MainCard> searchEngine({List searchList,String keyWord}){
+  void searchEngine({List searchList,String keyWord,BuildContext context}){
     List<MainCard> output = [];
-
-
     searchList.forEach((e) => {
       if(e.productModel.name.toUpperCase().contains(keyWord.toUpperCase())){
         output.add(e)
       }
     });
-    print(output);
-    return output;
+    print(searchList);
+    // print(output);
+    if(output.length != 0 && widget.textController.text.length != 0){
+      Provider.of<SearchResultDisplayController>(context,listen: false).setScreenName(widget.screenName);
+      Provider.of<SearchResultDisplayController>(context,listen: false).setIsFound(true);
+      Provider.of<SearchResultDisplayController>(context,listen: false).setResults(output);
+    }else{
+      print("else called");
+      Provider.of<SearchResultDisplayController>(context,listen: false).setScreenName(widget.screenName);
+      Provider.of<SearchResultDisplayController>(context,listen: false).setIsFound(false);
+      Provider.of<SearchResultDisplayController>(context,listen: false).setResults([]);
+    }
   }
-
   @override
   Widget build(BuildContext context) {
     var themeProvider = Provider.of<ThemeController>(context);
@@ -67,6 +79,7 @@ class _MyTextFiledState extends State<MyTextFiled> {
           Expanded(
             child: TextField(
               autofocus: widget.focus,
+
               controller: widget.textController,
               style: themeProvider.textFieldTextStyle.apply(color: themeProvider.myWhite),
               cursorHeight: 20.h,
@@ -80,13 +93,18 @@ class _MyTextFiledState extends State<MyTextFiled> {
               onTap: (){
                 setState(() {
                   iconColor = themeProvider.myWhite;
+                  focus = true;
                 });
               },
               onChanged: (v){
-                searchEngine(
-                  keyWord: widget.textController.text,
-                  searchList: widget.searchList.sublist(1),
-                );
+                if(widget.search){
+                  searchEngine(
+                    keyWord: widget.textController.text,
+                    searchList: widget.searchList.sublist(1),
+                    context: context
+                  );
+                }
+
               },
             ),
           )
