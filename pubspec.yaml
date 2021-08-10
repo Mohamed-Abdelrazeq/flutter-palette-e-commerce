@@ -38,6 +38,9 @@ dependencies:
   google_sign_in: "^4.5.1"
   flutter_facebook_auth: "^1.0.0"
   shared_preferences:
+##Notification
+  firebase_messaging:
+  flutter_local_notifications:
 
 
 

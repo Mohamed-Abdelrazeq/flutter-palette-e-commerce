@@ -1,4 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+
+import '../main.dart';
 
 class ProductModel{
   ProductModel({
@@ -23,6 +27,18 @@ class ProductModel{
 
   //Working
   Future<void> addProduct() async {
+
+    flutterLocalNotificationsPlugin.show(
+        0,
+        "Product Added",
+        "$name Now is our most recent Product , Congrats!!",
+        NotificationDetails(
+            android: AndroidNotificationDetails(channel.id, channel.name, channel.description,
+                importance: Importance.high,
+                color: Colors.blue,
+                playSound: true,
+                icon: '@mipmap/ic_launcher')));
+
     id = "$category $name";
     bool isUnique = await _checkUniqueProductInTheStore(name);
     if(isUnique){
