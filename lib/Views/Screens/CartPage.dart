@@ -25,7 +25,6 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartPageState extends State<CartPage> {
-
   TextEditingController _searchTextController = TextEditingController();
   List<ProductModel> cartData;
   List<MainCard> cartCards;
@@ -43,9 +42,10 @@ class _CartPageState extends State<CartPage> {
 
   @override
   void initState() {
-    cartData = Provider.of<UserCredController>(context,listen: false).userModel.cart;
+    cartData =
+        Provider.of<UserCredController>(context, listen: false).userModel.cart;
     Provider.of<SearchResultDisplayController>(context, listen: false).reset();
-    cartCards =  List.generate(cartData.length, (index) {
+    cartCards = List.generate(cartData.length, (index) {
       return MainCard(
         marginRight: 0,
         productModel: cartData[index],
@@ -74,14 +74,14 @@ class _CartPageState extends State<CartPage> {
                       header: "Cart",
                     ),
                     MyTextFiled(
-                      textController: _searchTextController,
-                      myIcon: Icons.search,
-                      hint: "Search",
-                      focus: false,
-                      search: true,
-                      searchList:  cartCards,
-                      screenName: "Cart",
-                    ),
+                        textController: _searchTextController,
+                        myIcon: Icons.search,
+                        hint: "Search",
+                        focus: false,
+                        search: true,
+                        searchList: cartCards,
+                        screenName: "Cart",
+                        isPassword: false),
                     SizedBox(
                       height: 22.h,
                     ),
@@ -91,37 +91,49 @@ class _CartPageState extends State<CartPage> {
               Stack(
                 alignment: Alignment.bottomCenter,
                 children: [
-                  Provider.of<SearchResultDisplayController>(context).screenName == "Cart" && Provider.of<SearchResultDisplayController>(context).isFound == true ?
-                  Container(
-                    height: 410.h,
-                    width: 375.w,
-                    padding: EdgeInsets.only(bottom: 9.h,),
-                    child: GridView.count(
-                      physics: BouncingScrollPhysics(),
-                      shrinkWrap: true,
-                      crossAxisCount: 2,
-                      padding: EdgeInsets.only(left: 28.w,right: 28.w,bottom: 100.h),
-                      children: List.generate(Provider.of<SearchResultDisplayController>(context).results.length, (index) {
-                        return Provider.of<SearchResultDisplayController>(context).results[index];
-                      }),
-                    ),
-                  )
-                      :
-                  Container(
-                    height: 410.h,
-                    width: 375.w,
-                    padding: EdgeInsets.only(
-                      bottom: 9.h,
-                    ),
-                    child: GridView.count(
-                      physics: BouncingScrollPhysics(),
-                      shrinkWrap: true,
-                      crossAxisCount: 2,
-                      padding: EdgeInsets.only(
-                          left: 28.w, right: 28.w, bottom: 100.h),
-                      children: cartCards
-                    ),
-                  ),
+                  Provider.of<SearchResultDisplayController>(context)
+                                  .screenName ==
+                              "Cart" &&
+                          Provider.of<SearchResultDisplayController>(context)
+                                  .isFound ==
+                              true
+                      ? Container(
+                          height: 410.h,
+                          width: 375.w,
+                          padding: EdgeInsets.only(
+                            bottom: 9.h,
+                          ),
+                          child: GridView.count(
+                            physics: BouncingScrollPhysics(),
+                            shrinkWrap: true,
+                            crossAxisCount: 2,
+                            padding: EdgeInsets.only(
+                                left: 28.w, right: 28.w, bottom: 100.h),
+                            children: List.generate(
+                                Provider.of<SearchResultDisplayController>(
+                                        context)
+                                    .results
+                                    .length, (index) {
+                              return Provider.of<SearchResultDisplayController>(
+                                      context)
+                                  .results[index];
+                            }),
+                          ),
+                        )
+                      : Container(
+                          height: 410.h,
+                          width: 375.w,
+                          padding: EdgeInsets.only(
+                            bottom: 9.h,
+                          ),
+                          child: GridView.count(
+                              physics: BouncingScrollPhysics(),
+                              shrinkWrap: true,
+                              crossAxisCount: 2,
+                              padding: EdgeInsets.only(
+                                  left: 28.w, right: 28.w, bottom: 100.h),
+                              children: cartCards),
+                        ),
                   Positioned(
                     bottom: 30.h,
                     child: Padding(

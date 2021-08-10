@@ -60,6 +60,8 @@ class _FavouritesPageState extends State<FavouritesPage> {
                       screenName: "Favourite",
                       search: true,
                       searchList: favCards,
+                        isPassword: false
+
                     ),
                     SizedBox(
                       height: 22.h,

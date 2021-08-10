@@ -27,7 +27,7 @@ class AddPhoneNumber extends StatelessWidget {
               ),
             ),
             SizedBox(height: 20.h),
-            MyTextFiled(textController: phoneController, myIcon: Icons.phone, hint: "phone number",focus: true,search: false,),
+            MyTextFiled(textController: phoneController, myIcon: Icons.phone, hint: "phone number",focus: true,search: false,isPassword: false,),
             Spacer(),
             MainButton(text: "Save", btnFunction: () async {
               await Provider.of<UserCredController>(context,listen: false).setPhone(phoneController.text);

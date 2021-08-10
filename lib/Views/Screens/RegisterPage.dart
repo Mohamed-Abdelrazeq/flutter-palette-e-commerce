@@ -44,77 +44,140 @@ class _RegisterPageState extends State<RegisterPage> {
             children: [
               Logo(themeProvider: themeProvider),
               Slogan(themeProvider: themeProvider),
-              SizedBox(height: 30.h,),
-              MyTextFiled(textController: widget.email,hint: "email",myIcon: Icons.mail_outline,focus: false,search: false,),
-              SizedBox(height: 10.h,),
-              MyTextFiled(textController: widget.password,hint: "password",myIcon: Icons.lock_outline,focus: false,search: false,),
-              SizedBox(height: 10.h,),
-              MyTextFiled(textController: widget.phone,hint: "phone",myIcon: Icons.phone ,focus: false,search: false,),
-              SizedBox(height: 10.h,),
+              SizedBox(
+                height: 30.h,
+              ),
+              MyTextFiled(
+                textController: widget.email,
+                hint: "email",
+                myIcon: Icons.mail_outline,
+                focus: false,
+                search: false,
+                  isPassword: false
+
+              ),
+              SizedBox(
+                height: 10.h,
+              ),
+              MyTextFiled(
+                textController: widget.password,
+                hint: "password",
+                myIcon: Icons.lock_outline,
+                focus: false,
+                search: false,
+                  isPassword: true
+              ),
+              SizedBox(
+                height: 10.h,
+              ),
+              MyTextFiled(
+                textController: widget.phone,
+                hint: "phone",
+                myIcon: Icons.phone,
+                focus: false,
+                search: false,
+                  isPassword: false
+              ),
+              SizedBox(
+                height: 10.h,
+              ),
               Row(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.center,
-                children:[
-                  Text(
-                      "already a user ?",
-                      style: themeProvider.h4TextStyle.apply(color: themeProvider.myWhite60)
-                  ),
+                children: [
+                  Text("already a user ?",
+                      style: themeProvider.h4TextStyle
+                          .apply(color: themeProvider.myWhite60)),
                   GestureDetector(
-                    onTap: (){
+                    onTap: () {
                       Navigator.pushReplacementNamed(context, "/LoginPage");
                     },
                     child: Text(
                       " Login",
-                      style: themeProvider.h4TextStyle.apply(color: themeProvider.myWhite),
+                      style: themeProvider.h4TextStyle
+                          .apply(color: themeProvider.myWhite),
                     ),
                   ),
                 ],
               ),
-              SizedBox(height: 10.h,),
+              SizedBox(
+                height: 10.h,
+              ),
               Row(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.center,
-                children:[
-                  LoginViaCard(imgPath: "images/google-logo.png",func: ()async{
-                    Provider.of<UserCredController>(context,listen: false).setUserCredential(
-                    await Auth().signInWithGoogle(
-                      lng : Provider.of<LocationController>(context,listen: false).getCurrentLocationLng,
-                      lat : Provider.of<LocationController>(context,listen: false).getCurrentLocationLat,
-                    ));
-                    if(Provider.of<UserCredController>(context,listen: false).userModel != null){
-                      Navigator.pushNamed(context, "/NavPage");
-                    }
-                  },),
+                children: [
+                  LoginViaCard(
+                    imgPath: "images/google-logo.png",
+                    func: () async {
+                      Provider.of<UserCredController>(context, listen: false)
+                          .setUserCredential(await Auth().signInWithGoogle(
+                        lng: Provider.of<LocationController>(context,
+                                listen: false)
+                            .getCurrentLocationLng,
+                        lat: Provider.of<LocationController>(context,
+                                listen: false)
+                            .getCurrentLocationLat,
+                      ));
+                      if (Provider.of<UserCredController>(context,
+                                  listen: false)
+                              .userModel !=
+                          null) {
+                        Navigator.pushNamed(context, "/NavPage");
+                      }
+                    },
+                  ),
                   SizedBox(width: 30.w),
-                  LoginViaCard(imgPath: "images/facebook-logo.png",func: ()async{
-                    Provider.of<UserCredController>(context,listen: false).setUserCredential(
-                    await Auth().signInWithFacebook(
-                      lng : Provider.of<LocationController>(context,listen: false).getCurrentLocationLng,
-                      lat : Provider.of<LocationController>(context,listen: false).getCurrentLocationLat,
-                    ));
-                    if(Provider.of<UserCredController>(context,listen: false).userModel != null){
-                      Navigator.pushNamed(context, "/NavPage");
-                    }
-                  },),
+                  LoginViaCard(
+                    imgPath: "images/facebook-logo.png",
+                    func: () async {
+                      Provider.of<UserCredController>(context, listen: false)
+                          .setUserCredential(await Auth().signInWithFacebook(
+                        lng: Provider.of<LocationController>(context,
+                                listen: false)
+                            .getCurrentLocationLng,
+                        lat: Provider.of<LocationController>(context,
+                                listen: false)
+                            .getCurrentLocationLat,
+                      ));
+                      if (Provider.of<UserCredController>(context,
+                                  listen: false)
+                              .userModel !=
+                          null) {
+                        Navigator.pushNamed(context, "/NavPage");
+                      }
+                    },
+                  ),
                 ],
               ),
-              SizedBox(height: 60.h,),
-              MainButton(text: "Register",btnFunction: ()async{
-                Provider.of<UserCredController>(context,listen: false).setUserCredential(
-                await Auth().register(
+              SizedBox(
+                height: 60.h,
+              ),
+              MainButton(
+                text: "Register",
+                btnFunction: () async {
+                  Provider.of<UserCredController>(context, listen: false)
+                      .setUserCredential(await Auth().register(
                     mail: widget.email.text,
                     phone: widget.phone.text,
                     password: widget.password.text,
-                    lng : Provider.of<LocationController>(context,listen: false).getCurrentLocationLng,
-                    lat : Provider.of<LocationController>(context,listen: false).getCurrentLocationLat,
-                ));
-                if(Provider.of<UserCredController>(context,listen: false).userModel != null){
-                  Navigator.pushNamed(context, "/NavPage");
-                }
-              },),
-              SizedBox(height: 25.h,),
+                    lng: Provider.of<LocationController>(context, listen: false)
+                        .getCurrentLocationLng,
+                    lat: Provider.of<LocationController>(context, listen: false)
+                        .getCurrentLocationLat,
+                  ));
+                  if (Provider.of<UserCredController>(context, listen: false)
+                          .userModel !=
+                      null) {
+                    Navigator.pushNamed(context, "/NavPage");
+                  }
+                },
+              ),
+              SizedBox(
+                height: 25.h,
+              ),
             ],
           ),
         ),

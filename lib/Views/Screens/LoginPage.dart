@@ -53,6 +53,8 @@ class _LoginPageState extends State<LoginPage> {
                 myIcon: Icons.mail_outline,
                 focus: false,
                 search: false,
+                  isPassword: false
+
               ),
               SizedBox(
                 height: 10.h,
@@ -63,6 +65,8 @@ class _LoginPageState extends State<LoginPage> {
                 myIcon: Icons.lock_outline,
                 focus: false,
                 search: false,
+                  isPassword: true
+
               ),
               SizedBox(
                 height: 10.h,

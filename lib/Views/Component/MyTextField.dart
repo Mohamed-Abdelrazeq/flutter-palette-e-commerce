@@ -14,7 +14,9 @@ class MyTextFiled extends StatefulWidget {
     @required this.focus,
     this.searchList,
     this.screenName,
+    @required this.isPassword,
     @required this.search,
+
   });
 
   final TextEditingController textController;
@@ -24,7 +26,7 @@ class MyTextFiled extends StatefulWidget {
   final bool focus;
   final List<Widget> searchList;
   final bool search;
-
+  final bool isPassword;
   @override
   _MyTextFiledState createState() => _MyTextFiledState();
 }
@@ -76,7 +78,7 @@ class _MyTextFiledState extends State<MyTextFiled> {
           Expanded(
             child: TextField(
               autofocus: widget.focus,
-
+              obscureText : widget.isPassword,
               controller: widget.textController,
               style: themeProvider.textFieldTextStyle.apply(color: themeProvider.myWhite),
               cursorHeight: 20.h,

@@ -75,7 +75,9 @@ class _HomePageState extends State<HomePage> {
                               searchList: _myCards,
                               search: true,
                               screenName: "Home",
-                          ),
+                                isPassword: false
+
+                            ),
                           SizedBox(
                             height: 22.h,
                           ),
