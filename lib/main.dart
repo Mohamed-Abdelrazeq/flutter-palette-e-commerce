@@ -4,8 +4,6 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:loader_overlay/loader_overlay.dart';
 import 'Controllers/UserCredController.dart';
 import 'Controllers/SearchResultsDisplayController.dart';
 import 'Models/UserModel.dart';
@@ -24,14 +22,18 @@ import 'Views/Screens/NavPage.dart';
 import 'Views/Screens/Products.dart';
 import 'Views/Screens/WelcomePage.dart';
 
+
+
+
+
+
 const AndroidNotificationChannel channel = AndroidNotificationChannel(
     'high_importance_channel', // id
     'High Importance Notifications', // title
     'This channel is used for important notifications.', // description
     importance: Importance.high,
     playSound: true);
-final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-    FlutterLocalNotificationsPlugin();
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
   print('A bg message just showed up :  ${message.messageId}');
@@ -43,8 +45,7 @@ Future<void> main() async {
 
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   await flutterLocalNotificationsPlugin
-      .resolvePlatformSpecificImplementation<
-          AndroidFlutterLocalNotificationsPlugin>()
+      .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()
       ?.createNotificationChannel(channel);
   await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
     alert: true,
@@ -53,22 +54,22 @@ Future<void> main() async {
   );
 
   runApp(MultiProvider(
-    providers: [
-      ChangeNotifierProvider<ThemeController>(create: (_) => ThemeController()),
-      ChangeNotifierProvider<LocationController>(
-          create: (_) => LocationController()),
-      ChangeNotifierProvider<ImagePickerController>(
-          create: (_) => ImagePickerController()),
-      ChangeNotifierProvider<UserCredController>(
-          create: (_) => UserCredController()),
-      ChangeNotifierProvider<CurrentProductRateController>(
-          create: (_) => CurrentProductRateController()),
-      ChangeNotifierProvider<SearchResultDisplayController>(
-          create: (_) => SearchResultDisplayController()),
-    ],
-    child: MyApp(),
-  ));
+      providers: [
+        ChangeNotifierProvider<ThemeController>(create: (_) => ThemeController()),
+        ChangeNotifierProvider<LocationController>(create: (_) => LocationController()),
+        ChangeNotifierProvider<ImagePickerController>(create: (_) => ImagePickerController()),
+        ChangeNotifierProvider<UserCredController>(create: (_) => UserCredController()),
+        ChangeNotifierProvider<CurrentProductRateController>(create: (_) => CurrentProductRateController()),
+        ChangeNotifierProvider<SearchResultDisplayController>(create: (_) => SearchResultDisplayController()),
+      ],
+      child: MyApp(),
+    ));
 }
+
+
+
+
+
 
 class MyApp extends StatefulWidget {
   @override
@@ -76,6 +77,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+
   @override
   void initState() {
     super.initState();
@@ -124,51 +126,47 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     Future _startHandler() async {
-      if (Provider.of<LocationController>(context, listen: false)
-              .getCurrentLocationLat ==
-          null) {
-        await Provider.of<LocationController>(context, listen: false)
-            .getCurrentCoordinates();
+      if (Provider.of<LocationController>(context,listen: false).getCurrentLocationLat == null){
+        await Provider.of<LocationController>(context,listen: false).getCurrentCoordinates();
       }
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      try {
+      try{
         bool currentState = prefs.getBool("logged");
         String uid = prefs.getString("uid");
         UserModel userModel = await UserModel().getUserDataByUID(uid);
-        Provider.of<UserCredController>(context, listen: false)
-            .setUserCredential(userModel);
-        if (currentState != null) {
-          if (currentState) {
-            Provider.of<UserCredController>(context, listen: false)
-                .setState(true);
+        Provider.of<UserCredController>(context,listen: false).setUserCredential(userModel);
+        if (currentState != null){
+          if(currentState){
+            Provider.of<UserCredController>(context,listen: false).setState(true);
           }
         }
-      } catch (e) {
+      } catch (e){
         print(e);
       }
     }
-
     return FutureBuilder(
       future: _startHandler(),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
           print("///////////////////");
           print(snapshot.error.toString());
-          CollectionReference errors =
-              FirebaseFirestore.instance.collection('errors');
+          CollectionReference errors = FirebaseFirestore.instance.collection('errors');
           Future<void> addUser() {
             return errors
-                .add({'errors': snapshot.error})
+                .add({
+              'errors': snapshot.error
+            })
                 .then((value) => print("User Added"))
                 .catchError((error) => print("Failed to add user: $error"));
           }
-
           addUser();
           return MaterialApp(
             home: Padding(
               padding: EdgeInsets.only(top: 50),
               child: SingleChildScrollView(
-                child: Text(snapshot.error.toString()),
+                child: Text(
+                  snapshot.error.toString()
+                ),
               ),
             ),
           );
@@ -177,36 +175,19 @@ class _MyAppState extends State<MyApp> {
           return ScreenUtilInit(
             designSize: Size(375, 667),
             builder: () => MaterialApp(
-              theme: ThemeData(fontFamily: "Roboto"),
+              theme: ThemeData(
+                fontFamily: "Roboto"
+              ),
               routes: {
                 '/NavPage': (context) => NavPage(),
                 '/RegisterPage': (context) => RegisterPage(),
                 '/LoginPage': (context) => LoginPage(),
-                '/Categories': (context) => Categories(),
-                '/Products': (context) => Products(),
-                '/WelcomePage': (context) => WelcomePage(),
-                '/AddPhoneNumber': (context) => AddPhoneNumber(),
+                '/Categories' : (context) => Categories(),
+                '/Products' : (context) => Products(),
+                '/WelcomePage' : (context) => WelcomePage(),
+                '/AddPhoneNumber' : (context) => AddPhoneNumber(),
               },
-              home: Provider.of<UserCredController>(context).state == true
-                  ? LoaderOverlay(
-                      useDefaultLoading: false,
-                      overlayWidget: Center(
-                        child: SpinKitRotatingCircle(
-                          color: Colors.redAccent,
-                          size: 50.0,
-                        ),
-                      ),
-                      child: NavPage())
-                  : LoaderOverlay(
-                      useDefaultLoading: false,
-                      overlayWidget: Center(
-                        child: SpinKitRotatingCircle(
-                          color: Colors.redAccent,
-                          size: 50.0,
-                        ),
-                      ),
-                      child: WelcomePage(),
-                    ),
+              home: Provider.of<UserCredController>(context).state == true ? NavPage() : WelcomePage(),
             ),
           );
         }
@@ -215,3 +196,4 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
+

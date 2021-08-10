@@ -48,26 +48,22 @@ class _LoginPageState extends State<LoginPage> {
                 height: 30.h,
               ),
               MyTextFiled(
-                textController: widget.email,
-                hint: "email",
-                myIcon: Icons.mail_outline,
-                focus: false,
-                search: false,
-                  isPassword: false
-
-              ),
+                  textController: widget.email,
+                  hint: "email",
+                  myIcon: Icons.mail_outline,
+                  focus: false,
+                  search: false,
+                  isPassword: false),
               SizedBox(
                 height: 10.h,
               ),
               MyTextFiled(
-                textController: widget.password,
-                hint: "password",
-                myIcon: Icons.lock_outline,
-                focus: false,
-                search: false,
-                  isPassword: true
-
-              ),
+                  textController: widget.password,
+                  hint: "password",
+                  myIcon: Icons.lock_outline,
+                  focus: false,
+                  search: false,
+                  isPassword: true),
               SizedBox(
                 height: 10.h,
               ),
@@ -98,28 +94,48 @@ class _LoginPageState extends State<LoginPage> {
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.center,
-                children:[
-                  LoginViaCard(imgPath: "images/google-logo.png",func: ()async{
-                    Provider.of<UserCredController>(context,listen: false).setUserCredential(
-                    await Auth().signInWithGoogle(
-                      lng : Provider.of<LocationController>(context,listen: false).getCurrentLocationLng,
-                      lat : Provider.of<LocationController>(context,listen: false).getCurrentLocationLat,
-                    ));
-                    if(Provider.of<UserCredController>(context,listen: false).userModel != null){
-                      Navigator.pushNamed(context, "/NavPage");
-                    }
-                  },),
+                children: [
+                  LoginViaCard(
+                    imgPath: "images/google-logo.png",
+                    func: () async {
+                      Provider.of<UserCredController>(context, listen: false)
+                          .setUserCredential(await Auth().signInWithGoogle(
+                        lng: Provider.of<LocationController>(context,
+                                listen: false)
+                            .getCurrentLocationLng,
+                        lat: Provider.of<LocationController>(context,
+                                listen: false)
+                            .getCurrentLocationLat,
+                      ));
+                      if (Provider.of<UserCredController>(context,
+                                  listen: false)
+                              .userModel !=
+                          null) {
+                        Navigator.pushNamed(context, "/NavPage");
+                      }
+                    },
+                  ),
                   SizedBox(width: 30.w),
-                  LoginViaCard(imgPath: "images/facebook-logo.png",func: ()async{
-                    Provider.of<UserCredController>(context,listen: false).setUserCredential(
-                    await Auth().signInWithFacebook(
-                      lng : Provider.of<LocationController>(context,listen: false).getCurrentLocationLng,
-                      lat : Provider.of<LocationController>(context,listen: false).getCurrentLocationLat,
-                    ));
-                    if(Provider.of<UserCredController>(context,listen: false).userModel != null){
-                      Navigator.pushNamed(context, "/NavPage");
-                    }
-                  },),
+                  LoginViaCard(
+                    imgPath: "images/facebook-logo.png",
+                    func: () async {
+                      Provider.of<UserCredController>(context, listen: false)
+                          .setUserCredential(await Auth().signInWithFacebook(
+                        lng: Provider.of<LocationController>(context,
+                                listen: false)
+                            .getCurrentLocationLng,
+                        lat: Provider.of<LocationController>(context,
+                                listen: false)
+                            .getCurrentLocationLat,
+                      ));
+                      if (Provider.of<UserCredController>(context,
+                                  listen: false)
+                              .userModel !=
+                          null) {
+                        Navigator.pushNamed(context, "/NavPage");
+                      }
+                    },
+                  ),
                 ],
               ),
               SizedBox(
@@ -128,14 +144,15 @@ class _LoginPageState extends State<LoginPage> {
               MainButton(
                 text: "Login",
                 btnFunction: () async {
-                  Provider.of<UserCredController>(context,listen: false).setUserCredential(
-                      await Auth().login(
-                        mail: widget.email.text,
-                        password: widget.password.text,
-                      )
-                  );
-                  if(Provider.of<UserCredController>(context,listen: false).userModel != null){
-                  Navigator.pushNamed(context, "/NavPage");
+                  Provider.of<UserCredController>(context, listen: false)
+                      .setUserCredential(await Auth().login(
+                    mail: widget.email.text,
+                    password: widget.password.text,
+                  ));
+                  if (Provider.of<UserCredController>(context, listen: false)
+                          .userModel !=
+                      null) {
+                    Navigator.pushNamed(context, "/NavPage");
                   }
                 },
               ),
