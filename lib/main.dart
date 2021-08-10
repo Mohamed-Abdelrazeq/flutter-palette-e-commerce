@@ -7,6 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'Controllers/UserCredController.dart';
 import 'Controllers/SearchResultsDisplayController.dart';
 import 'Models/UserModel.dart';
+import 'Views/Screens/ACategory.dart';
 import 'Views/Screens/LoginPage.dart';
 import 'Views/Screens/RegisterPage.dart';
 import 'package:provider/provider.dart';
@@ -186,6 +187,7 @@ class _MyAppState extends State<MyApp> {
                 '/Products' : (context) => Products(),
                 '/WelcomePage' : (context) => WelcomePage(),
                 '/AddPhoneNumber' : (context) => AddPhoneNumber(),
+                '/ACategory' : (context) => ACategory(),
               },
               home: Provider.of<UserCredController>(context).state == true ? NavPage() : WelcomePage(),
             ),

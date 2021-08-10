@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:multivender_ecommerce_app/Views/MyColors.dart';
+import 'package:multivender_ecommerce_app/Views/Screens/ACategory.dart';
 
 class MainCategoryCard extends StatelessWidget {
 
@@ -19,7 +20,9 @@ class MainCategoryCard extends StatelessWidget {
     return InkWell(
       onTap: (){
         //TODO add category page
-        Navigator.pushNamed(context, '/details');
+        Navigator.push(context,
+          MaterialPageRoute(builder: (context) => ACategory(name: cate)),
+        );
       },
       child: Container(
         margin: EdgeInsets.only(right: marginRight.w),

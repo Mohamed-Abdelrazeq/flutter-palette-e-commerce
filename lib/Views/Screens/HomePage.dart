@@ -131,7 +131,7 @@ class _HomePageState extends State<HomePage> {
                                   imgPath: "images/cate/art.jpg"),
                               MainCategoryCard(
                                   marginRight: 20,
-                                  cate: "Plants",
+                                  cate: "Plant",
                                   imgPath: "images/cate/Cactus.png"),
                               MainCategoryCard(
                                   marginRight: 20,

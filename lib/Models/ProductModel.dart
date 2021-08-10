@@ -82,6 +82,8 @@ class ProductModel{
         myProductsList.add(ProductModel().toObject(doc.data()));
       });
     });
+    print("done");
+    print(myProductsList);
     return myProductsList;
   }
   //Working
