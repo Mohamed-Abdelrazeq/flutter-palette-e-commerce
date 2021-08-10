@@ -24,6 +24,9 @@ import 'Views/Screens/WelcomePage.dart';
 
 
 
+
+
+
 const AndroidNotificationChannel channel = AndroidNotificationChannel(
     'high_importance_channel', // id
     'High Importance Notifications', // title
@@ -63,6 +66,11 @@ Future<void> main() async {
     ));
 }
 
+
+
+
+
+
 class MyApp extends StatefulWidget {
   @override
   _MyAppState createState() => _MyAppState();
@@ -93,7 +101,6 @@ class _MyAppState extends State<MyApp> {
             ));
       }
     });
-
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
       print('A new onMessageOpenedApp event was published!');
       RemoteNotification notification = message.notification;
@@ -187,9 +194,6 @@ class _MyAppState extends State<MyApp> {
         return Loading();
       },
     );
-
-
-
   }
 }
 
