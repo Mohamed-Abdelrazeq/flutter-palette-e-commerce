@@ -32,6 +32,7 @@ class OrdersPage extends StatelessWidget {
                       itemCount: snapshot.data.length,
                       itemBuilder: (context, index) {
                         return Container(
+                          margin: EdgeInsets.only(bottom: 20.h),
                           padding: EdgeInsets.all(20.r),
                           decoration: BoxDecoration(
                             color: widgetColor,
@@ -54,7 +55,7 @@ class OrdersPage extends StatelessWidget {
                                 snapshot.data[index].products.length,
                                 (innerIndex) {
                                   return Text(
-                                    "Product No.${index + 1} : ${snapshot.data[index].products[index].name}",
+                                    "Product No.${index + 1} : ${snapshot.data[index].products[innerIndex].name}",
                                     style: TextStyle(color: Colors.white,fontSize: 16.sp),
                                   );
                                 },

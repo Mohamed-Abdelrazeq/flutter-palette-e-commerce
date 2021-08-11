@@ -10,7 +10,7 @@ class Categories extends StatelessWidget {
     {"cate": "Crafts", "imgPath": "images/cate/crafts.jpg"},
     {"cate": "Knit", "imgPath": "images/cate/knit.jpg"},
     {"cate": "Art", "imgPath": "images/cate/art.jpg"},
-    {"cate": "Plants", "imgPath": "images/cate/Cactus.png"},
+    {"cate": "Plant", "imgPath": "images/cate/Cactus.png"},
     {"cate": "Clothes", "imgPath": "images/cate/clothes.jpg"},
     {"cate": "Accessories", "imgPath": "images/cate/accec.jpg"},
   ];
