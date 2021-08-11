@@ -12,7 +12,6 @@ class Auth {
   CollectionReference _users = FirebaseFirestore.instance.collection('users');
 
   Future<void> logout({BuildContext context}) async {
-    flashBar(title: "Please Wait", message: 'This will take a second', context: context);
     await _auth.signOut();
   }
 

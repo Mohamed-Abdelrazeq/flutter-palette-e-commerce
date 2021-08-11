@@ -27,14 +27,13 @@ class _NavPageState extends State<NavPage> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        Navigator.pushReplacementNamed(context, "/WelcomePage");
-        await delay;
-        Auth().logout();
+        print('pressed');
         Provider.of<UserCredController>(context,listen: false).setState(false);
         Provider.of<UserCredController>(context,listen: false).setUserCredential(null);
         SharedPreferences prefs = await SharedPreferences.getInstance();
         await prefs.setBool("logged", false);
-        print('all done');
+        await Auth().logout();
+        Navigator.pushReplacementNamed(context, "/WelcomePage");
         return null;
       },
       child: Scaffold(
