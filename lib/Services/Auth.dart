@@ -60,11 +60,12 @@ class Auth {
 
   Future<UserModel> signInWithFacebook({double lng ,double lat,BuildContext context}) async {
     flashBar(title: "Please Wait", message: 'This will take a second', context: context);
+    UserCredential userCredential;
     FacebookAuth.instance.logOut();
       final  result = await FacebookAuth.instance.login();
       final facebookAuthCredential = FacebookAuthProvider.credential(result.token);
       // Once signed in, return the UserCredential
-      UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
+      userCredential = await FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
       var userCheckJson = await _users.doc(userCredential.user.uid).get();
       if(userCheckJson.data() != null){
         return UserModel().toObject(userCheckJson.data());
