@@ -21,6 +21,7 @@ import 'Views/Screens/NavPage.dart';
 import 'Views/Screens/Products.dart';
 import 'Views/Screens/WelcomePage.dart';
 import 'Views/Screens/OrdersPage.dart';
+import 'Views/Screens/GetLocation.dart';
 
 
 
@@ -175,6 +176,7 @@ class _MyAppState extends State<MyApp> {
                 '/WelcomePage' : (context) => WelcomePage(),
                 '/AddPhoneNumber' : (context) => AddPhoneNumber(),
                 '/OrdersPage' : (context) => OrdersPage(),
+                '/GetLocation' : (context) => GetLocation(),
               },
               home: Provider.of<UserCredController>(context).state == true ? NavPage() : WelcomePage(),
             ),

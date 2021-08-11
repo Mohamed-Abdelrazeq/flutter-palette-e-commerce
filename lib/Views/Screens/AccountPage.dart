@@ -27,8 +27,7 @@ class AccountPage extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                AccountOptionCard(icon: Icons.location_on_outlined,text: "Location",),
-                AccountOptionCard(icon: Icons.credit_card_outlined,text: "Cards",),
+                AccountOptionCard(icon: Icons.location_on_outlined,text: "Location",destination: "/GetLocation",),
               ],
             )
           ],
