@@ -39,25 +39,16 @@ class OrderModel{
     }
 
   }
-  //Working todo
-  Future<List<OrderModel>> readOrdersByUserMail(String key) async {
+  //Working
+  Future<List<OrderModel>> readOrdersByUserUID(String key) async {
     List<OrderModel> myOrdersList = [];
-    await _orders.where('user.mail',isEqualTo: key).get()
+    await _orders.where('user.uid',isEqualTo: key).get()
         .then((QuerySnapshot querySnapshot) {
       querySnapshot.docs.forEach((doc) {
-        myOrdersList.add(OrderModel().toObject(doc.data()));
-      });
-    });
-    print(myOrdersList);
-    return myOrdersList;
-  }
-  //Working todo
-  Future<List<OrderModel>> readOrdersByOwnerMail(String key) async {
-    List<OrderModel> myOrdersList = [];
-    await _orders.where('product.store.owner.mail',isEqualTo: key).get()
-        .then((QuerySnapshot querySnapshot) {
-      querySnapshot.docs.forEach((doc) {
-        myOrdersList.add(OrderModel().toObject(doc.data()));
+        print(doc.data());
+        myOrdersList.add(
+            OrderModel().toObject(doc.data())
+        );
       });
     });
     print(myOrdersList);
@@ -66,7 +57,7 @@ class OrderModel{
   //Working
   OrderModel toObject(Map json){
     Timestamp time = json["orderingDate"];
-    List<Map> productsJson = json["products"];
+    List productsJson = json["products"];
     List<ProductModel> productsModel = [];
     productsJson.forEach((element) {
       productsModel.add(

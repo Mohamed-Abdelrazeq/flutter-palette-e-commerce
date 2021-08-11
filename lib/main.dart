@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +20,7 @@ import 'Views/Screens/Categories.dart';
 import 'Views/Screens/NavPage.dart';
 import 'Views/Screens/Products.dart';
 import 'Views/Screens/WelcomePage.dart';
+import 'Views/Screens/OrdersPage.dart';
 
 
 
@@ -174,6 +174,7 @@ class _MyAppState extends State<MyApp> {
                 '/Products' : (context) => Products(),
                 '/WelcomePage' : (context) => WelcomePage(),
                 '/AddPhoneNumber' : (context) => AddPhoneNumber(),
+                '/OrdersPage' : (context) => OrdersPage(),
               },
               home: Provider.of<UserCredController>(context).state == true ? NavPage() : WelcomePage(),
             ),

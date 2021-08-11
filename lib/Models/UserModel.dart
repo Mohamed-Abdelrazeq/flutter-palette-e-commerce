@@ -77,11 +77,15 @@ class UserModel {
   Map<String, dynamic> toMap() {
     List fav = [];
     List car = [];
+    List rat = [];
     favourite.forEach((element) {
       fav.add(element.toMap());
     });
     cart.forEach((element) {
       car.add(element.toMap());
+    });
+    rates.forEach((element) {
+      rat.add(element.toMap());
     });
     return {
       "uid": uid,
@@ -90,7 +94,7 @@ class UserModel {
       "lon": lng,
       "favourite": fav,
       "cart": car,
-      "rates": rates,
+      "rates": rat,
     };
   }
   //Working

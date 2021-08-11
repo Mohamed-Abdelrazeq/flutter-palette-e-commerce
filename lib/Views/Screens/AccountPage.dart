@@ -19,7 +19,7 @@ class AccountPage extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                AccountOptionCard(icon: Icons.move_to_inbox_sharp,text: "Orders",),
+                AccountOptionCard(icon: Icons.move_to_inbox_sharp,text: "Orders",destination: "/OrdersPage",),
                 AccountOptionCard(icon: Icons.lock_outline,text: "Password",),
               ],
             ),
