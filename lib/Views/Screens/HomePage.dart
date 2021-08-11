@@ -79,7 +79,7 @@ class _HomePageState extends State<HomePage> {
 
                             ),
                           SizedBox(
-                            height: 22.h,
+                            height: 20.h,
                           ),
                         ],
                       ),
@@ -107,6 +107,9 @@ class _HomePageState extends State<HomePage> {
                             header: "Categories",
                             seeAllDes: "/Categories",
                           ),
+                        ),
+                        SizedBox(
+                          height: 5.h,
                         ),
                         Container(
                           height: 150.h,
@@ -147,7 +150,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                         SizedBox(
-                          height: 22.h,
+                          height: 15.h,
                         ),
                         Padding(
                           padding: EdgeInsets.only(left: 28.w, right: 28.w),
@@ -155,6 +158,9 @@ class _HomePageState extends State<HomePage> {
                             header: "Products",
                             seeAllDes: "/Products",
                           ),
+                        ),
+                        SizedBox(
+                          height: 5.h,
                         ),
                         Container(
                           height: 150.h,
