@@ -8,10 +8,12 @@ class UserCredController extends ChangeNotifier{
 
   setUserCredential(UserModel currentUserModel)async{
     userModel = currentUserModel;
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setBool("logged", true);
-    await prefs.setString('uid', userModel.uid);
-    notifyListeners();
+    if(currentUserModel != null){
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      await prefs.setBool("logged", true);
+      await prefs.setString('uid', userModel.uid);
+      notifyListeners();
+    }
   }
 
   setState(bool newState){

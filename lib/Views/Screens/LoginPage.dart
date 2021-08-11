@@ -106,6 +106,7 @@ class _LoginPageState extends State<LoginPage> {
                         lat: Provider.of<LocationController>(context,
                                 listen: false)
                             .getCurrentLocationLat,
+                        context : context,
                       ));
                       if (Provider.of<UserCredController>(context,
                                   listen: false)
@@ -127,6 +128,7 @@ class _LoginPageState extends State<LoginPage> {
                         lat: Provider.of<LocationController>(context,
                                 listen: false)
                             .getCurrentLocationLat,
+                        context : context,
                       ));
                       if (Provider.of<UserCredController>(context,
                                   listen: false)
@@ -148,6 +150,7 @@ class _LoginPageState extends State<LoginPage> {
                       .setUserCredential(await Auth().login(
                     mail: widget.email.text,
                     password: widget.password.text,
+                    context : context,
                   ));
                   if (Provider.of<UserCredController>(context, listen: false)
                           .userModel !=

@@ -120,6 +120,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         lat: Provider.of<LocationController>(context,
                                 listen: false)
                             .getCurrentLocationLat,
+                        context : context,
                       ));
                       if (Provider.of<UserCredController>(context,
                                   listen: false)
@@ -167,6 +168,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         .getCurrentLocationLng,
                     lat: Provider.of<LocationController>(context, listen: false)
                         .getCurrentLocationLat,
+                    context : context,
                   ));
                   if (Provider.of<UserCredController>(context, listen: false)
                           .userModel !=
