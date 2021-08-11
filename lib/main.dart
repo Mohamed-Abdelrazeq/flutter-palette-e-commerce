@@ -148,18 +148,6 @@ class _MyAppState extends State<MyApp> {
       future: _startHandler(),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
-          print("///////////////////");
-          print(snapshot.error.toString());
-          CollectionReference errors = FirebaseFirestore.instance.collection('errors');
-          Future<void> addUser() {
-            return errors
-                .add({
-              'errors': snapshot.error
-            })
-                .then((value) => print("User Added"))
-                .catchError((error) => print("Failed to add user: $error"));
-          }
-          addUser();
           return MaterialApp(
             home: Padding(
               padding: EdgeInsets.only(top: 50),
