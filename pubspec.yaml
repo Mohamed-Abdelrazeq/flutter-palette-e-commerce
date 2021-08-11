@@ -17,6 +17,7 @@ dependencies:
   outline_gradient_button: ^2.0.0+1
   flutter_statusbarcolor: ^0.2.3
   loader_overlay: ^2.0.2
+  fluttertoast: ^8.0.8
   ##State Management
   provider:
 ##Futures Reflections

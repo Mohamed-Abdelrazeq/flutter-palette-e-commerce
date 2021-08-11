@@ -3,6 +3,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:multivender_ecommerce_app/Views/Screens/AccountPage.dart';
 import 'Controllers/UserCredController.dart';
 import 'Controllers/SearchResultsDisplayController.dart';
 import 'Models/UserModel.dart';
@@ -23,6 +24,7 @@ import 'Views/Screens/WelcomePage.dart';
 import 'Views/Screens/OrdersPage.dart';
 import 'Views/Screens/GetLocation.dart';
 import 'Views/Screens/ResetPassword.dart';
+import 'Views/Screens/NotificationsScreen.dart';
 
 const AndroidNotificationChannel channel = AndroidNotificationChannel(
     'high_importance_channel', // id
@@ -174,6 +176,8 @@ class _MyAppState extends State<MyApp> {
                 '/OrdersPage' : (context) => OrdersPage(),
                 '/GetLocation' : (context) => GetLocation(),
                 '/Reset' : (context) => ResetPassword(),
+                '/AccountPage' : (context) => AccountPage(),
+                '/NotificationsPage' : (context) => NotificationsPage(),
               },
               home: Provider.of<UserCredController>(context).state == true ? NavPage() : WelcomePage(),
             ),

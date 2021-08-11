@@ -16,15 +16,20 @@ class Header extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Container(
-            width: 40.r,
-            height: 40.r,
-            decoration: BoxDecoration(
-                color: widgetColor,
-                borderRadius: BorderRadius.circular(18.r),
-                image: DecorationImage(
-                    image: AssetImage("images/Woman.png")
-                )
+          InkWell(
+            onTap: (){
+              Navigator.pushNamed(context, "/AccountPage");
+            },
+            child: Container(
+              width: 40.r,
+              height: 40.r,
+              decoration: BoxDecoration(
+                  color: widgetColor,
+                  borderRadius: BorderRadius.circular(18.r),
+                  image: DecorationImage(
+                      image: AssetImage("images/Woman.png")
+                  )
+              ),
             ),
           ),
           Text(
@@ -35,15 +40,20 @@ class Header extends StatelessWidget {
                 color: Colors.white
             ),
           ),
-          Container(
-            width: 40.r,
-            height: 40.r,
-            decoration: BoxDecoration(
-              color: widgetColor,
-              borderRadius: BorderRadius.circular(18.r),
+          InkWell(
+            onTap: (){
+              Navigator.pushNamed(context, "/NotificationsPage");
+            },
+            child: Container(
+              width: 40.r,
+              height: 40.r,
+              decoration: BoxDecoration(
+                color: widgetColor,
+                borderRadius: BorderRadius.circular(18.r),
 
+              ),
+              child: Center(child: Icon(Icons.notifications_none,size: 20.r,color: white60,)),
             ),
-            child: Center(child: Icon(Icons.notifications_none,size: 20.r,color: white60,)),
           ),
         ],
       ),
