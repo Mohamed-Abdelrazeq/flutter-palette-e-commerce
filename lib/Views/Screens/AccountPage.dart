@@ -20,7 +20,7 @@ class AccountPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 AccountOptionCard(icon: Icons.move_to_inbox_sharp,text: "Orders",destination: "/OrdersPage",),
-                AccountOptionCard(icon: Icons.lock_outline,text: "Password",),
+                AccountOptionCard(icon: Icons.lock_outline,text: "Password",destination: "/Reset",),
               ],
             ),
             SizedBox(height: 20.h,),

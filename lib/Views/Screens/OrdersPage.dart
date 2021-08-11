@@ -17,7 +17,6 @@ class OrdersPage extends StatelessWidget {
           Provider.of<UserCredController>(context).userModel.uid),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
-          print(snapshot.error.toString());
           return SomethingWentWrong();
         }
         if (snapshot.connectionState == ConnectionState.done) {

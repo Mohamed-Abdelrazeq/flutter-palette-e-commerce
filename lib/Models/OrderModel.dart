@@ -45,13 +45,11 @@ class OrderModel{
     await _orders.where('user.uid',isEqualTo: key).get()
         .then((QuerySnapshot querySnapshot) {
       querySnapshot.docs.forEach((doc) {
-        print(doc.data());
         myOrdersList.add(
             OrderModel().toObject(doc.data())
         );
       });
     });
-    print(myOrdersList);
     return myOrdersList;
   }
   //Working

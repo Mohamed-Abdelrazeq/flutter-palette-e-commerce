@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:multivender_ecommerce_app/Controllers/LocationController.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:multivender_ecommerce_app/Views/Component/MainButton.dart';
-import 'package:provider/provider.dart';
-import '../MyColors.dart';
+import 'package:multivender_ecommerce_app/Views/MyColors.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class GetLocation extends StatelessWidget {
+class ResetPassword extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Provider.of<LocationController>(context).getCurrentCoordinates();
     return Scaffold(
       backgroundColor: bgColor,
       body: Container(
@@ -19,7 +16,7 @@ class GetLocation extends StatelessWidget {
           children: [
             SizedBox(height: 300.h,),
             Text(
-              "Location Updated",
+              "Coming Soon...",
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 24.sp,
@@ -33,6 +30,7 @@ class GetLocation extends StatelessWidget {
           ],
         ),
       ),
+
     );
   }
 }
