@@ -5,6 +5,7 @@ import 'package:multivender_ecommerce_app/Models/ProductModel.dart';
 import 'package:multivender_ecommerce_app/Models/UserModel.dart';
 import 'package:multivender_ecommerce_app/Views/Component/MainButton.dart';
 import 'package:multivender_ecommerce_app/Views/Component/SecButton.dart';
+import 'package:multivender_ecommerce_app/Views/FutureReturn/FlashBar.dart';
 import 'package:multivender_ecommerce_app/Views/MyColors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -158,9 +159,11 @@ class _DetailsState extends State<Details> {
                     MainButton(
                         text: "Add to Favourite",
                         btnFunction: () {
+                          flashBar(title: "Please Wait", message: 'It will take a second', context: context);
                           Provider.of<UserCredController>(context, listen: false)
                               .userModel
                               .addToFavourite(widget.productModel);
+                          flashBar(title: "Success", message: 'Product Added to your Favourites Successfully', context: context);
                         }),
                     SizedBox(
                       height: 10.h,
@@ -168,9 +171,11 @@ class _DetailsState extends State<Details> {
                     SecButton(
                         text: "Add to Cart",
                         btnFunction: () {
+                          flashBar(title: "Please Wait", message: 'It will take a second', context: context);
                           Provider.of<UserCredController>(context, listen: false)
                               .userModel
                               .addToCart(widget.productModel);
+                          flashBar(title: "Success", message: 'Product Added to your Cart Successfully', context: context);
                         }),
                     SizedBox(
                       height: 20.h,
@@ -217,12 +222,13 @@ class RateCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () async {
+        flashBar(title: "Please Wait", message: 'It will take a second', context: context);
         UserModel userModel = Provider.of<UserCredController>(context,listen: false).userModel;
         await userModel.addRate(rate: rate,productModel: productModel);
-
         await productModel.addRate(oldRate : Provider.of<CurrentProductRateController>(context,listen: false).currentRate,newRate: rate);
 
         Provider.of<CurrentProductRateController>(context,listen: false).setCurrentRate(rate: rate);
+        flashBar(title: "Success", message: 'Rate Added Successfully', context: context);
       },
       child: Container(
         child: Provider.of<CurrentProductRateController>(context).currentRate.toDouble() == rate.toDouble()

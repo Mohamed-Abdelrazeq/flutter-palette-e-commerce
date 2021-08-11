@@ -9,6 +9,7 @@ import 'package:multivender_ecommerce_app/Views/Component/Header.dart';
 import 'package:multivender_ecommerce_app/Views/Component/MainButton.dart';
 import 'package:multivender_ecommerce_app/Views/Component/MainCard.dart';
 import 'package:multivender_ecommerce_app/Views/Component/MyTextField.dart';
+import 'package:multivender_ecommerce_app/Views/FutureReturn/FlashBar.dart';
 import 'package:provider/provider.dart';
 import 'package:multivender_ecommerce_app/Controllers/SearchResultsDisplayController.dart';
 
@@ -145,6 +146,7 @@ class _CartPageState extends State<CartPage> {
                             if (!phoneCheckResults) {
                               Navigator.pushNamed(context, "/AddPhoneNumber");
                             } else {
+                              flashBar(title: "Please Wait", message: 'It will take a second', context: context);
                               double totalPrice = 0.0;
                               cartData.forEach((element) {
                                 totalPrice = element.price + totalPrice;
@@ -167,6 +169,7 @@ class _CartPageState extends State<CartPage> {
                               widget.pageController.animateToPage(0,
                                   duration: Duration(milliseconds: 300),
                                   curve: Curves.easeIn);
+                              flashBar(title: "Success", message: 'Your Order has been Made ... Wait for our call Soon!', context: context);
                             }
                           }),
                     ),
