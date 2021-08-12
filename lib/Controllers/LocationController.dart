@@ -17,7 +17,7 @@ class LocationController with ChangeNotifier{
     //Get Permissions
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
-      return Future.error('Location services are disabled.');
+      await Geolocator.openLocationSettings();
     }
 
     permission = await Geolocator.checkPermission();
