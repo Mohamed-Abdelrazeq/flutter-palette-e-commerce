@@ -19,13 +19,10 @@ class LocationController with ChangeNotifier{
     if (!serviceEnabled) {
       await Geolocator.openLocationSettings();
     }
-
     permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.deniedForever) {
-      return Future.error(
-          'Location permissions are permanently denied, we cannot request permissions.');
+      permission = await Geolocator.requestPermission();
     }
-
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
       if (permission != LocationPermission.whileInUse &&
