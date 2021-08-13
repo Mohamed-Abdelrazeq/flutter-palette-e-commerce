@@ -78,6 +78,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+
   @override
   void initState() {
     super.initState();
@@ -125,6 +126,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    //TODO : Need to be simplified
     Future _startHandler() async {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       String loc = prefs.getString("loc");
@@ -155,7 +157,6 @@ class _MyAppState extends State<MyApp> {
         }
       }
     }
-
     return FutureBuilder(
       future: _startHandler(),
       builder: (context, snapshot) {
